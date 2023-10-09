@@ -13,6 +13,11 @@
 		A6E45F2F2AD3EA100057D668 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6E45F2D2AD3EA100057D668 /* Main.storyboard */; };
 		A6E45F312AD3EA120057D668 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6E45F302AD3EA120057D668 /* Assets.xcassets */; };
 		A6E45F342AD3EA120057D668 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6E45F322AD3EA120057D668 /* LaunchScreen.storyboard */; };
+		A6EB08112AD45EE500F4CBD5 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EB08102AD45EE400F4CBD5 /* TabBarController.swift */; };
+		A6EB08172AD475E000F4CBD5 /* SeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EB08162AD475E000F4CBD5 /* SeparatorView.swift */; };
+		A6EB08192AD4763E00F4CBD5 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EB08182AD4763E00F4CBD5 /* HomeController.swift */; };
+		A6EB081D2AD4768000F4CBD5 /* TableContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EB081C2AD4768000F4CBD5 /* TableContainer.swift */; };
+		A6EB08202AD4983F00F4CBD5 /* MatchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EB081F2AD4983F00F4CBD5 /* MatchController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +29,11 @@
 		A6E45F302AD3EA120057D668 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A6E45F332AD3EA120057D668 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A6E45F352AD3EA120057D668 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A6EB08102AD45EE400F4CBD5 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		A6EB08162AD475E000F4CBD5 /* SeparatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorView.swift; sourceTree = "<group>"; };
+		A6EB08182AD4763E00F4CBD5 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
+		A6EB081C2AD4768000F4CBD5 /* TableContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableContainer.swift; sourceTree = "<group>"; };
+		A6EB081F2AD4983F00F4CBD5 /* MatchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +66,60 @@
 		A6E45F262AD3EA100057D668 /* FC Kufstein */ = {
 			isa = PBXGroup;
 			children = (
+				A6EB081E2AD476DA00F4CBD5 /* SupportingFiles */,
+				A6EB08152AD475D200F4CBD5 /* View */,
+				A6EB08142AD4754D00F4CBD5 /* Extension */,
+				A6EB08122AD4745C00F4CBD5 /* General */,
+				A6E45F352AD3EA120057D668 /* Info.plist */,
+			);
+			path = "FC Kufstein";
+			sourceTree = "<group>";
+		};
+		A6EB08122AD4745C00F4CBD5 /* General */ = {
+			isa = PBXGroup;
+			children = (
+				A6EB08102AD45EE400F4CBD5 /* TabBarController.swift */,
+				A6EB08132AD4746D00F4CBD5 /* TaBarControllers */,
+			);
+			path = General;
+			sourceTree = "<group>";
+		};
+		A6EB08132AD4746D00F4CBD5 /* TaBarControllers */ = {
+			isa = PBXGroup;
+			children = (
+				A6EB08182AD4763E00F4CBD5 /* HomeController.swift */,
+				A6EB081F2AD4983F00F4CBD5 /* MatchController.swift */,
+				A6EB081C2AD4768000F4CBD5 /* TableContainer.swift */,
+			);
+			path = TaBarControllers;
+			sourceTree = "<group>";
+		};
+		A6EB08142AD4754D00F4CBD5 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		A6EB08152AD475D200F4CBD5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A6EB08162AD475E000F4CBD5 /* SeparatorView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A6EB081E2AD476DA00F4CBD5 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
 				A6E45F272AD3EA100057D668 /* AppDelegate.swift */,
 				A6E45F292AD3EA100057D668 /* SceneDelegate.swift */,
 				A6E45F2B2AD3EA100057D668 /* MainController.swift */,
 				A6E45F2D2AD3EA100057D668 /* Main.storyboard */,
 				A6E45F302AD3EA120057D668 /* Assets.xcassets */,
 				A6E45F322AD3EA120057D668 /* LaunchScreen.storyboard */,
-				A6E45F352AD3EA120057D668 /* Info.plist */,
 			);
-			path = "FC Kufstein";
+			path = SupportingFiles;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,8 +194,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				A6E45F2C2AD3EA100057D668 /* MainController.swift in Sources */,
+				A6EB08202AD4983F00F4CBD5 /* MatchController.swift in Sources */,
+				A6EB08112AD45EE500F4CBD5 /* TabBarController.swift in Sources */,
+				A6EB081D2AD4768000F4CBD5 /* TableContainer.swift in Sources */,
+				A6EB08172AD475E000F4CBD5 /* SeparatorView.swift in Sources */,
 				A6E45F282AD3EA100057D668 /* AppDelegate.swift in Sources */,
 				A6E45F2A2AD3EA100057D668 /* SceneDelegate.swift in Sources */,
+				A6EB08192AD4763E00F4CBD5 /* HomeController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

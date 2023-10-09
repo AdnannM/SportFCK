@@ -15,18 +15,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="The World Studios Logo" translatesAutoresizingMaskIntoConstraints="NO" id="fij-jH-atN">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="The World Studios Logo" translatesAutoresizingMaskIntoConstraints="NO" id="nSR-3M-I4O">
                                 <rect key="frame" x="0.0" y="59" width="393" height="759"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="fij-jH-atN" secondAttribute="trailing" id="F12-cG-IXd"/>
-                            <constraint firstItem="fij-jH-atN" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Ve7-SO-UPS"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="fij-jH-atN" secondAttribute="bottom" id="Wi5-7z-xyQ"/>
-                            <constraint firstItem="fij-jH-atN" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="n9g-s1-OWX"/>
+                            <constraint firstItem="nSR-3M-I4O" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="DkH-aK-D84"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="nSR-3M-I4O" secondAttribute="bottom" id="pZ9-QJ-dPH"/>
+                            <constraint firstItem="nSR-3M-I4O" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="pqv-WB-WQm"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="nSR-3M-I4O" secondAttribute="trailing" id="t04-2W-wZp"/>
                         </constraints>
                     </view>
                 </viewController>
