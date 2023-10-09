@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		A6E45F282AD3EA100057D668 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E45F272AD3EA100057D668 /* AppDelegate.swift */; };
 		A6E45F2A2AD3EA100057D668 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E45F292AD3EA100057D668 /* SceneDelegate.swift */; };
-		A6E45F2C2AD3EA100057D668 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E45F2B2AD3EA100057D668 /* ViewController.swift */; };
+		A6E45F2C2AD3EA100057D668 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E45F2B2AD3EA100057D668 /* MainController.swift */; };
 		A6E45F2F2AD3EA100057D668 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6E45F2D2AD3EA100057D668 /* Main.storyboard */; };
 		A6E45F312AD3EA120057D668 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6E45F302AD3EA120057D668 /* Assets.xcassets */; };
 		A6E45F342AD3EA120057D668 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6E45F322AD3EA120057D668 /* LaunchScreen.storyboard */; };
@@ -19,7 +19,7 @@
 		A6E45F242AD3EA100057D668 /* FC Kufstein.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FC Kufstein.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6E45F272AD3EA100057D668 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A6E45F292AD3EA100057D668 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		A6E45F2B2AD3EA100057D668 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A6E45F2B2AD3EA100057D668 /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 		A6E45F2E2AD3EA100057D668 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A6E45F302AD3EA120057D668 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A6E45F332AD3EA120057D668 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -58,7 +58,7 @@
 			children = (
 				A6E45F272AD3EA100057D668 /* AppDelegate.swift */,
 				A6E45F292AD3EA100057D668 /* SceneDelegate.swift */,
-				A6E45F2B2AD3EA100057D668 /* ViewController.swift */,
+				A6E45F2B2AD3EA100057D668 /* MainController.swift */,
 				A6E45F2D2AD3EA100057D668 /* Main.storyboard */,
 				A6E45F302AD3EA120057D668 /* Assets.xcassets */,
 				A6E45F322AD3EA120057D668 /* LaunchScreen.storyboard */,
@@ -138,7 +138,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A6E45F2C2AD3EA100057D668 /* ViewController.swift in Sources */,
+				A6E45F2C2AD3EA100057D668 /* MainController.swift in Sources */,
 				A6E45F282AD3EA100057D668 /* AppDelegate.swift in Sources */,
 				A6E45F2A2AD3EA100057D668 /* SceneDelegate.swift in Sources */,
 			);
@@ -295,6 +295,7 @@
 				DEVELOPMENT_TEAM = 4FKVURKZ47;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "FC Kufstein/Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -323,6 +324,7 @@
 				DEVELOPMENT_TEAM = 4FKVURKZ47;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "FC Kufstein/Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
