@@ -18,6 +18,9 @@
 		A6EB08192AD4763E00F4CBD5 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EB08182AD4763E00F4CBD5 /* HomeController.swift */; };
 		A6EB081D2AD4768000F4CBD5 /* TableContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EB081C2AD4768000F4CBD5 /* TableContainer.swift */; };
 		A6EB08202AD4983F00F4CBD5 /* MatchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EB081F2AD4983F00F4CBD5 /* MatchController.swift */; };
+		A6EB08242AD58D0D00F4CBD5 /* SettingsSwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EB08232AD58D0D00F4CBD5 /* SettingsSwiftUIView.swift */; };
+		A6EB08262AD595CB00F4CBD5 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EB08252AD595CB00F4CBD5 /* Colors.swift */; };
+		A6EB08282AD5CE8800F4CBD5 /* CustomListRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EB08272AD5CE8800F4CBD5 /* CustomListRowView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +37,9 @@
 		A6EB08182AD4763E00F4CBD5 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		A6EB081C2AD4768000F4CBD5 /* TableContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableContainer.swift; sourceTree = "<group>"; };
 		A6EB081F2AD4983F00F4CBD5 /* MatchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchController.swift; sourceTree = "<group>"; };
+		A6EB08232AD58D0D00F4CBD5 /* SettingsSwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSwiftUIView.swift; sourceTree = "<group>"; };
+		A6EB08252AD595CB00F4CBD5 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		A6EB08272AD5CE8800F4CBD5 /* CustomListRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomListRowView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +103,7 @@
 		A6EB08142AD4754D00F4CBD5 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				A6EB08252AD595CB00F4CBD5 /* Colors.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -105,6 +112,8 @@
 			isa = PBXGroup;
 			children = (
 				A6EB08162AD475E000F4CBD5 /* SeparatorView.swift */,
+				A6EB08232AD58D0D00F4CBD5 /* SettingsSwiftUIView.swift */,
+				A6EB08272AD5CE8800F4CBD5 /* CustomListRowView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -194,7 +203,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				A6E45F2C2AD3EA100057D668 /* MainController.swift in Sources */,
+				A6EB08262AD595CB00F4CBD5 /* Colors.swift in Sources */,
+				A6EB08282AD5CE8800F4CBD5 /* CustomListRowView.swift in Sources */,
 				A6EB08202AD4983F00F4CBD5 /* MatchController.swift in Sources */,
+				A6EB08242AD58D0D00F4CBD5 /* SettingsSwiftUIView.swift in Sources */,
 				A6EB08112AD45EE500F4CBD5 /* TabBarController.swift in Sources */,
 				A6EB081D2AD4768000F4CBD5 /* TableContainer.swift in Sources */,
 				A6EB08172AD475E000F4CBD5 /* SeparatorView.swift in Sources */,
@@ -348,8 +360,10 @@
 		A6E45F392AD3EA120057D668 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIcon-Campfire AppIcon-Camera AppIcon-Map AppIcon-Backpack AppIcon-Mushroom AppIcon-MagnifyingGlass-Preview";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4FKVURKZ47;
@@ -377,8 +391,10 @@
 		A6E45F3A2AD3EA120057D668 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIcon-Campfire AppIcon-Camera AppIcon-Map AppIcon-Backpack AppIcon-Mushroom AppIcon-MagnifyingGlass-Preview";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4FKVURKZ47;
