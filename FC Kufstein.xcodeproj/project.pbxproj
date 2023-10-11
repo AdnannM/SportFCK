@@ -21,6 +21,7 @@
 		A6EB08242AD58D0D00F4CBD5 /* SettingsSwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EB08232AD58D0D00F4CBD5 /* SettingsSwiftUIView.swift */; };
 		A6EB08262AD595CB00F4CBD5 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EB08252AD595CB00F4CBD5 /* Colors.swift */; };
 		A6EB08282AD5CE8800F4CBD5 /* CustomListRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EB08272AD5CE8800F4CBD5 /* CustomListRowView.swift */; };
+		A6EB082C2AD6956600F4CBD5 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EB082B2AD6956600F4CBD5 /* NotificationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		A6EB08232AD58D0D00F4CBD5 /* SettingsSwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSwiftUIView.swift; sourceTree = "<group>"; };
 		A6EB08252AD595CB00F4CBD5 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		A6EB08272AD5CE8800F4CBD5 /* CustomListRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomListRowView.swift; sourceTree = "<group>"; };
+		A6EB082B2AD6956600F4CBD5 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 		A6EB08122AD4745C00F4CBD5 /* General */ = {
 			isa = PBXGroup;
 			children = (
+				A6EB082A2AD6955300F4CBD5 /* Controllers */,
 				A6EB08102AD45EE400F4CBD5 /* TabBarController.swift */,
 				A6EB08132AD4746D00F4CBD5 /* TaBarControllers */,
 			);
@@ -111,9 +114,8 @@
 		A6EB08152AD475D200F4CBD5 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A6EB08292AD6953500F4CBD5 /* SwiftUI */,
 				A6EB08162AD475E000F4CBD5 /* SeparatorView.swift */,
-				A6EB08232AD58D0D00F4CBD5 /* SettingsSwiftUIView.swift */,
-				A6EB08272AD5CE8800F4CBD5 /* CustomListRowView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -129,6 +131,23 @@
 				A6E45F322AD3EA120057D668 /* LaunchScreen.storyboard */,
 			);
 			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		A6EB08292AD6953500F4CBD5 /* SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				A6EB08272AD5CE8800F4CBD5 /* CustomListRowView.swift */,
+				A6EB08232AD58D0D00F4CBD5 /* SettingsSwiftUIView.swift */,
+			);
+			path = SwiftUI;
+			sourceTree = "<group>";
+		};
+		A6EB082A2AD6955300F4CBD5 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A6EB082B2AD6956600F4CBD5 /* NotificationController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -208,6 +227,7 @@
 				A6EB08202AD4983F00F4CBD5 /* MatchController.swift in Sources */,
 				A6EB08242AD58D0D00F4CBD5 /* SettingsSwiftUIView.swift in Sources */,
 				A6EB08112AD45EE500F4CBD5 /* TabBarController.swift in Sources */,
+				A6EB082C2AD6956600F4CBD5 /* NotificationController.swift in Sources */,
 				A6EB081D2AD4768000F4CBD5 /* TableContainer.swift in Sources */,
 				A6EB08172AD475E000F4CBD5 /* SeparatorView.swift in Sources */,
 				A6E45F282AD3EA100057D668 /* AppDelegate.swift in Sources */,

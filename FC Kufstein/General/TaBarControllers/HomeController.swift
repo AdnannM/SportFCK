@@ -10,6 +10,12 @@ import SwiftUI
 
 class HomeController: UIViewController {
     
+    // MARK: - Components
+    private let tableView: UITableView = {
+        let tableView = UITableView()
+        return tableView
+    }()
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,8 +29,10 @@ private extension HomeController {
         view.backgroundColor = .systemGray5
         title = "Feed"
         setupRightBarButton()
+        setupTableView()
     }
     
+    // header
     private func setupRightBarButton() {
         // Create an SF Symbol image
         let settingsSymbol = UIImage(systemName: "gear")
@@ -41,7 +49,39 @@ private extension HomeController {
         navigationItem.rightBarButtonItem = settingsButton
         navigationController?.navigationBar.tintColor = .label
     }
+    
+    // main
+    private func setupTableView() {
+        view.addSubview(tableView)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+    }
+}
 
+// MARK: - TableViewDelegate and TableViewDataSource
+extension HomeController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 20
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell()
+        cell.textLabel?.text = "Text"
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }
 
 // MARK: - Action
