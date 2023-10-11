@@ -14,7 +14,7 @@
 		A6E45F312AD3EA120057D668 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6E45F302AD3EA120057D668 /* Assets.xcassets */; };
 		A6E45F342AD3EA120057D668 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6E45F322AD3EA120057D668 /* LaunchScreen.storyboard */; };
 		A6EB08112AD45EE500F4CBD5 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EB08102AD45EE400F4CBD5 /* TabBarController.swift */; };
-		A6EB08172AD475E000F4CBD5 /* SeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EB08162AD475E000F4CBD5 /* SeparatorView.swift */; };
+		A6EB08172AD475E000F4CBD5 /* ContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EB08162AD475E000F4CBD5 /* ContainerView.swift */; };
 		A6EB08192AD4763E00F4CBD5 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EB08182AD4763E00F4CBD5 /* HomeController.swift */; };
 		A6EB081D2AD4768000F4CBD5 /* TableContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EB081C2AD4768000F4CBD5 /* TableContainer.swift */; };
 		A6EB08202AD4983F00F4CBD5 /* MatchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EB081F2AD4983F00F4CBD5 /* MatchController.swift */; };
@@ -22,6 +22,9 @@
 		A6EB08262AD595CB00F4CBD5 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EB08252AD595CB00F4CBD5 /* Colors.swift */; };
 		A6EB08282AD5CE8800F4CBD5 /* CustomListRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EB08272AD5CE8800F4CBD5 /* CustomListRowView.swift */; };
 		A6EB082C2AD6956600F4CBD5 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EB082B2AD6956600F4CBD5 /* NotificationController.swift */; };
+		A6EB082F2AD70E2700F4CBD5 /* HomeControllerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EB082E2AD70E2700F4CBD5 /* HomeControllerCell.swift */; };
+		A6EB08312AD714C800F4CBD5 /* Labels.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EB08302AD714C800F4CBD5 /* Labels.swift */; };
+		A6EB08332AD71BB300F4CBD5 /* CustomButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EB08322AD71BB300F4CBD5 /* CustomButtons.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,7 +37,7 @@
 		A6E45F332AD3EA120057D668 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A6E45F352AD3EA120057D668 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A6EB08102AD45EE400F4CBD5 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
-		A6EB08162AD475E000F4CBD5 /* SeparatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorView.swift; sourceTree = "<group>"; };
+		A6EB08162AD475E000F4CBD5 /* ContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerView.swift; sourceTree = "<group>"; };
 		A6EB08182AD4763E00F4CBD5 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		A6EB081C2AD4768000F4CBD5 /* TableContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableContainer.swift; sourceTree = "<group>"; };
 		A6EB081F2AD4983F00F4CBD5 /* MatchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchController.swift; sourceTree = "<group>"; };
@@ -42,6 +45,9 @@
 		A6EB08252AD595CB00F4CBD5 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		A6EB08272AD5CE8800F4CBD5 /* CustomListRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomListRowView.swift; sourceTree = "<group>"; };
 		A6EB082B2AD6956600F4CBD5 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		A6EB082E2AD70E2700F4CBD5 /* HomeControllerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeControllerCell.swift; sourceTree = "<group>"; };
+		A6EB08302AD714C800F4CBD5 /* Labels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Labels.swift; sourceTree = "<group>"; };
+		A6EB08322AD71BB300F4CBD5 /* CustomButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtons.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +80,7 @@
 		A6E45F262AD3EA100057D668 /* FC Kufstein */ = {
 			isa = PBXGroup;
 			children = (
+				A6EB082D2AD70E0F00F4CBD5 /* Cell */,
 				A6EB081E2AD476DA00F4CBD5 /* SupportingFiles */,
 				A6EB08152AD475D200F4CBD5 /* View */,
 				A6EB08142AD4754D00F4CBD5 /* Extension */,
@@ -107,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				A6EB08252AD595CB00F4CBD5 /* Colors.swift */,
+				A6EB08302AD714C800F4CBD5 /* Labels.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -115,7 +123,8 @@
 			isa = PBXGroup;
 			children = (
 				A6EB08292AD6953500F4CBD5 /* SwiftUI */,
-				A6EB08162AD475E000F4CBD5 /* SeparatorView.swift */,
+				A6EB08162AD475E000F4CBD5 /* ContainerView.swift */,
+				A6EB08322AD71BB300F4CBD5 /* CustomButtons.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -148,6 +157,14 @@
 				A6EB082B2AD6956600F4CBD5 /* NotificationController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		A6EB082D2AD70E0F00F4CBD5 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				A6EB082E2AD70E2700F4CBD5 /* HomeControllerCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -224,12 +241,15 @@
 				A6E45F2C2AD3EA100057D668 /* MainController.swift in Sources */,
 				A6EB08262AD595CB00F4CBD5 /* Colors.swift in Sources */,
 				A6EB08282AD5CE8800F4CBD5 /* CustomListRowView.swift in Sources */,
+				A6EB082F2AD70E2700F4CBD5 /* HomeControllerCell.swift in Sources */,
+				A6EB08332AD71BB300F4CBD5 /* CustomButtons.swift in Sources */,
 				A6EB08202AD4983F00F4CBD5 /* MatchController.swift in Sources */,
 				A6EB08242AD58D0D00F4CBD5 /* SettingsSwiftUIView.swift in Sources */,
 				A6EB08112AD45EE500F4CBD5 /* TabBarController.swift in Sources */,
 				A6EB082C2AD6956600F4CBD5 /* NotificationController.swift in Sources */,
 				A6EB081D2AD4768000F4CBD5 /* TableContainer.swift in Sources */,
-				A6EB08172AD475E000F4CBD5 /* SeparatorView.swift in Sources */,
+				A6EB08172AD475E000F4CBD5 /* ContainerView.swift in Sources */,
+				A6EB08312AD714C800F4CBD5 /* Labels.swift in Sources */,
 				A6E45F282AD3EA100057D668 /* AppDelegate.swift in Sources */,
 				A6E45F2A2AD3EA100057D668 /* SceneDelegate.swift in Sources */,
 				A6EB08192AD4763E00F4CBD5 /* HomeController.swift in Sources */,
