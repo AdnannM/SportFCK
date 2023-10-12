@@ -13,7 +13,8 @@ class HomeController: UIViewController {
     // MARK: - Components
     private let tableView: UITableView = {
         let tableView = UITableView()
-        tableView.register(HomeControllerCell.self, forCellReuseIdentifier: HomeControllerCell.cellID)
+        tableView.register(AllMatchCell.self, forCellReuseIdentifier: AllMatchCell.cellID)
+        tableView.register(NewsCell.self, forCellReuseIdentifier: NewsCell.cellID)
         return tableView
     }()
     
@@ -94,28 +95,60 @@ private extension HomeController {
 
 // MARK: - TableViewDelegate and TableViewDataSource
 extension HomeController: UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        switch section {
+        case 0:
+            return 1 // First section contains the AllMatchCell
+        case 1:
+            return 1 // Second section contains the NewsCell
+        default:
+            return 0 // Return 0 for other sections
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeControllerCell.cellID, for: indexPath) as? HomeControllerCell else {
+        switch indexPath.section {
+        case 0:
+            // First section contains the AllMatchCell
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: AllMatchCell.cellID, for: indexPath) as? AllMatchCell else {
+                return UITableViewCell()
+            }
+            
+            cell.containerView.delegate = self
+            cell.selectionStyle = .none
+            cell.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+            return cell
+
+        case 1:
+            // Second section contains the NewsCell
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: NewsCell.cellID, for: indexPath) as? NewsCell else {
+                return UITableViewCell()
+            }
+            return cell
+
+        default:
+            // Handle other sections here
             return UITableViewCell()
         }
-        
-        cell.containerView.delegate = self
-        cell.selectionStyle = .none
-        return cell
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 250
+        if indexPath.row == 0  {
+            return 250
+        } else {
+            return 100
+        }
     }
 }
+
 
 // MARK: - Action
 extension HomeController {
@@ -130,8 +163,8 @@ extension HomeController {
 }
 
 // MARK: - ContainerViewDelegate
-extension HomeController: ContainerViewDelegate {
-    func didTapAllMatch(_ view: ContainerView) {
+extension HomeController: HomeContainerViewDelegate {
+    func didTapAllMatch(_ view: HomeContainerView) {
         self.navigationController?.pushViewController(AllMatchController(), animated: true)
     }
 }

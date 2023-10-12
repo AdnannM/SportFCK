@@ -7,13 +7,13 @@
 
 import UIKit
 
-class HomeControllerCell: UITableViewCell {
+class AllMatchCell: UITableViewCell {
     
     // MARK: - Properties
     static let cellID = "HomeControllerCell"
     
     // MARK: - Components
-    let containerView = ContainerView()
+    let containerView = HomeContainerView()
     
     // MARK: - LifeCycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -27,7 +27,7 @@ class HomeControllerCell: UITableViewCell {
 }
 
 // MARK: - SetupUI
-private extension HomeControllerCell {
+private extension AllMatchCell {
     private func setupUI() {
         setupContainerView()
     }

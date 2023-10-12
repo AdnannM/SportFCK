@@ -7,14 +7,14 @@
 
 import UIKit
 
-protocol ContainerViewDelegate: AnyObject {
-    func didTapAllMatch(_ view: ContainerView)
+protocol HomeContainerViewDelegate: AnyObject {
+    func didTapAllMatch(_ view: HomeContainerView)
 }
 
-class ContainerView: UIView {
+class HomeContainerView: UIView {
     
     // MARK: - Properties
-    weak var delegate: ContainerViewDelegate?
+    weak var delegate: HomeContainerViewDelegate?
 
     // MARK: - Components
     private let titleLabel = UILabel.createCustomLabel(
@@ -48,7 +48,7 @@ class ContainerView: UIView {
 }
 
 // MARK: - SetupUI
-private extension ContainerView {
+private extension HomeContainerView {
     private func setupView() {
         backgroundColor = .systemBackground
         layer.cornerRadius = 8
@@ -97,7 +97,7 @@ private extension ContainerView {
 }
 
 // MARK: - Action
-extension ContainerView {
+extension HomeContainerView {
     @objc private func didTapAllMatchButton() {
         delegate?.didTapAllMatch(self)
     }
