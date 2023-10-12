@@ -103,6 +103,6 @@ extension HomeController {
 
 extension HomeController: ContainerViewDelegate {
     func didTapAllMatch(_ view: ContainerView) {
-        print("DEBUG: All Match Button Tapped ✅")
+        self.navigationController?.pushViewController(AllMatchController(), animated: true)
     }
 }

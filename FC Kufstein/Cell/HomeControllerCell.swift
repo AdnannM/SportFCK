@@ -13,7 +13,7 @@ class HomeControllerCell: UITableViewCell {
     static let cellID = "HomeControllerCell"
     
     // MARK: - Components
-    let containerView = ContainerView()
+     let containerView = ContainerView()
    
     
     // MARK: - LifeCycle

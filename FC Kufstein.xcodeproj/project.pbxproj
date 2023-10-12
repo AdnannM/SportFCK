@@ -25,6 +25,7 @@
 		A6EB082F2AD70E2700F4CBD5 /* HomeControllerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EB082E2AD70E2700F4CBD5 /* HomeControllerCell.swift */; };
 		A6EB08312AD714C800F4CBD5 /* Labels.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EB08302AD714C800F4CBD5 /* Labels.swift */; };
 		A6EB08332AD71BB300F4CBD5 /* CustomButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EB08322AD71BB300F4CBD5 /* CustomButtons.swift */; };
+		A6EB08352AD7222B00F4CBD5 /* AllMatchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EB08342AD7222B00F4CBD5 /* AllMatchController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		A6EB082E2AD70E2700F4CBD5 /* HomeControllerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeControllerCell.swift; sourceTree = "<group>"; };
 		A6EB08302AD714C800F4CBD5 /* Labels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Labels.swift; sourceTree = "<group>"; };
 		A6EB08322AD71BB300F4CBD5 /* CustomButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtons.swift; sourceTree = "<group>"; };
+		A6EB08342AD7222B00F4CBD5 /* AllMatchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllMatchController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				A6EB082B2AD6956600F4CBD5 /* NotificationController.swift */,
+				A6EB08342AD7222B00F4CBD5 /* AllMatchController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -251,6 +254,7 @@
 				A6EB08172AD475E000F4CBD5 /* ContainerView.swift in Sources */,
 				A6EB08312AD714C800F4CBD5 /* Labels.swift in Sources */,
 				A6E45F282AD3EA100057D668 /* AppDelegate.swift in Sources */,
+				A6EB08352AD7222B00F4CBD5 /* AllMatchController.swift in Sources */,
 				A6E45F2A2AD3EA100057D668 /* SceneDelegate.swift in Sources */,
 				A6EB08192AD4763E00F4CBD5 /* HomeController.swift in Sources */,
 			);
