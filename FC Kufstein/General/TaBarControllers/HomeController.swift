@@ -15,6 +15,7 @@ class HomeController: UIViewController {
         let tableView = UITableView()
         tableView.register(AllMatchCell.self, forCellReuseIdentifier: AllMatchCell.cellID)
         tableView.register(NewsCell.self, forCellReuseIdentifier: NewsCell.cellID)
+        tableView.register(VideoCell.self, forCellReuseIdentifier: VideoCell.cellID)
         return tableView
     }()
     
@@ -96,7 +97,7 @@ private extension HomeController {
 // MARK: - TableViewDelegate and TableViewDataSource
 extension HomeController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -105,6 +106,8 @@ extension HomeController: UITableViewDelegate, UITableViewDataSource {
             return 1 // First section contains the AllMatchCell
         case 1:
             return 1 // Second section contains the NewsCell
+        case 2:
+            return 1 // Third section contains the VideoCell
         default:
             return 0 // Return 0 for other sections
         }
@@ -132,6 +135,16 @@ extension HomeController: UITableViewDelegate, UITableViewDataSource {
             cell.selectionStyle = .none
             cell.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
             return cell
+            
+        case 2:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: VideoCell.cellID, for: indexPath) as? VideoCell else {
+                return UITableViewCell()
+            }
+            
+            cell.videoContainerView.delegate = self
+            cell.selectionStyle = .none
+            cell.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+            return cell
 
         default:
             // Handle other sections here
@@ -149,6 +162,8 @@ extension HomeController: UITableViewDelegate, UITableViewDataSource {
             return 250
         case 1:
             return 300
+        case 2:
+            return 200
         default:
             return 200
         }
@@ -175,9 +190,19 @@ extension HomeController: HomeContainerViewDelegate {
     }
 }
 
+// MARK: - NewsContainerViewDelegate
 extension HomeController: NewsContainerViewDelegate {
     func didTapAllNews(_ view: NewsContainerView) {
         self.navigationController?.pushViewController(NewsController(), animated: true)
     }
 }
+
+// MARK: - VideoContainerDelegate
+extension HomeController: VideoContainerViewDelegate {
+    func didTapVideoButton(_ view: VideoContainerView) {
+        self.navigationController?.pushViewController(VideoController(), animated: true)
+    }
+}
+
+
 
