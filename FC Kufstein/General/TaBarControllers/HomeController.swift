@@ -128,6 +128,9 @@ extension HomeController: UITableViewDelegate, UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: NewsCell.cellID, for: indexPath) as? NewsCell else {
                 return UITableViewCell()
             }
+            cell.newsContainerView.delegate = self
+            cell.selectionStyle = .none
+            cell.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
             return cell
 
         default:
@@ -141,10 +144,13 @@ extension HomeController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row == 0  {
+        switch indexPath.section {
+        case 0:
             return 250
-        } else {
-            return 100
+        case 1:
+            return 300
+        default:
+            return 200
         }
     }
 }
@@ -169,5 +175,9 @@ extension HomeController: HomeContainerViewDelegate {
     }
 }
 
-
+extension HomeController: NewsContainerViewDelegate {
+    func didTapAllNews(_ view: NewsContainerView) {
+        self.navigationController?.pushViewController(NewsController(), animated: true)
+    }
+}
 

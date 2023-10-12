@@ -30,6 +30,8 @@
 		A6EB08392AD7F8BC00F4CBD5 /* AllMatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EB08382AD7F8BC00F4CBD5 /* AllMatchView.swift */; };
 		A6EB083B2AD8218A00F4CBD5 /* NewsContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EB083A2AD8218900F4CBD5 /* NewsContainerView.swift */; };
 		A6EB083D2AD8223800F4CBD5 /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EB083C2AD8223800F4CBD5 /* NewsCell.swift */; };
+		A6EB083F2AD833A300F4CBD5 /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EB083E2AD833A300F4CBD5 /* NewsView.swift */; };
+		A6EB08412AD8350900F4CBD5 /* NewsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EB08402AD8350900F4CBD5 /* NewsController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +60,8 @@
 		A6EB08382AD7F8BC00F4CBD5 /* AllMatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllMatchView.swift; sourceTree = "<group>"; };
 		A6EB083A2AD8218900F4CBD5 /* NewsContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsContainerView.swift; sourceTree = "<group>"; };
 		A6EB083C2AD8223800F4CBD5 /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
+		A6EB083E2AD833A300F4CBD5 /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
+		A6EB08402AD8350900F4CBD5 /* NewsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +141,7 @@
 				A6EB08322AD71BB300F4CBD5 /* CustomButtons.swift */,
 				A6EB08382AD7F8BC00F4CBD5 /* AllMatchView.swift */,
 				A6EB083A2AD8218900F4CBD5 /* NewsContainerView.swift */,
+				A6EB083E2AD833A300F4CBD5 /* NewsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -169,6 +174,7 @@
 				A6EB082B2AD6956600F4CBD5 /* NotificationController.swift */,
 				A6EB08342AD7222B00F4CBD5 /* AllMatchController.swift */,
 				A6EB08362AD7F27600F4CBD5 /* ShopController.swift */,
+				A6EB08402AD8350900F4CBD5 /* NewsController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -256,6 +262,7 @@
 				A6E45F2C2AD3EA100057D668 /* MainController.swift in Sources */,
 				A6EB08262AD595CB00F4CBD5 /* Colors.swift in Sources */,
 				A6EB08282AD5CE8800F4CBD5 /* CustomListRowView.swift in Sources */,
+				A6EB083F2AD833A300F4CBD5 /* NewsView.swift in Sources */,
 				A6EB082F2AD70E2700F4CBD5 /* AllMatchCell.swift in Sources */,
 				A6EB08332AD71BB300F4CBD5 /* CustomButtons.swift in Sources */,
 				A6EB08202AD4983F00F4CBD5 /* MatchController.swift in Sources */,
@@ -264,6 +271,7 @@
 				A6EB08372AD7F27600F4CBD5 /* ShopController.swift in Sources */,
 				A6EB08112AD45EE500F4CBD5 /* TabBarController.swift in Sources */,
 				A6EB082C2AD6956600F4CBD5 /* NotificationController.swift in Sources */,
+				A6EB08412AD8350900F4CBD5 /* NewsController.swift in Sources */,
 				A6EB081D2AD4768000F4CBD5 /* TableContainer.swift in Sources */,
 				A6EB083B2AD8218A00F4CBD5 /* NewsContainerView.swift in Sources */,
 				A6EB083D2AD8223800F4CBD5 /* NewsCell.swift in Sources */,
