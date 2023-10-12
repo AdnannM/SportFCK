@@ -12,7 +12,7 @@ class AllMatchController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .red
+        view.backgroundColor = .systemGray6
         title = "All Match"
     }
 }

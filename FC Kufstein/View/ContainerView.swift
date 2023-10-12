@@ -30,6 +30,8 @@ class ContainerView: UIView {
         fontSize: .med
     )
     
+    let allMatchView = AllMatchView()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
@@ -48,12 +50,13 @@ class ContainerView: UIView {
 // MARK: - SetupUI
 private extension ContainerView {
     private func setupView() {
-        backgroundColor = .systemGray6
+        backgroundColor = .systemBackground
         layer.cornerRadius = 8
         translatesAutoresizingMaskIntoConstraints = false
         
         setupTitleLabel()
         setupAllMatchButton()
+        setupAllMatchView()
     }
     
     private func setupTitleLabel() {
@@ -78,6 +81,18 @@ private extension ContainerView {
         ])
         
         allMatchButton.addTarget(self, action: #selector(didTapAllMatchButton), for: .touchUpInside)
+    }
+    
+    private func setupAllMatchView() {
+        addSubview(allMatchView)
+        allMatchView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            allMatchView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
+            allMatchView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
+            allMatchView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
+            allMatchView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8)
+        ])
     }
 }
 

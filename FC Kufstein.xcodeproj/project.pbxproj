@@ -26,6 +26,8 @@
 		A6EB08312AD714C800F4CBD5 /* Labels.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EB08302AD714C800F4CBD5 /* Labels.swift */; };
 		A6EB08332AD71BB300F4CBD5 /* CustomButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EB08322AD71BB300F4CBD5 /* CustomButtons.swift */; };
 		A6EB08352AD7222B00F4CBD5 /* AllMatchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EB08342AD7222B00F4CBD5 /* AllMatchController.swift */; };
+		A6EB08372AD7F27600F4CBD5 /* ShopController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EB08362AD7F27600F4CBD5 /* ShopController.swift */; };
+		A6EB08392AD7F8BC00F4CBD5 /* AllMatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EB08382AD7F8BC00F4CBD5 /* AllMatchView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +52,8 @@
 		A6EB08302AD714C800F4CBD5 /* Labels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Labels.swift; sourceTree = "<group>"; };
 		A6EB08322AD71BB300F4CBD5 /* CustomButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtons.swift; sourceTree = "<group>"; };
 		A6EB08342AD7222B00F4CBD5 /* AllMatchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllMatchController.swift; sourceTree = "<group>"; };
+		A6EB08362AD7F27600F4CBD5 /* ShopController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopController.swift; sourceTree = "<group>"; };
+		A6EB08382AD7F8BC00F4CBD5 /* AllMatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllMatchView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +131,7 @@
 				A6EB08292AD6953500F4CBD5 /* SwiftUI */,
 				A6EB08162AD475E000F4CBD5 /* ContainerView.swift */,
 				A6EB08322AD71BB300F4CBD5 /* CustomButtons.swift */,
+				A6EB08382AD7F8BC00F4CBD5 /* AllMatchView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -158,6 +163,7 @@
 			children = (
 				A6EB082B2AD6956600F4CBD5 /* NotificationController.swift */,
 				A6EB08342AD7222B00F4CBD5 /* AllMatchController.swift */,
+				A6EB08362AD7F27600F4CBD5 /* ShopController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -247,7 +253,9 @@
 				A6EB082F2AD70E2700F4CBD5 /* HomeControllerCell.swift in Sources */,
 				A6EB08332AD71BB300F4CBD5 /* CustomButtons.swift in Sources */,
 				A6EB08202AD4983F00F4CBD5 /* MatchController.swift in Sources */,
+				A6EB08392AD7F8BC00F4CBD5 /* AllMatchView.swift in Sources */,
 				A6EB08242AD58D0D00F4CBD5 /* SettingsSwiftUIView.swift in Sources */,
+				A6EB08372AD7F27600F4CBD5 /* ShopController.swift in Sources */,
 				A6EB08112AD45EE500F4CBD5 /* TabBarController.swift in Sources */,
 				A6EB082C2AD6956600F4CBD5 /* NotificationController.swift in Sources */,
 				A6EB081D2AD4768000F4CBD5 /* TableContainer.swift in Sources */,

@@ -17,6 +17,12 @@ class HomeController: UIViewController {
         return tableView
     }()
     
+    private let shopButton = CustomButton(
+        title: "Shop Now",
+        hasBackground: true,
+        fontSize: .med
+    )
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +37,7 @@ private extension HomeController {
         title = "Feed"
         setupRightBarButton()
         setupTableView()
+        setupShopButton()
     }
     
     // header
@@ -66,12 +73,29 @@ private extension HomeController {
         tableView.delegate = self
         tableView.dataSource = self
     }
+    
+    private func setupShopButton() {
+        view.addSubview(shopButton)
+        shopButton.translatesAutoresizingMaskIntoConstraints = false
+        shopButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        shopButton.titleLabel?.minimumScaleFactor = 0.5
+        shopButton.layer.cornerRadius = 25
+        
+        NSLayoutConstraint.activate([
+            shopButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8),
+            shopButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
+            shopButton.widthAnchor.constraint(equalToConstant: 140),
+            shopButton.heightAnchor.constraint(equalToConstant: 50)
+        ])
+        
+        shopButton.addTarget(self, action: #selector(didTapShopButton), for: .touchUpInside)
+    }
 }
 
 // MARK: - TableViewDelegate and TableViewDataSource
 extension HomeController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -89,7 +113,7 @@ extension HomeController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 300
+        return 250
     }
 }
 
@@ -99,10 +123,18 @@ extension HomeController {
         let hostController = UIHostingController(rootView: SettingsSwiftUIView())
         present(hostController, animated: true)
     }
+    
+    @objc private func didTapShopButton() {
+        self.navigationController?.pushViewController(ShopController(), animated: true)
+    }
 }
 
+// MARK: - ContainerViewDelegate
 extension HomeController: ContainerViewDelegate {
     func didTapAllMatch(_ view: ContainerView) {
         self.navigationController?.pushViewController(AllMatchController(), animated: true)
     }
 }
+
+
+
