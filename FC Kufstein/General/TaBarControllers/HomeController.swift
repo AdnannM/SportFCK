@@ -17,6 +17,7 @@ class HomeController: UIViewController {
         tableView.register(NewsCell.self, forCellReuseIdentifier: NewsCell.cellID)
         tableView.register(VideoCell.self, forCellReuseIdentifier: VideoCell.cellID)
         tableView.register(TeamsCell.self, forCellReuseIdentifier: TeamsCell.cellID)
+        tableView.register(SponsorsCell.self, forCellReuseIdentifier: SponsorsCell.cellID)
         return tableView
     }()
     
@@ -98,7 +99,7 @@ private extension HomeController {
 // MARK: - TableViewDelegate and TableViewDataSource
 extension HomeController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 4
+        return 5
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -110,7 +111,9 @@ extension HomeController: UITableViewDelegate, UITableViewDataSource {
         case 2:
             return 1 // Third section contains the VideoCell
         case 3:
-            return 1
+            return 1 // Third section contains the TeamsCell
+        case 4:
+            return 1 // Third section contains the SponsorsCell
         default:
             return 0 // Return 0 for other sections
         }
@@ -140,6 +143,7 @@ extension HomeController: UITableViewDelegate, UITableViewDataSource {
             return cell
             
         case 2:
+            // Third section contains the VideoCell
             guard let cell = tableView.dequeueReusableCell(withIdentifier: VideoCell.cellID, for: indexPath) as? VideoCell else {
                 return UITableViewCell()
             }
@@ -150,12 +154,23 @@ extension HomeController: UITableViewDelegate, UITableViewDataSource {
             return cell
             
         case 3:
-            
+            // Four section contains the TeamsCell
             guard let cell = tableView.dequeueReusableCell(withIdentifier: TeamsCell.cellID, for: indexPath) as? TeamsCell else {
                 return UITableViewCell()
             }
             
             cell.teamsContainerView.delegate = self
+            cell.selectionStyle = .none
+            cell.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+            return cell
+            
+        case 4:
+            // Five section contains the SponsorsCell
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: SponsorsCell.cellID, for: indexPath) as? SponsorsCell else {
+                return UITableViewCell()
+            }
+            
+            cell.sponsorsContainerView.delegate = self
             cell.selectionStyle = .none
             cell.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
             return cell
@@ -180,6 +195,8 @@ extension HomeController: UITableViewDelegate, UITableViewDataSource {
             return 200
         case 3:
             return 300
+        case 4:
+            return 350
         default:
             return 200
         }
@@ -227,4 +244,9 @@ extension HomeController: TeamsContainerViewDelegate {
     }
 }
 
-
+// MARK: - SponsorsContainerViewDelegate
+extension HomeController: SponsorsContainerViewDelegate {
+    func didTapSponsors(_ view: SponsorsContainerView) {
+        print("DEBUG: All Sponsors Button Tapped ✅")
+    }
+}

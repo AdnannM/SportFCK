@@ -39,6 +39,9 @@
 		A6EB084C2AD963F700F4CBD5 /* TeamsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EB084B2AD963F700F4CBD5 /* TeamsCell.swift */; };
 		A6EB084E2AD9700100F4CBD5 /* TeamsContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EB084D2AD9700100F4CBD5 /* TeamsContainerView.swift */; };
 		A6EB08502AD972BC00F4CBD5 /* TeamsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EB084F2AD972BC00F4CBD5 /* TeamsView.swift */; };
+		A6EB08522AD97C5800F4CBD5 /* SponsorsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EB08512AD97C5800F4CBD5 /* SponsorsCell.swift */; };
+		A6EB08542AD97D7000F4CBD5 /* SponsorsContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EB08532AD97D7000F4CBD5 /* SponsorsContainerView.swift */; };
+		A6EB08562AD980B000F4CBD5 /* SponsorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EB08552AD980AF00F4CBD5 /* SponsorsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +79,9 @@
 		A6EB084B2AD963F700F4CBD5 /* TeamsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsCell.swift; sourceTree = "<group>"; };
 		A6EB084D2AD9700100F4CBD5 /* TeamsContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsContainerView.swift; sourceTree = "<group>"; };
 		A6EB084F2AD972BC00F4CBD5 /* TeamsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsView.swift; sourceTree = "<group>"; };
+		A6EB08512AD97C5800F4CBD5 /* SponsorsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SponsorsCell.swift; sourceTree = "<group>"; };
+		A6EB08532AD97D7000F4CBD5 /* SponsorsContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SponsorsContainerView.swift; sourceTree = "<group>"; };
+		A6EB08552AD980AF00F4CBD5 /* SponsorsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SponsorsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +163,7 @@
 				A6EB083E2AD833A300F4CBD5 /* NewsView.swift */,
 				A6EB08462AD87E7F00F4CBD5 /* VideoView.swift */,
 				A6EB084F2AD972BC00F4CBD5 /* TeamsView.swift */,
+				A6EB08552AD980AF00F4CBD5 /* SponsorsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -202,6 +209,7 @@
 				A6EB083C2AD8223800F4CBD5 /* NewsCell.swift */,
 				A6EB08422AD8748100F4CBD5 /* VideoCell.swift */,
 				A6EB084B2AD963F700F4CBD5 /* TeamsCell.swift */,
+				A6EB08512AD97C5800F4CBD5 /* SponsorsCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -213,6 +221,7 @@
 				A6EB083A2AD8218900F4CBD5 /* NewsContainerView.swift */,
 				A6EB08442AD87A8B00F4CBD5 /* VideoContainerView.swift */,
 				A6EB084D2AD9700100F4CBD5 /* TeamsContainerView.swift */,
+				A6EB08532AD97D7000F4CBD5 /* SponsorsContainerView.swift */,
 			);
 			path = ContainerView;
 			sourceTree = "<group>";
@@ -288,6 +297,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6EB08522AD97C5800F4CBD5 /* SponsorsCell.swift in Sources */,
 				A6E45F2C2AD3EA100057D668 /* MainController.swift in Sources */,
 				A6EB08262AD595CB00F4CBD5 /* Colors.swift in Sources */,
 				A6EB08282AD5CE8800F4CBD5 /* CustomListRowView.swift in Sources */,
@@ -302,6 +312,7 @@
 				A6EB08242AD58D0D00F4CBD5 /* SettingsSwiftUIView.swift in Sources */,
 				A6EB08372AD7F27600F4CBD5 /* ShopController.swift in Sources */,
 				A6EB08112AD45EE500F4CBD5 /* TabBarController.swift in Sources */,
+				A6EB08562AD980B000F4CBD5 /* SponsorsView.swift in Sources */,
 				A6EB082C2AD6956600F4CBD5 /* NotificationController.swift in Sources */,
 				A6EB08412AD8350900F4CBD5 /* NewsController.swift in Sources */,
 				A6EB08432AD8748100F4CBD5 /* VideoCell.swift in Sources */,
@@ -310,6 +321,7 @@
 				A6EB08452AD87A8B00F4CBD5 /* VideoContainerView.swift in Sources */,
 				A6EB083D2AD8223800F4CBD5 /* NewsCell.swift in Sources */,
 				A6EB08172AD475E000F4CBD5 /* HomeContainerView.swift in Sources */,
+				A6EB08542AD97D7000F4CBD5 /* SponsorsContainerView.swift in Sources */,
 				A6EB08312AD714C800F4CBD5 /* Labels.swift in Sources */,
 				A6E45F282AD3EA100057D668 /* AppDelegate.swift in Sources */,
 				A6EB08472AD87E7F00F4CBD5 /* VideoView.swift in Sources */,
