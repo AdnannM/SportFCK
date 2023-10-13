@@ -16,6 +16,7 @@ class HomeController: UIViewController {
         tableView.register(AllMatchCell.self, forCellReuseIdentifier: AllMatchCell.cellID)
         tableView.register(NewsCell.self, forCellReuseIdentifier: NewsCell.cellID)
         tableView.register(VideoCell.self, forCellReuseIdentifier: VideoCell.cellID)
+        tableView.register(TeamsCell.self, forCellReuseIdentifier: TeamsCell.cellID)
         return tableView
     }()
     
@@ -97,7 +98,7 @@ private extension HomeController {
 // MARK: - TableViewDelegate and TableViewDataSource
 extension HomeController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return 4
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -108,6 +109,8 @@ extension HomeController: UITableViewDelegate, UITableViewDataSource {
             return 1 // Second section contains the NewsCell
         case 2:
             return 1 // Third section contains the VideoCell
+        case 3:
+            return 1
         default:
             return 0 // Return 0 for other sections
         }
@@ -145,7 +148,17 @@ extension HomeController: UITableViewDelegate, UITableViewDataSource {
             cell.selectionStyle = .none
             cell.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
             return cell
-
+            
+        case 3:
+            
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: TeamsCell.cellID, for: indexPath) as? TeamsCell else {
+                return UITableViewCell()
+            }
+            
+            cell.selectionStyle = .none
+            cell.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+            return cell
+            
         default:
             // Handle other sections here
             return UITableViewCell()
@@ -164,6 +177,8 @@ extension HomeController: UITableViewDelegate, UITableViewDataSource {
             return 300
         case 2:
             return 200
+        case 3:
+            return 300
         default:
             return 200
         }
