@@ -13,7 +13,7 @@ class TeamsCell: UITableViewCell {
     static let cellID = "TeamsCell"
     
     // MARK: - Components
-    private let teamsContainerView = TeamsContainerView()
+    let teamsContainerView = TeamsContainerView()
     
     // MARK: - Lifecycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

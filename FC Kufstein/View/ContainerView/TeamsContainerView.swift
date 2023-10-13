@@ -7,7 +7,14 @@
 
 import UIKit
 
+protocol TeamsContainerViewDelegate: AnyObject {
+    func didTapTeams(_ view: TeamsContainerView)
+}
+
 class TeamsContainerView: UIView {
+    
+    // MARK: - Properties
+    weak var delegate: TeamsContainerViewDelegate?
     
     // MARK: - Components
     private let titleLabel = UILabel.createCustomLabel(
@@ -90,6 +97,6 @@ private extension TeamsContainerView {
 // MARK: - Action
 extension TeamsContainerView {
     @objc private func didTapAllTeamsButton() {
-        
+        delegate?.didTapTeams(self)
     }
 }

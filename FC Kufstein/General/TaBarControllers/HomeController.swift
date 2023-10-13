@@ -155,6 +155,7 @@ extension HomeController: UITableViewDelegate, UITableViewDataSource {
                 return UITableViewCell()
             }
             
+            cell.teamsContainerView.delegate = self
             cell.selectionStyle = .none
             cell.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
             return cell
@@ -219,5 +220,11 @@ extension HomeController: VideoContainerViewDelegate {
     }
 }
 
+// MARK: - TeamsContainerViewDelegate
+extension HomeController: TeamsContainerViewDelegate {
+    func didTapTeams(_ view: TeamsContainerView) {
+        print("DEBUG: All Teams Button Tapped ✅")
+    }
+}
 
 
