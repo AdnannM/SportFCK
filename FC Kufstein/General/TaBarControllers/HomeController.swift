@@ -192,7 +192,7 @@ extension HomeController: UITableViewDelegate, UITableViewDataSource {
         case 1:
             return 300
         case 2:
-            return 200
+            return 250
         case 3:
             return 300
         case 4:
@@ -247,6 +247,6 @@ extension HomeController: TeamsContainerViewDelegate {
 // MARK: - SponsorsContainerViewDelegate
 extension HomeController: SponsorsContainerViewDelegate {
     func didTapSponsors(_ view: SponsorsContainerView) {
-        print("DEBUG: All Sponsors Button Tapped ✅")
+        self.navigationController?.pushViewController(SponsorsController(), animated: true)
     }
 }
