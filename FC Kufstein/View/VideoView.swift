@@ -7,7 +7,14 @@
 
 import UIKit
 
+protocol VideoViewDelegate: AnyObject {
+    func didTapVideoCollectionCell(_ view: VideoView, indexPath: Int)
+}
+
 class VideoView: UIView {
+    
+    // MARK: - Properties
+    weak var delegate: VideoViewDelegate?
     
     // MARK: - Components
     private let collectionView: UICollectionView = {
@@ -77,5 +84,9 @@ extension VideoView: UICollectionViewDelegate, UICollectionViewDataSource, UICol
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 320, height: 180)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.didTapVideoCollectionCell(self, indexPath: indexPath.item)
     }
 }

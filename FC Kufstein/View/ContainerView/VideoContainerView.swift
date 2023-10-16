@@ -30,7 +30,7 @@ class VideoContainerView: UIView {
         fontSize: .med
     )
     
-    private let videoView = VideoView()
+    let videoView = VideoView()
     
     // MARK: - Lifecycle
     override init(frame: CGRect) {

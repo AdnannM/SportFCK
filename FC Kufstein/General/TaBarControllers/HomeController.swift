@@ -149,6 +149,7 @@ extension HomeController: UITableViewDelegate, UITableViewDataSource {
             }
             
             cell.videoContainerView.delegate = self
+            cell.videoContainerView.videoView.delegate = self
             cell.selectionStyle = .none
             cell.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
             return cell
@@ -248,5 +249,12 @@ extension HomeController: TeamsContainerViewDelegate {
 extension HomeController: SponsorsContainerViewDelegate {
     func didTapSponsors(_ view: SponsorsContainerView) {
         self.navigationController?.pushViewController(SponsorsController(), animated: true)
+    }
+}
+
+
+extension HomeController: VideoViewDelegate {
+    func didTapVideoCollectionCell(_ view: VideoView, indexPath: Int) {
+        print("Tapped Delegate with IndexPath: \(indexPath)")
     }
 }
