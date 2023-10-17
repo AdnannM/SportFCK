@@ -78,4 +78,8 @@ extension TeamsView: UICollectionViewDelegate, UICollectionViewDataSource, UICol
         return CGSize(width: 180, height: 100)
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("IndexPath: \(indexPath.item)")
+    }
+    
 }

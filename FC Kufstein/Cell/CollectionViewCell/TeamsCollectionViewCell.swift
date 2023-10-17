@@ -24,7 +24,7 @@ class TeamsCollectionViewCell: UICollectionViewCell {
 
 private extension TeamsCollectionViewCell {
     private func setupUI() {
-        backgroundColor = .orange
+        backgroundColor = .systemGray6.withAlphaComponent(0.6)
         layer.cornerRadius = 8
     }
 }
