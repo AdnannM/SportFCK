@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A625E5382ADEA97000BD004F /* VideoPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A625E5372ADEA97000BD004F /* VideoPlayerViewController.swift */; };
+		A625E53A2ADEF92A00BD004F /* TeamsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A625E5392ADEF92A00BD004F /* TeamsCollectionViewCell.swift */; };
 		A6A153332ADD26E000DD83B3 /* VideoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6A153322ADD26E000DD83B3 /* VideoCollectionViewCell.swift */; };
 		A6E45F282AD3EA100057D668 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E45F272AD3EA100057D668 /* AppDelegate.swift */; };
 		A6E45F2A2AD3EA100057D668 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E45F292AD3EA100057D668 /* SceneDelegate.swift */; };
@@ -49,6 +50,7 @@
 
 /* Begin PBXFileReference section */
 		A625E5372ADEA97000BD004F /* VideoPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerViewController.swift; sourceTree = "<group>"; };
+		A625E5392ADEF92A00BD004F /* TeamsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsCollectionViewCell.swift; sourceTree = "<group>"; };
 		A6A153322ADD26E000DD83B3 /* VideoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewCell.swift; sourceTree = "<group>"; };
 		A6E45F242AD3EA100057D668 /* FC Kufstein.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FC Kufstein.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6E45F272AD3EA100057D668 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				A6A153322ADD26E000DD83B3 /* VideoCollectionViewCell.swift */,
+				A625E5392ADEF92A00BD004F /* TeamsCollectionViewCell.swift */,
 			);
 			path = CollectionViewCell;
 			sourceTree = "<group>";
@@ -331,6 +334,7 @@
 				A6EB082F2AD70E2700F4CBD5 /* AllMatchCell.swift in Sources */,
 				A6EB084C2AD963F700F4CBD5 /* TeamsCell.swift in Sources */,
 				A6EB08332AD71BB300F4CBD5 /* CustomButtons.swift in Sources */,
+				A625E53A2ADEF92A00BD004F /* TeamsCollectionViewCell.swift in Sources */,
 				A6EB08202AD4983F00F4CBD5 /* MatchController.swift in Sources */,
 				A6EB08392AD7F8BC00F4CBD5 /* AllMatchView.swift in Sources */,
 				A6EB08502AD972BC00F4CBD5 /* TeamsView.swift in Sources */,
