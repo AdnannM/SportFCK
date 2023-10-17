@@ -7,14 +7,11 @@
 
 import UIKit
 
-protocol VideoViewDelegate: AnyObject {
-    func didTapVideoCollectionCell(_ view: VideoView, indexPath: Int)
-}
-
 class VideoView: UIView {
     
     // MARK: - Properties
-    weak var delegate: VideoViewDelegate?
+    weak var delegate: VideoCollectionViewCellDelegate?
+
     
     // MARK: - Components
     private let collectionView: UICollectionView = {
@@ -77,6 +74,8 @@ extension VideoView: UICollectionViewDelegate, UICollectionViewDataSource, UICol
             return UICollectionViewCell()
         }
         
+        cell.videoURL = URL(string: "https://www.youtube.com/watch?v=0xZU3Sn0KXs")
+        cell.delegate = self
         cell.layer.cornerRadius = 8
         
         return cell
@@ -85,8 +84,10 @@ extension VideoView: UICollectionViewDelegate, UICollectionViewDataSource, UICol
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 320, height: 180)
     }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.didTapVideoCollectionCell(self, indexPath: indexPath.item)
+}
+
+extension VideoView: VideoCollectionViewCellDelegate {
+    func videoCellImageTapped() {
+        delegate?.videoCellImageTapped()
     }
 }

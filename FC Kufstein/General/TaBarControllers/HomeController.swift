@@ -7,8 +7,12 @@
 
 import UIKit
 import SwiftUI
+import WebKit
+
 
 class HomeController: UIViewController {
+    
+    // MARK: - Propperties
     
     // MARK: - Components
     private let tableView: UITableView = {
@@ -150,6 +154,7 @@ extension HomeController: UITableViewDelegate, UITableViewDataSource {
             
             cell.videoContainerView.delegate = self
             cell.videoContainerView.videoView.delegate = self
+            
             cell.selectionStyle = .none
             cell.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
             return cell
@@ -252,9 +257,15 @@ extension HomeController: SponsorsContainerViewDelegate {
     }
 }
 
-
-extension HomeController: VideoViewDelegate {
-    func didTapVideoCollectionCell(_ view: VideoView, indexPath: Int) {
-        print("Tapped Delegate with IndexPath: \(indexPath)")
+// MARK: - VideoCollectionViewCellDelegate
+extension HomeController: VideoCollectionViewCellDelegate {
+    func videoCellImageTapped() {
+        let videoURL = "https://www.youtube.com/embed/0xZU3Sn0KXs"
+        
+        let videoPlayerVC = VideoPlayerViewController()
+        videoPlayerVC.loadYouTubeVideo(videoURL: videoURL)
+    
+        self.navigationController?.pushViewController(videoPlayerVC, animated: true)
     }
 }
+
