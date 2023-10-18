@@ -46,6 +46,7 @@
 		A6EB08542AD97D7000F4CBD5 /* SponsorsContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EB08532AD97D7000F4CBD5 /* SponsorsContainerView.swift */; };
 		A6EB08562AD980B000F4CBD5 /* SponsorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EB08552AD980AF00F4CBD5 /* SponsorsView.swift */; };
 		A6EB08582AD9862500F4CBD5 /* SponsorsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EB08572AD9862500F4CBD5 /* SponsorsController.swift */; };
+		A6EB2F6B2ADFEE88001B733C /* SponsorsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EB2F6A2ADFEE88001B733C /* SponsorsCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,6 +91,7 @@
 		A6EB08532AD97D7000F4CBD5 /* SponsorsContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SponsorsContainerView.swift; sourceTree = "<group>"; };
 		A6EB08552AD980AF00F4CBD5 /* SponsorsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SponsorsView.swift; sourceTree = "<group>"; };
 		A6EB08572AD9862500F4CBD5 /* SponsorsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SponsorsController.swift; sourceTree = "<group>"; };
+		A6EB2F6A2ADFEE88001B733C /* SponsorsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SponsorsCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 			children = (
 				A6A153322ADD26E000DD83B3 /* VideoCollectionViewCell.swift */,
 				A625E5392ADEF92A00BD004F /* TeamsCollectionViewCell.swift */,
+				A6EB2F6A2ADFEE88001B733C /* SponsorsCollectionViewCell.swift */,
 			);
 			path = CollectionViewCell;
 			sourceTree = "<group>";
@@ -349,6 +352,7 @@
 				A6EB081D2AD4768000F4CBD5 /* TableContainer.swift in Sources */,
 				A6EB083B2AD8218A00F4CBD5 /* NewsContainerView.swift in Sources */,
 				A6EB08452AD87A8B00F4CBD5 /* VideoContainerView.swift in Sources */,
+				A6EB2F6B2ADFEE88001B733C /* SponsorsCollectionViewCell.swift in Sources */,
 				A6EB08582AD9862500F4CBD5 /* SponsorsController.swift in Sources */,
 				A6EB083D2AD8223800F4CBD5 /* NewsCell.swift in Sources */,
 				A6EB08172AD475E000F4CBD5 /* HomeContainerView.swift in Sources */,
