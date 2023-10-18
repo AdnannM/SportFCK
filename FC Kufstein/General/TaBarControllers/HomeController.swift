@@ -176,7 +176,7 @@ extension HomeController: UITableViewDelegate, UITableViewDataSource {
                 return UITableViewCell()
             }
             
-            cell.sponsorsContainerView.delegate = self
+            cell.sponsorsContainerView.sponsorsView.delegate = self
             cell.selectionStyle = .none
             cell.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
             return cell
@@ -266,6 +266,15 @@ extension HomeController: VideoCollectionViewCellDelegate {
         videoPlayerVC.loadYouTubeVideo(videoURL: videoURL)
     
         self.navigationController?.pushViewController(videoPlayerVC, animated: true)
+    }
+}
+
+// MARK: - SponsorsViewDelegate
+extension HomeController: SponsorsViewDelegate {
+    func openURL(_ url: URL) {
+        let safariContainer = SafariViewControllerContainer(url: url)
+        safariContainer.modalPresentationStyle = .fullScreen
+        present(safariContainer, animated: true)
     }
 }
 

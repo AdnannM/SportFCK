@@ -7,7 +7,27 @@
 
 import UIKit
 
+protocol SponsorsViewDelegate: AnyObject {
+    func openURL(_ url: URL)
+}
+
 class SponsorsView: UIView {
+    
+    // MARK: - Properties
+    weak var delegate: SponsorsViewDelegate?
+    
+    // MARK: - Placeholder Data
+    private var sponsorsDataModel = [
+        SponsorsModelData(image: UIImage(named: "alpquell-logo")!, url: URL(string: "https://www.alpquell.com/")),
+        SponsorsModelData(image: UIImage(named: "FC Kufstein")!, url: URL(string: "https://www.kellys.at/")),
+        SponsorsModelData(image: UIImage(named: "stadt-kufstein")!, url: URL(string: "https://www.kufstein.gv.at/")),
+        SponsorsModelData(image: UIImage(named: "Interspar")!, url: URL(string: "https://www.interspar.at/")),
+        SponsorsModelData(image: UIImage(named: "kufnet")!, url: URL(string: "https://www.kufnet.at/")),
+        SponsorsModelData(image: UIImage(named: "kufstein-galerie")!, url: URL(string: "https://www.kufstein-galerien.at/home/?no_cache=1")),
+        SponsorsModelData(image: UIImage(named: "LOsteria1")!, url: URL(string: "https://losteria.net/at/")),
+        SponsorsModelData(image: UIImage(named: "moccador")!, url: URL(string: "https://www.moccador.at/de/partner-199/praesentation/aktuell")),
+        SponsorsModelData(image: UIImage(named: "rztrsdfdsdElement-1")!, url: URL(string: "https://www.ricado-networks.com/")),
+    ]
     
     // MARK: - Components
     private let collectionView: UICollectionView = {
@@ -71,6 +91,8 @@ extension SponsorsView: UICollectionViewDelegate, UICollectionViewDataSource, UI
             return UICollectionViewCell()
         }
         
+        let modelData = sponsorsDataModel[indexPath.row]
+        cell.configureCell(withModel: modelData)
         return cell
     }
     
@@ -79,6 +101,8 @@ extension SponsorsView: UICollectionViewDelegate, UICollectionViewDataSource, UI
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("Sponsors IndexPath: \(indexPath.item)")
+        let modelData = sponsorsDataModel[indexPath.row]
+        guard let url = modelData.url else { return }
+        delegate?.openURL(url)
     }
 }

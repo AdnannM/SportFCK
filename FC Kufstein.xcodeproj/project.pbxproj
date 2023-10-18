@@ -47,6 +47,7 @@
 		A6EB08562AD980B000F4CBD5 /* SponsorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EB08552AD980AF00F4CBD5 /* SponsorsView.swift */; };
 		A6EB08582AD9862500F4CBD5 /* SponsorsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EB08572AD9862500F4CBD5 /* SponsorsController.swift */; };
 		A6EB2F6B2ADFEE88001B733C /* SponsorsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EB2F6A2ADFEE88001B733C /* SponsorsCollectionViewCell.swift */; };
+		A6EB2F6D2AE028AA001B733C /* SafariViewControllerContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EB2F6C2AE028AA001B733C /* SafariViewControllerContainer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -92,6 +93,7 @@
 		A6EB08552AD980AF00F4CBD5 /* SponsorsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SponsorsView.swift; sourceTree = "<group>"; };
 		A6EB08572AD9862500F4CBD5 /* SponsorsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SponsorsController.swift; sourceTree = "<group>"; };
 		A6EB2F6A2ADFEE88001B733C /* SponsorsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SponsorsCollectionViewCell.swift; sourceTree = "<group>"; };
+		A6EB2F6C2AE028AA001B733C /* SafariViewControllerContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariViewControllerContainer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +160,7 @@
 				A6EB082A2AD6955300F4CBD5 /* Controllers */,
 				A6EB08102AD45EE400F4CBD5 /* TabBarController.swift */,
 				A6EB08132AD4746D00F4CBD5 /* TaBarControllers */,
+				A6EB2F6C2AE028AA001B733C /* SafariViewControllerContainer.swift */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -346,6 +349,7 @@
 				A6EB08112AD45EE500F4CBD5 /* TabBarController.swift in Sources */,
 				A6EB08562AD980B000F4CBD5 /* SponsorsView.swift in Sources */,
 				A6EB082C2AD6956600F4CBD5 /* NotificationController.swift in Sources */,
+				A6EB2F6D2AE028AA001B733C /* SafariViewControllerContainer.swift in Sources */,
 				A625E5382ADEA97000BD004F /* VideoPlayerViewController.swift in Sources */,
 				A6EB08412AD8350900F4CBD5 /* NewsController.swift in Sources */,
 				A6EB08432AD8748100F4CBD5 /* VideoCell.swift in Sources */,

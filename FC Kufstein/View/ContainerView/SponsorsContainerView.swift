@@ -30,7 +30,7 @@ class SponsorsContainerView: UIView {
         fontSize: .med
     )
     
-    private let sponsorsView = SponsorsView()
+    let sponsorsView = SponsorsView()
     
     // MARK: - Lifecycle
     override init(frame: CGRect) {
