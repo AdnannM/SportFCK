@@ -177,6 +177,7 @@ extension HomeController: UITableViewDelegate, UITableViewDataSource {
             }
             
             cell.sponsorsContainerView.sponsorsView.delegate = self
+            cell.sponsorsContainerView.delegate = self 
             cell.selectionStyle = .none
             cell.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
             return cell
@@ -246,7 +247,7 @@ extension HomeController: VideoContainerViewDelegate {
 // MARK: - TeamsContainerViewDelegate
 extension HomeController: TeamsContainerViewDelegate {
     func didTapTeams(_ view: TeamsContainerView) {
-        print("DEBUG: All Teams Button Tapped ✅")
+        self.navigationController?.pushViewController(TeamsController(), animated: true)
     }
 }
 
@@ -272,9 +273,7 @@ extension HomeController: VideoCollectionViewCellDelegate {
 // MARK: - SponsorsViewDelegate
 extension HomeController: SponsorsViewDelegate {
     func openURL(_ url: URL) {
-        let safariContainer = SafariViewControllerContainer(url: url)
-        safariContainer.modalPresentationStyle = .fullScreen
-        present(safariContainer, animated: true)
+        presentSafariController(withURL: url)
     }
 }
 
