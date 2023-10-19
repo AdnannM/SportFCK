@@ -30,7 +30,7 @@ class TeamsContainerView: UIView {
         fontSize: .med
     )
     
-    private let teamsView = TeamsView()
+    let teamsView = TeamsView()
     
     // MARK: - Lifecycle
     override init(frame: CGRect) {
@@ -71,6 +71,7 @@ private extension TeamsContainerView {
     private func setupAllNewsButton() {
         addSubview(allTeamsButton)
         allTeamsButton.translatesAutoresizingMaskIntoConstraints = false
+        allTeamsButton.isHidden = true
         
         NSLayoutConstraint.activate([
             allTeamsButton.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor),

@@ -9,6 +9,7 @@ import UIKit
 
 protocol SponsorsViewDelegate: AnyObject {
     func openURL(_ url: URL)
+    func openTeamsURL(_ url: URL)
 }
 
 class SponsorsView: UIView {

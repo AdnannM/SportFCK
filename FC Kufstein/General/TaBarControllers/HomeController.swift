@@ -166,6 +166,7 @@ extension HomeController: UITableViewDelegate, UITableViewDataSource {
             }
             
             cell.teamsContainerView.delegate = self
+            cell.teamsContainerView.teamsView.delegate = self
             cell.selectionStyle = .none
             cell.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
             return cell
@@ -272,6 +273,10 @@ extension HomeController: VideoCollectionViewCellDelegate {
 
 // MARK: - SponsorsViewDelegate
 extension HomeController: SponsorsViewDelegate {
+    func openTeamsURL(_ url: URL) {
+        presentSafariController(withURL: url)
+    }
+    
     func openURL(_ url: URL) {
         presentSafariController(withURL: url)
     }

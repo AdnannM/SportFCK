@@ -9,6 +9,11 @@ import UIKit
 
 class TeamsView: UIView {
     
+    // MARK: - Properties
+    private var teamsModelData = TeamsData.nextGenerationModel
+    
+    weak var delegate: SponsorsViewDelegate?
+    
     // MARK: - Components
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -63,7 +68,7 @@ private extension TeamsView {
 
 extension TeamsView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return teamsModelData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -71,6 +76,8 @@ extension TeamsView: UICollectionViewDelegate, UICollectionViewDataSource, UICol
             return UICollectionViewCell()
         }
         
+        let model = teamsModelData[indexPath.item]
+        cell.configure(withModel: model)
         return cell
     }
     
@@ -79,7 +86,7 @@ extension TeamsView: UICollectionViewDelegate, UICollectionViewDataSource, UICol
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("IndexPath: \(indexPath.item)")
+        let model = teamsModelData[indexPath.item]
+        delegate?.openTeamsURL(URL(string: model.url)!)
     }
-    
 }
