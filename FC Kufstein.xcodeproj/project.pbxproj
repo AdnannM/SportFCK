@@ -9,7 +9,10 @@
 /* Begin PBXBuildFile section */
 		A625E5382ADEA97000BD004F /* VideoPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A625E5372ADEA97000BD004F /* VideoPlayerViewController.swift */; };
 		A625E53A2ADEF92A00BD004F /* TeamsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A625E5392ADEF92A00BD004F /* TeamsCollectionViewCell.swift */; };
+		A6652A192AE2DEE3006B6A92 /* ShopDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6652A182AE2DEE3006B6A92 /* ShopDataModel.swift */; };
+		A6652A1B2AE2DF13006B6A92 /* ShopCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6652A1A2AE2DF13006B6A92 /* ShopCollectionViewCell.swift */; };
 		A677DC722AE14B9900A9006F /* TeamsModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A677DC712AE14B9800A9006F /* TeamsModelData.swift */; };
+		A677DC742AE1689800A9006F /* ShopContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A677DC732AE1689800A9006F /* ShopContainerView.swift */; };
 		A6A153332ADD26E000DD83B3 /* VideoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6A153322ADD26E000DD83B3 /* VideoCollectionViewCell.swift */; };
 		A6E45F282AD3EA100057D668 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E45F272AD3EA100057D668 /* AppDelegate.swift */; };
 		A6E45F2A2AD3EA100057D668 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E45F292AD3EA100057D668 /* SceneDelegate.swift */; };
@@ -57,7 +60,10 @@
 /* Begin PBXFileReference section */
 		A625E5372ADEA97000BD004F /* VideoPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerViewController.swift; sourceTree = "<group>"; };
 		A625E5392ADEF92A00BD004F /* TeamsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsCollectionViewCell.swift; sourceTree = "<group>"; };
+		A6652A182AE2DEE3006B6A92 /* ShopDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopDataModel.swift; sourceTree = "<group>"; };
+		A6652A1A2AE2DF13006B6A92 /* ShopCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopCollectionViewCell.swift; sourceTree = "<group>"; };
 		A677DC712AE14B9800A9006F /* TeamsModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsModelData.swift; sourceTree = "<group>"; };
+		A677DC732AE1689800A9006F /* ShopContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopContainerView.swift; sourceTree = "<group>"; };
 		A6A153322ADD26E000DD83B3 /* VideoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewCell.swift; sourceTree = "<group>"; };
 		A6E45F242AD3EA100057D668 /* FC Kufstein.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FC Kufstein.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6E45F272AD3EA100057D668 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -129,6 +135,7 @@
 				A6A153322ADD26E000DD83B3 /* VideoCollectionViewCell.swift */,
 				A625E5392ADEF92A00BD004F /* TeamsCollectionViewCell.swift */,
 				A6EB2F6A2ADFEE88001B733C /* SponsorsCollectionViewCell.swift */,
+				A6652A1A2AE2DF13006B6A92 /* ShopCollectionViewCell.swift */,
 			);
 			path = CollectionViewCell;
 			sourceTree = "<group>";
@@ -205,6 +212,7 @@
 				A6EB08462AD87E7F00F4CBD5 /* VideoView.swift */,
 				A6EB084F2AD972BC00F4CBD5 /* TeamsView.swift */,
 				A6EB08552AD980AF00F4CBD5 /* SponsorsView.swift */,
+				A677DC732AE1689800A9006F /* ShopContainerView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -276,6 +284,7 @@
 			children = (
 				A6EB2F6F2AE04D74001B733C /* SponsorsModelData.swift */,
 				A677DC712AE14B9800A9006F /* TeamsModelData.swift */,
+				A6652A182AE2DEE3006B6A92 /* ShopDataModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -378,6 +387,7 @@
 				A677DC722AE14B9900A9006F /* TeamsModelData.swift in Sources */,
 				A6EB081D2AD4768000F4CBD5 /* TableContainer.swift in Sources */,
 				A6EB083B2AD8218A00F4CBD5 /* NewsContainerView.swift in Sources */,
+				A6652A1B2AE2DF13006B6A92 /* ShopCollectionViewCell.swift in Sources */,
 				A6EB08452AD87A8B00F4CBD5 /* VideoContainerView.swift in Sources */,
 				A6EB2F6B2ADFEE88001B733C /* SponsorsCollectionViewCell.swift in Sources */,
 				A6EB08582AD9862500F4CBD5 /* SponsorsController.swift in Sources */,
@@ -390,8 +400,10 @@
 				A6EB08352AD7222B00F4CBD5 /* AllMatchController.swift in Sources */,
 				A6A153332ADD26E000DD83B3 /* VideoCollectionViewCell.swift in Sources */,
 				A6E45F2A2AD3EA100057D668 /* SceneDelegate.swift in Sources */,
+				A6652A192AE2DEE3006B6A92 /* ShopDataModel.swift in Sources */,
 				A6EB08192AD4763E00F4CBD5 /* HomeController.swift in Sources */,
 				A6EB2F722AE05117001B733C /* TeamsController.swift in Sources */,
+				A677DC742AE1689800A9006F /* ShopContainerView.swift in Sources */,
 				A6EB084A2AD87FED00F4CBD5 /* VideoController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

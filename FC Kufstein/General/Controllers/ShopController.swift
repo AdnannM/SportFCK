@@ -9,10 +9,34 @@ import UIKit
 
 class ShopController: UIViewController {
     
+    // MARK: - Properties
+    private let shopContainerView = ShopContainerView()
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupUI()
+    }
+}
+
+// MARK: - SetupUI
+private extension ShopController {
+    private func setupUI() {
         title = "Shop"
-        view.backgroundColor = .systemGray5
+        view.backgroundColor = .systemGray6
+        
+        setupShopContainerView()
+    }
+    
+    private func setupShopContainerView() {
+        view.addSubview(shopContainerView)
+        shopContainerView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            shopContainerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            shopContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            shopContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            shopContainerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+        ])
     }
 }
