@@ -7,6 +7,14 @@
 
 import UIKit
 
+/*
+    - TODO: add images in assets
+    - TODO: update ui with data
+    - TODO: query data with segment control
+    - TODO: open link on safari view controller from cell use already created protocol SponsorsViewDelegate
+    - TODO: add openItemURL to SponsorsViewDelegate
+*/
+
 class ShopContainerView: UIView {
     
     // MARK: - Components
@@ -95,7 +103,7 @@ extension ShopContainerView: UICollectionViewDelegate, UICollectionViewDataSourc
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 200, height: 250)
+        return CGSize(width: 200, height: 260)
     }
 }
     
