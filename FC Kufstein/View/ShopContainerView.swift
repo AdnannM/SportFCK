@@ -7,16 +7,26 @@
 
 import UIKit
 
-/*
-    - TODO: add images in assets
-    - TODO: update ui with data
-    - TODO: query data with segment control
-    - TODO: open link on safari view controller from cell use already created protocol SponsorsViewDelegate
-    - TODO: add openItemURL to SponsorsViewDelegate
-*/
+protocol ShopContainerViewDelegate: AnyObject {
+    func openShopURL(_ url: URL)
+}
 
 class ShopContainerView: UIView {
     
+    // MARK: - Properties
+    private var shopModelData = ShopDataModel.ShopModel()
+    
+    weak var delegate: ShopContainerViewDelegate?
+    
+    // Create separate arrays for each category
+    private var oberteileData: [ShopDataModel] = []
+    private var jackenData: [ShopDataModel] = []
+    private var unterteileData: [ShopDataModel] = []
+    private var zubehörData: [ShopDataModel] = []
+    
+    // Store filtered data here
+    private var filteredShopData: [ShopDataModel] = []
+        
     // MARK: - Components
     private let segmentedControl: UISegmentedControl = {
         let segControl = UISegmentedControl(items: ["Oberteile", "Jacken", "Unterteile", "Zubehör"])
@@ -24,7 +34,7 @@ class ShopContainerView: UIView {
         segControl.selectedSegmentTintColor = .systemBlue.withAlphaComponent(0.5)
         segControl.backgroundImage(for: .normal, barMetrics: .default)
         segControl.backgroundColor = .systemBackground
-        segControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black.withAlphaComponent(0.5)], for: .normal)
+        segControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.label], for: .normal)
         return segControl
     }()
     
@@ -55,6 +65,18 @@ private extension ShopContainerView {
     private func setupUI() {
         backgroundColor = .systemGray5
         
+        // In your setupUI() function or in your init method
+        oberteileData = shopModelData.model.filter { $0.category == "oberteile" }
+        jackenData = shopModelData.model.filter { $0.category == "jacken" }
+        unterteileData = shopModelData.model.filter { $0.category == "unterteile" }
+        zubehörData = shopModelData.model.filter { $0.category == "zubehör" }
+        
+        // Select the initial category (e.g., "oberteile")
+        segmentedControl.selectedSegmentIndex = 0
+        
+        // Trigger the segment control action manually
+        didTapSegmentControl(segmentedControl)
+
         setupSegmentControl()
         setupCollectionView()
     }
@@ -91,39 +113,50 @@ private extension ShopContainerView {
 // MARK: - CollectionViewDataSource and CollectionViewDelegate
 extension ShopContainerView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 15
+        return filteredShopData.count // Use filteredShopData instead of shopModelData.model
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ShopCollectionViewCell.cellID, for: indexPath) as? ShopCollectionViewCell else {
             return UICollectionViewCell()
         }
-        
+        let model = filteredShopData[indexPath.row] // Use filteredShopData instead of shopModelData.model
+        cell.configure(withModel: model)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 200, height: 260)
+        return CGSize(width: 200, height: 220)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let model = filteredShopData[indexPath.row]
+        delegate?.openShopURL(model.url)
     }
 }
+
     
 // MARK: - Action
 extension ShopContainerView {
     @objc private func didTapSegmentControl(_ sender: UISegmentedControl) {
-        switch segmentedControl.selectedSegmentIndex {
+        let selectedCategoryIndex = sender.selectedSegmentIndex
+        
+        switch selectedCategoryIndex {
         case 0:
-            print("1")
+            filteredShopData = oberteileData
         case 1:
-            print("2")
+            filteredShopData = jackenData
         case 2:
-            print("3")
+            filteredShopData = unterteileData
         case 3:
-            print("4")
-        case 4:
-            print("5")
+            filteredShopData = zubehörData
         default:
             break
         }
+        
+        // Reload the collection view with the filtered data
+        collectionView.reloadData()
     }
 }
+
 

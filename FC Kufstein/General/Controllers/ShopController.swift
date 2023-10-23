@@ -24,7 +24,7 @@ private extension ShopController {
     private func setupUI() {
         title = "Shop"
         view.backgroundColor = .systemGray6
-        
+        shopContainerView.delegate = self
         setupShopContainerView()
     }
     
@@ -38,5 +38,12 @@ private extension ShopController {
             shopContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             shopContainerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ])
+    }
+}
+
+// MARK: - ShopContainerViewDelegate
+extension ShopController: ShopContainerViewDelegate {
+    func openShopURL(_ url: URL) {
+        presentSafariController(withURL: url)
     }
 }
