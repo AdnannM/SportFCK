@@ -9,6 +9,18 @@ import UIKit
 
 class NewsView: UIView {
     
+    // MARK: - Components
+    private let collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.sectionInset = UIEdgeInsets(top: 2, left: 2, bottom: 2, right: 2)
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.register(VideoCollectionViewCell.self, forCellWithReuseIdentifier: VideoCollectionViewCell.cellID)
+        collectionView.backgroundColor = .orange
+        collectionView.layer.cornerRadius = 20
+        return collectionView
+    }()
+    
     // MARK: - Lifecycle
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -27,7 +39,21 @@ class NewsView: UIView {
 // MARK: - SetupUI
 private extension NewsView {
     private func setupUI() {
-        backgroundColor = .systemGray6
-        layer.cornerRadius = 8
+        backgroundColor = .systemBackground
+        layer.cornerRadius = 20
+        
+        setupCollectionView()
+    }
+    
+    private func setupCollectionView() {
+        addSubview(collectionView)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: topAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
     }
 }

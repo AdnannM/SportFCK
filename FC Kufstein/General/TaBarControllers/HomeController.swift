@@ -198,7 +198,7 @@ extension HomeController: UITableViewDelegate, UITableViewDataSource {
         case 0:
             return 250
         case 1:
-            return 300
+            return 250
         case 2:
             return 250
         case 3:

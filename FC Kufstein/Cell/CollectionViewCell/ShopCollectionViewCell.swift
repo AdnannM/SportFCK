@@ -56,7 +56,7 @@ class ShopCollectionViewCell: UICollectionViewCell {
 private extension ShopCollectionViewCell {
     private func setupUI() {
         backgroundColor = .white
-        layer.cornerRadius = 8
+        layer.cornerRadius = 20
         
         setupShopImageView()
         setupContainerView()
@@ -81,7 +81,7 @@ private extension ShopCollectionViewCell {
         containerView.translatesAutoresizingMaskIntoConstraints = false
         
         containerView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-        containerView.layer.cornerRadius = 8
+        containerView.layer.cornerRadius = 20
 
         
         NSLayoutConstraint.activate([

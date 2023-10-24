@@ -25,7 +25,7 @@ class VideoCollectionViewCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFill
-        imageView.layer.cornerRadius = 8
+        imageView.layer.cornerRadius = 20
         let image = UIImage(named: "videoImage")
         imageView.image = image
         imageView.isUserInteractionEnabled = true
