@@ -73,8 +73,26 @@ extension NewsView: UICollectionViewDelegate, UICollectionViewDataSource, UIColl
         return cell
     }
     
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        return CGSize(width: 330, height: 280)
+//    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 330, height: 280)
+        let deviceName = UIDevice.current.name
+        let screenSizeCategory = getScreenSizeCategory(for: deviceName)
+        
+        var cellSize: CGSize
+
+        switch screenSizeCategory {
+        case .small:
+            cellSize = CGSize(width: 310, height: 280)
+        case .medium:
+            cellSize = CGSize(width: 330, height: 280)
+        case .large:
+            cellSize = CGSize(width: 370, height: 280)
+        }
+
+        return cellSize
     }
 }
 

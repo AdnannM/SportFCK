@@ -81,8 +81,26 @@ extension VideoView: UICollectionViewDelegate, UICollectionViewDataSource, UICol
         return cell
     }
     
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        return CGSize(width: 330, height: 180)
+//    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 330, height: 180)
+        let deviceName = UIDevice.current.name
+        let screenSizeCategory = getScreenSizeCategory(for: deviceName)
+        
+        var cellSize: CGSize
+
+        switch screenSizeCategory {
+        case .small:
+            cellSize = CGSize(width: 310, height: 180)
+        case .medium:
+            cellSize = CGSize(width: 330, height: 180)
+        case .large:
+            cellSize = CGSize(width: 370, height: 180)
+        }
+
+        return cellSize
     }
 }
 

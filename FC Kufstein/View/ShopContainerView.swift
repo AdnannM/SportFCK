@@ -125,8 +125,26 @@ extension ShopContainerView: UICollectionViewDelegate, UICollectionViewDataSourc
         return cell
     }
     
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        return CGSize(width: 180, height: 220)
+//    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 180, height: 220)
+        let deviceName = UIDevice.current.name
+        let screenSizeCategory = getScreenSizeCategory(for: deviceName)
+        
+        var cellSize: CGSize
+
+        switch screenSizeCategory {
+        case .small:
+            cellSize = CGSize(width: 150, height: 220)
+        case .medium:
+            cellSize = CGSize(width: 180, height: 220)
+        case .large:
+            cellSize = CGSize(width: 190, height: 220)
+        }
+
+        return cellSize
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

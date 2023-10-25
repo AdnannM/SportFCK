@@ -82,7 +82,21 @@ extension TeamsView: UICollectionViewDelegate, UICollectionViewDataSource, UICol
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 160, height: 100)
+        let deviceName = UIDevice.current.name
+        let screenSizeCategory = getScreenSizeCategory(for: deviceName)
+        
+        var cellSize: CGSize
+
+        switch screenSizeCategory {
+        case .small:
+            cellSize = CGSize(width: 150, height: 100)
+        case .medium:
+            cellSize = CGSize(width: 160, height: 100)
+        case .large:
+            cellSize = CGSize(width: 180, height: 100)
+        }
+
+        return cellSize
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
