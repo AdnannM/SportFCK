@@ -73,10 +73,6 @@ extension NewsView: UICollectionViewDelegate, UICollectionViewDataSource, UIColl
         return cell
     }
     
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        return CGSize(width: 330, height: 280)
-//    }
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let deviceName = UIDevice.current.name
         let screenSizeCategory = getScreenSizeCategory(for: deviceName)
@@ -96,71 +92,3 @@ extension NewsView: UICollectionViewDelegate, UICollectionViewDataSource, UIColl
     }
 }
 
-
-
-class NewsCollectionViewCell: UICollectionViewCell {
-    
-    // MARK: - Properties
-    static let cellID = "NewsCollectionViewCell"
-    
-    private let testView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .red
-        view.layer.cornerRadius = 20
-        return view
-    }()
-    
-    private let circleView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .systemBackground
-        return view
-    }()
-    
-    private let circleView1: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .label
-        return view
-    }()
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        backgroundColor = .systemBackground
-        layer.cornerRadius = 20
-        
-        contentView.addSubview(testView)
-        testView.addSubview(circleView)
-        circleView.addSubview(circleView1)
-        
-        NSLayoutConstraint.activate([
-            testView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            testView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            testView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            testView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            
-            circleView.bottomAnchor.constraint(equalTo: testView.bottomAnchor, constant: 10),
-            circleView.trailingAnchor.constraint(equalTo: testView.trailingAnchor, constant: 8),
-            circleView.widthAnchor.constraint(equalToConstant: 100), // Set the width and height to create a circle
-            circleView.heightAnchor.constraint(equalTo: circleView.widthAnchor),
-            
-            circleView1.topAnchor.constraint(equalTo: circleView.topAnchor, constant: 10),
-            circleView1.trailingAnchor.constraint(equalTo: circleView.trailingAnchor, constant: -10),
-            circleView1.leadingAnchor.constraint(equalTo: circleView.leadingAnchor, constant: 10),
-            circleView1.bottomAnchor.constraint(equalTo: circleView.bottomAnchor, constant: -10),
-            
-            circleView1.widthAnchor.constraint(equalToConstant: 80), // Set the width and height to create a circle
-            circleView1.heightAnchor.constraint(equalTo: circleView1.widthAnchor),
-        ])
-        
-        circleView.layer.cornerRadius = 50 // Set half of the width to make it circular
-        circleView.clipsToBounds = true
-        circleView1.clipsToBounds = true
-        circleView1.layer.cornerRadius = 40
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
