@@ -126,9 +126,14 @@ extension ShopContainerView: UICollectionViewDelegate, UICollectionViewDataSourc
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 200, height: 220)
+        return CGSize(width: 180, height: 220)
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        // Set the vertical spacing between items
+        return 20.0  // Adjust this value as needed
+    }
+        
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let model = filteredShopData[indexPath.row]
         delegate?.openShopURL(model.url)

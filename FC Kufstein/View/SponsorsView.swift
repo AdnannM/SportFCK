@@ -88,9 +88,24 @@ extension SponsorsView: UICollectionViewDelegate, UICollectionViewDataSource, UI
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 120, height: 80)
+        let deviceName = UIDevice.current.name
+        let screenSizeCategory = getScreenSizeCategory(for: deviceName)
+        
+        var cellSize: CGSize
+
+        switch screenSizeCategory {
+        case .small:
+            cellSize = CGSize(width: 90, height: 80)
+        case .medium:
+            cellSize = CGSize(width: 110, height: 80)
+        case .large:
+            cellSize = CGSize(width: 120, height: 80)
+        }
+
+        return cellSize
     }
     
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let modelData = sponsorsDataModel[indexPath.row]
         guard let url = modelData.url else { return }
