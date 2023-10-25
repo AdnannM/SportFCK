@@ -27,3 +27,11 @@ func getScreenSizeCategory(for deviceName: String) -> ScreenSizeCategory {
         return .large // Default to large size
     }
 }
+
+// MARK: - Helpers
+func createView(color: UIColor) -> UIView {
+    let view = UIView()
+    view.translatesAutoresizingMaskIntoConstraints = false
+    view.backgroundColor = color
+    return view
+}

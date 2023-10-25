@@ -13,27 +13,9 @@ class NewsCollectionViewCell: UICollectionViewCell {
     static let cellID = "NewsCollectionViewCell"
     
     // MARK: - Components
-    private let containerView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .red
-        view.layer.cornerRadius = 20
-        return view
-    }()
-    
-    private let circleView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .systemBackground
-        return view
-    }()
-    
-    private let shareButtonView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .label
-        return view
-    }()
+    private let containerView = createView(color: .red)
+    private let circleView = createView(color: .systemBackground)
+    private let shareButtonView = createView(color: .label)
     
     // MARK: - Lifecycle
     override init(frame: CGRect) {
@@ -49,8 +31,6 @@ class NewsCollectionViewCell: UICollectionViewCell {
 // MARK: - SetupUI
 private extension NewsCollectionViewCell {
     private func setupUI() {
-        backgroundColor = .systemBackground
-        layer.cornerRadius = 20
         
         setupContainerView()
         setupCircleView()
@@ -66,6 +46,8 @@ private extension NewsCollectionViewCell {
             containerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
         ])
+        
+        containerView.layer.cornerRadius = 20
     }
     
     private func setupCircleView() {
