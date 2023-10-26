@@ -30,7 +30,7 @@ class NewsContainerView: UIView {
         fontSize: .med
     )
     
-    private let newsView = NewsView()
+    let newsView = NewsView()
     
     // MARK: - Lifecycle
     override init(frame: CGRect) {

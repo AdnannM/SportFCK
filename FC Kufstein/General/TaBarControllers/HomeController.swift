@@ -142,6 +142,7 @@ extension HomeController: UITableViewDelegate, UITableViewDataSource {
                 return UITableViewCell()
             }
             cell.newsContainerView.delegate = self
+            cell.newsContainerView.newsView.delegate = self
             cell.selectionStyle = .none
             cell.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
             return cell
@@ -198,7 +199,7 @@ extension HomeController: UITableViewDelegate, UITableViewDataSource {
         case 0:
             return 250
         case 1:
-            return 350
+            return 320
         case 2:
             return 250
         case 3:
@@ -282,3 +283,13 @@ extension HomeController: SponsorsViewDelegate {
     }
 }
 
+// MARK: - NewsViewDelegate
+extension HomeController: NewsViewDelegate {
+    func didTapNewsCell(_ view: NewsView) {
+        print("Debug: cell is tapped")
+    }
+    
+    func didTapShareButton(in cell: NewsCollectionViewCell) {
+        print("Debug: share button tapped")
+    }
+}

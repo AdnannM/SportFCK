@@ -11,11 +11,44 @@ class NewsCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
     static let cellID = "NewsCollectionViewCell"
-    
+    weak var delegate: NewsViewDelegate?
+
     // MARK: - Components
-    private let containerView = createView(color: .red)
+    private let containerView = createView(color: .systemGray6)
     private let circleView = createView(color: .systemBackground)
-    private let shareButtonView = createView(color: .label)
+    private let shareButtonView = createView(color: .systemGray6)
+    
+    private let shareImage: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.image = UIImage(systemName: "square.and.arrow.up")
+        imageView.tintColor = .label // You can set the tint color
+        return imageView
+    }()
+    
+    private let newsArticleImage: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.backgroundColor = .orange
+        let image = UIImage(named: "testImage")
+        imageView.image = image
+        return imageView
+    }()
+    
+    private let newsArticleTitle = UILabel.createCustomLabel(
+        text: "Der SK Ebbs siegte beim Qualifikationsturnier – unsere Mannschaft erreichte Platz 8",
+        textColor: .label,
+        fontSize: 17,
+        fontWeight: .medium
+    )
+    
+    private let newsDate = UILabel.createCustomLabel(
+        text: "09.10.2023",
+        textColor: .secondaryLabel,
+        fontSize: 14,
+        fontWeight: .regular
+    )
     
     // MARK: - Lifecycle
     override init(frame: CGRect) {
@@ -31,10 +64,12 @@ class NewsCollectionViewCell: UICollectionViewCell {
 // MARK: - SetupUI
 private extension NewsCollectionViewCell {
     private func setupUI() {
-        
         setupContainerView()
         setupCircleView()
         setupShareButtonView()
+        setupShereImage()
+        setupNewsArticleImage()
+        setupNewsArticleTitle()
     }
     
     private func setupContainerView() {
@@ -48,6 +83,7 @@ private extension NewsCollectionViewCell {
         ])
         
         containerView.layer.cornerRadius = 20
+        containerView.layer.masksToBounds = true
     }
     
     private func setupCircleView() {
@@ -55,12 +91,12 @@ private extension NewsCollectionViewCell {
         
         NSLayoutConstraint.activate([
             circleView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: 10),
-            circleView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: 8),
-            circleView.widthAnchor.constraint(equalToConstant: 100), // Set the width and height to create a circle
+            circleView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: 5),
+            circleView.widthAnchor.constraint(equalToConstant: 80), // Set the width and height to create a circle
             circleView.heightAnchor.constraint(equalTo: circleView.widthAnchor),
         ])
         
-        circleView.layer.cornerRadius = 50 // Set half of the width to make it circular
+        circleView.layer.cornerRadius = 40 // Set half of the width to make it circular
         circleView.clipsToBounds = true
     }
     
@@ -73,11 +109,81 @@ private extension NewsCollectionViewCell {
             shareButtonView.leadingAnchor.constraint(equalTo: circleView.leadingAnchor, constant: 10),
             shareButtonView.bottomAnchor.constraint(equalTo: circleView.bottomAnchor, constant: -10),
             
-            shareButtonView.widthAnchor.constraint(equalToConstant: 80), // Set the width and height to create a circle
+            shareButtonView.widthAnchor.constraint(equalToConstant: 60), // Set the width and height to create a circle
             shareButtonView.heightAnchor.constraint(equalTo: shareButtonView.widthAnchor),
         ])
         
          shareButtonView.clipsToBounds = true
-         shareButtonView.layer.cornerRadius = 40
+         shareButtonView.layer.cornerRadius = 30
+    }
+    
+    private func setupShereImage() {
+        shareButtonView.addSubview(shareImage)
+        
+        NSLayoutConstraint.activate([
+            shareImage.centerXAnchor.constraint(equalTo: shareButtonView.centerXAnchor),
+            shareImage.centerYAnchor.constraint(equalTo: shareButtonView.centerYAnchor),
+            shareImage.heightAnchor.constraint(equalToConstant: 30),
+            shareImage.widthAnchor.constraint(equalToConstant: 25)
+        ])
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(shareButtonTapped))
+        shareButtonView.addGestureRecognizer(tapGesture)
+        shareButtonView.isUserInteractionEnabled = true
+    }
+    
+    private func setupNewsArticleImage() {
+        containerView.addSubview(newsArticleImage)
+        newsArticleImage.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            newsArticleImage.topAnchor.constraint(equalTo: containerView.topAnchor),
+            newsArticleImage.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+            newsArticleImage.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+            newsArticleImage.heightAnchor.constraint(equalToConstant: 160)
+        ])
+        
+        newsArticleImage.layer.cornerRadius = 20
+        newsArticleImage.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+    }
+    
+    private func setupNewsArticleTitle() {
+        // Create a UIStackView to hold newsArticleTitle and newsDate
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.spacing = 4 // Adjust the spacing as needed
+        stackView.alignment = .leading
+
+        // Add newsArticleTitle and newsDate to the stackView
+        stackView.addArrangedSubview(newsArticleTitle)
+        stackView.addArrangedSubview(newsDate)
+
+        // Add the stackView to containerView
+        containerView.addSubview(stackView)
+
+        // Set maximum number of lines and add ellipsis for longer titles
+        newsArticleTitle.lineBreakMode = .byTruncatingTail
+        newsArticleTitle.numberOfLines = 2 // Adjust as needed based on your design
+
+        NSLayoutConstraint.activate([
+            // Constraints for the stackView
+            stackView.topAnchor.constraint(equalTo: newsArticleImage.bottomAnchor, constant: 16),
+            stackView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 12),
+            stackView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -90),
+
+        ])
+        newsArticleTitle.textAlignment = .left
     }
 }
+
+// MARK: - Action
+extension NewsCollectionViewCell {
+    @objc private func shareButtonTapped() {
+        if let delegate = delegate {
+            delegate.didTapShareButton(in: self)
+        }
+    }
+}
+
+

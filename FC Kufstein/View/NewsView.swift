@@ -7,6 +7,11 @@
 
 import UIKit
 
+protocol NewsViewDelegate: AnyObject {
+    func didTapNewsCell(_ view: NewsView)
+    func didTapShareButton(in cell: NewsCollectionViewCell)
+}
+
 class NewsView: UIView {
     
     // MARK: - Components
@@ -19,6 +24,8 @@ class NewsView: UIView {
         collectionView.backgroundColor = .systemBackground
         return collectionView
     }()
+    
+    weak var delegate: NewsViewDelegate?
     
     // MARK: - Lifecycle
     override init(frame: CGRect) {
@@ -69,7 +76,7 @@ extension NewsView: UICollectionViewDelegate, UICollectionViewDataSource, UIColl
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NewsCollectionViewCell.cellID, for: indexPath) as? NewsCollectionViewCell else {
             return UICollectionViewCell()
         }
-        
+        cell.delegate = self.delegate
         return cell
     }
     
@@ -81,14 +88,18 @@ extension NewsView: UICollectionViewDelegate, UICollectionViewDataSource, UIColl
 
         switch screenSizeCategory {
         case .small:
-            cellSize = CGSize(width: 310, height: 280)
+            cellSize = CGSize(width: 310, height: 250)
         case .medium:
-            cellSize = CGSize(width: 330, height: 280)
+            cellSize = CGSize(width: 330, height: 250)
         case .large:
-            cellSize = CGSize(width: 370, height: 280)
+            cellSize = CGSize(width: 370, height: 250)
         }
 
         return cellSize
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.didTapNewsCell(self)
     }
 }
 
