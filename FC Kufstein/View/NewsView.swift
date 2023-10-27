@@ -21,11 +21,15 @@ class NewsView: UIView {
         layout.sectionInset = UIEdgeInsets(top: 2, left: 2, bottom: 2, right: 2)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(NewsCollectionViewCell.self, forCellWithReuseIdentifier: NewsCollectionViewCell.cellID)
+        collectionView.register(ShimmerCollectionViewCell.self, forCellWithReuseIdentifier: ShimmerCollectionViewCell.cellID)
         collectionView.backgroundColor = .systemBackground
         return collectionView
     }()
     
     weak var delegate: NewsViewDelegate?
+    var posts = [Post]()
+    
+    var isFetchingData = true
     
     // MARK: - Lifecycle
     override init(frame: CGRect) {
@@ -40,6 +44,34 @@ class NewsView: UIView {
     override var intrinsicContentSize: CGSize {
         return CGSize(width: 150, height: 150)
     }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        Task {
+            do {
+                startShimmer()
+                let fetchedPosts = try await fetchNews()
+                posts = fetchedPosts
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
+                stopShimmer()
+            } catch {
+                print("Error fetching news: \(error)")
+            }
+        }
+    }
+    
+    func startShimmer() {
+        isFetchingData = true
+        collectionView.reloadData()
+    }
+
+    func stopShimmer() {
+        isFetchingData = false
+        collectionView.reloadData()
+    }
+
 }
 
 // MARK: - SetupUI
@@ -69,15 +101,22 @@ private extension NewsView {
 
 extension NewsView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return isFetchingData ? 2 : posts.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NewsCollectionViewCell.cellID, for: indexPath) as? NewsCollectionViewCell else {
-            return UICollectionViewCell()
+        if isFetchingData {
+            return collectionView.dequeueReusableCell(withReuseIdentifier: ShimmerCollectionViewCell.cellID, for: indexPath)
+        } else {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NewsCollectionViewCell.cellID, for: indexPath) as? NewsCollectionViewCell else {
+                return UICollectionViewCell()
+            }
+    
+            let post = posts[indexPath.row]
+            cell.configure(withData: post)
+            cell.delegate = self.delegate
+            return cell
         }
-        cell.delegate = self.delegate
-        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -100,6 +139,35 @@ extension NewsView: UICollectionViewDelegate, UICollectionViewDataSource, UIColl
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         delegate?.didTapNewsCell(self)
+    }
+}
+
+
+//MARK: - Networking
+extension NewsView {
+    func fetchNews() async throws -> [Post] {
+        let posts = try await ApiManager.shared.getPosts()
+        let formattedPosts = formatPosts(posts)
+        return formattedPosts
+    }
+
+    func formatPosts(_ posts: [Post]) -> [Post] {
+        var formattedPosts = [Post]()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        let outputFormatter = DateFormatter()
+        outputFormatter.dateFormat = "MMM dd, yyyy"
+
+        for post in posts {
+            if let date = dateFormatter.date(from: post.date) {
+                let formattedDate = outputFormatter.string(from: date)
+                let formattedPost = Post(id: post.id, date: formattedDate, link: post.link, title: post.title, jetpackFeaturedMediaURL: post.jetpackFeaturedMediaURL)
+                formattedPosts.append(formattedPost)
+            } else {
+                print("Error formatting date for post ID \(post.id)")
+            }
+        }
+        return formattedPosts
     }
 }
 

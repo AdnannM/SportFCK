@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class NewsCollectionViewCell: UICollectionViewCell {
     
@@ -186,4 +187,17 @@ extension NewsCollectionViewCell {
     }
 }
 
-
+//MARK: - ConfigureCell
+extension NewsCollectionViewCell {
+    func configure(withData data: Post) {
+        if let imageUrl = URL(string: data.jetpackFeaturedMediaURL) {
+            // Use SDWebImage to load and set the image from the URL
+            newsArticleImage.sd_setImage(with: imageUrl, placeholderImage: nil, options: [.progressiveLoad])
+        } else {
+            // Handle invalid URL or errors here
+        }
+        
+        newsArticleTitle.text = data.title.rendered
+        newsDate.text = data.date
+    }
+}
