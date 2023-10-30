@@ -8,9 +8,10 @@
 import UIKit
 
 protocol NewsViewDelegate: AnyObject {
-    func didTapNewsCell(_ view: NewsView)
+    func didTapNewsCell(_ url: String)
     func didTapShareButton(in cell: NewsCollectionViewCell)
 }
+
 
 class NewsView: UIView {
     
@@ -138,7 +139,8 @@ extension NewsView: UICollectionViewDelegate, UICollectionViewDataSource, UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.didTapNewsCell(self)
+        let modelURL = posts[indexPath.row]
+        delegate?.didTapNewsCell(modelURL.link)
     }
 }
 

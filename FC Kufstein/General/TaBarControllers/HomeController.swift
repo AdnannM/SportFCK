@@ -285,8 +285,8 @@ extension HomeController: SponsorsViewDelegate {
 
 // MARK: - NewsViewDelegate
 extension HomeController: NewsViewDelegate {
-    func didTapNewsCell(_ view: NewsView) {
-        print("Debug: cell is tapped")
+    func didTapNewsCell(_ url: String) {
+        presentSafariController(withURL: URL(string: url)!)
     }
     
     func didTapShareButton(in cell: NewsCollectionViewCell) {

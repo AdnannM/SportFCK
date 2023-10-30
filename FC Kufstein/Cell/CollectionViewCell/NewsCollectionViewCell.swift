@@ -31,9 +31,7 @@ class NewsCollectionViewCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
-        imageView.backgroundColor = .orange
-        let image = UIImage(named: "testImage")
-        imageView.image = image
+        imageView.backgroundColor = .systemBlue
         return imageView
     }()
     
@@ -59,6 +57,11 @@ class NewsCollectionViewCell: UICollectionViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        newsArticleImage.image = nil
     }
 }
 
@@ -190,14 +193,17 @@ extension NewsCollectionViewCell {
 //MARK: - ConfigureCell
 extension NewsCollectionViewCell {
     func configure(withData data: Post) {
+        let placehoderImage = UIImage(named: "404")
         if let imageUrl = URL(string: data.jetpackFeaturedMediaURL) {
             // Use SDWebImage to load and set the image from the URL
-            newsArticleImage.sd_setImage(with: imageUrl, placeholderImage: nil, options: [.progressiveLoad])
+            newsArticleImage.sd_setImage(with: imageUrl, placeholderImage: placehoderImage, options: [.progressiveLoad])
         } else {
-            // Handle invalid URL or errors here
+            // Handle articles without a valid image URL by setting the placeholder image directly
+            newsArticleImage.image = placehoderImage
         }
-        
         newsArticleTitle.text = data.title.rendered
         newsDate.text = data.date
     }
 }
+
+
