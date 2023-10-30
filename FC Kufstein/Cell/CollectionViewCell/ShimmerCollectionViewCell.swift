@@ -189,7 +189,7 @@ private extension ShimmerCollectionViewCell {
         newsArticleImage.showAnimatedGradientSkeleton()
         
         newsDate.isSkeletonable = true
-        newsDate.showAnimatedGradientSkeleton()
+        newsDate.isHidden = true
     }
     
     func stopShimmer() {

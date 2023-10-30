@@ -12,7 +12,6 @@ protocol NewsViewDelegate: AnyObject {
     func didTapShareButton(in cell: NewsCollectionViewCell)
 }
 
-
 class NewsView: UIView {
     
     // MARK: - Components
@@ -100,6 +99,7 @@ private extension NewsView {
     }
 }
 
+// MARK: - UICollectionViewDataSource UICollectionViewDelegate
 extension NewsView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return isFetchingData ? 2 : posts.count
@@ -148,28 +148,8 @@ extension NewsView: UICollectionViewDelegate, UICollectionViewDataSource, UIColl
 //MARK: - Networking
 extension NewsView {
     func fetchNews() async throws -> [Post] {
-        let posts = try await ApiManager.shared.getPosts()
-        let formattedPosts = formatPosts(posts)
-        return formattedPosts
-    }
-
-    func formatPosts(_ posts: [Post]) -> [Post] {
-        var formattedPosts = [Post]()
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-        let outputFormatter = DateFormatter()
-        outputFormatter.dateFormat = "MMM dd, yyyy"
-
-        for post in posts {
-            if let date = dateFormatter.date(from: post.date) {
-                let formattedDate = outputFormatter.string(from: date)
-                let formattedPost = Post(id: post.id, date: formattedDate, link: post.link, title: post.title, jetpackFeaturedMediaURL: post.jetpackFeaturedMediaURL)
-                formattedPosts.append(formattedPost)
-            } else {
-                print("Error formatting date for post ID \(post.id)")
-            }
-        }
-        return formattedPosts
+        let posts = try await NewsFetcher.shared.fetchNews()
+        return NewsFetcher.shared.formatPosts(posts)
     }
 }
 
