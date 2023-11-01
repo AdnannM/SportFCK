@@ -12,7 +12,7 @@ class AllVideosContainerView: UIView {
     // MARK: - Componets
     private let tableView: UITableView = {
         let tableView = UITableView()
-        tableView.backgroundColor = .systemGray5
+        tableView.backgroundColor = .systemBackground
         tableView.register(AllVideoTableViewCell.self, forCellReuseIdentifier: AllVideoTableViewCell.cellID)
         return tableView
     }()

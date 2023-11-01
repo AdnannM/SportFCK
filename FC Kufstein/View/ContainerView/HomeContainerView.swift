@@ -91,7 +91,7 @@ private extension HomeContainerView {
             allMatchView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
             allMatchView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
             allMatchView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
-            allMatchView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8)
+            allMatchView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
 }

@@ -58,7 +58,7 @@ class AllVideoTableViewCell: UITableViewCell {
 // MARK: - Setup
 private extension AllVideoTableViewCell {
     private func setupUI() {
-        backgroundColor = .systemGray5
+        backgroundColor = .systemBackground
         
         setupContainerView()
         setupVideoImage()

@@ -23,7 +23,7 @@ class VideoController: UIViewController {
 private extension VideoController {
     private func setupUI() {
         title = "FC Kufstein TV"
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .systemGray6
         
         setupAllVideoContainerView()
     }

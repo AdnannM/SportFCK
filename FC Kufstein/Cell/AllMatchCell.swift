@@ -39,7 +39,7 @@ private extension AllMatchCell {
             containerView.topAnchor.constraint(equalTo: topAnchor, constant: 8),
             containerView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
             containerView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
-            containerView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
+            containerView.bottomAnchor.constraint(equalTo: bottomAnchor),
         ])
     }
 }
