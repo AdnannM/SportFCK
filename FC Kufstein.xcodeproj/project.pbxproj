@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A609C4FC2AF2AEA000D5AC65 /* AllMatchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A609C4FB2AF2AEA000D5AC65 /* AllMatchCollectionViewCell.swift */; };
 		A625E5382ADEA97000BD004F /* VideoPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A625E5372ADEA97000BD004F /* VideoPlayerViewController.swift */; };
 		A625E53A2ADEF92A00BD004F /* TeamsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A625E5392ADEF92A00BD004F /* TeamsCollectionViewCell.swift */; };
 		A6286F812AF02C6C00FDDFE0 /* NewsFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6286F802AF02C6C00FDDFE0 /* NewsFetcher.swift */; };
@@ -70,6 +71,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A609C4FB2AF2AEA000D5AC65 /* AllMatchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllMatchCollectionViewCell.swift; sourceTree = "<group>"; };
 		A625E5372ADEA97000BD004F /* VideoPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerViewController.swift; sourceTree = "<group>"; };
 		A625E5392ADEF92A00BD004F /* TeamsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsCollectionViewCell.swift; sourceTree = "<group>"; };
 		A6286F802AF02C6C00FDDFE0 /* NewsFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFetcher.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 				A6652A1A2AE2DF13006B6A92 /* ShopCollectionViewCell.swift */,
 				A69A3EE02AE97C390085F7A4 /* NewsCollectionViewCell.swift */,
 				A6DEEE8F2AEC2B04005EB18A /* ShimmerCollectionViewCell.swift */,
+				A609C4FB2AF2AEA000D5AC65 /* AllMatchCollectionViewCell.swift */,
 			);
 			path = CollectionViewCell;
 			sourceTree = "<group>";
@@ -443,6 +446,7 @@
 				A6EB08562AD980B000F4CBD5 /* SponsorsView.swift in Sources */,
 				A6EB082C2AD6956600F4CBD5 /* NotificationController.swift in Sources */,
 				A6EB2F6D2AE028AA001B733C /* SafariViewControllerContainer.swift in Sources */,
+				A609C4FC2AF2AEA000D5AC65 /* AllMatchCollectionViewCell.swift in Sources */,
 				A625E5382ADEA97000BD004F /* VideoPlayerViewController.swift in Sources */,
 				A6EB08412AD8350900F4CBD5 /* NewsController.swift in Sources */,
 				A6EB08432AD8748100F4CBD5 /* VideoCell.swift in Sources */,

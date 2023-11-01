@@ -26,10 +26,9 @@ class AllMatchView: UIView {
     
     private var pageControl: UIPageControl = {
         let pageControl = UIPageControl()
-        pageControl.numberOfPages = 4
-        pageControl.currentPage = 0
-        pageControl.pageIndicatorTintColor = .label
-        pageControl.currentPageIndicatorTintColor = .blue
+        pageControl.numberOfPages = 10
+        pageControl.pageIndicatorTintColor = .systemGray5
+        pageControl.currentPageIndicatorTintColor = .systemBlue
         return pageControl
     }()
     
@@ -84,6 +83,7 @@ private extension AllMatchView {
     }
 }
 
+// MARK: - CollectionViewDelegate and CollectionViewDataSource
 extension AllMatchView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 10
@@ -114,49 +114,15 @@ extension AllMatchView: UICollectionViewDelegate, UICollectionViewDataSource, UI
       return CGSize(width: collectionView.frame.width - insets.left - insets.right, height: collectionView.frame.height - insets.top - insets.bottom)
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, shouldInvalidateLayoutForBoundsChange newBounds: CGRect) -> Bool {
-      return true
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-      // Reset the previous cell to its initial state.
-      cell.alpha = 0
+    // Implement UIScrollViewDelegate method to update page control
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let pageWidth = collectionView.frame.width
+        let currentPage = Int((scrollView.contentOffset.x + pageWidth / 2) / pageWidth)
+        pageControl.currentPage = currentPage
     }
 }
 
     
 
-
-class AllMatchCollectionViewCell: UICollectionViewCell {
-    static let cellID = "AllMatchCollectionViewCell"
-    
-    private let containerView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .systemGray6.withAlphaComponent(0.8)
-        view.layer.cornerRadius = 20
-        return view
-    }()
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        contentView.layer.cornerRadius = 20
-        contentView.backgroundColor = .systemBackground
-        contentView.addSubview(containerView)
-        
-        NSLayoutConstraint.activate([
-        
-            containerView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-            containerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
-            containerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
-            containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-        ])
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
 
 
