@@ -191,16 +191,48 @@ extension NewsCollectionViewCell {
 }
 
 //MARK: - ConfigureCell
+//extension NewsCollectionViewCell {
+//    func configure(withData data: Post) {
+//        let placehoderImage = UIImage(named: "404")
+//        if let imageUrl = URL(string: data.jetpackFeaturedMediaURL) {
+//            // Use SDWebImage to load and set the image from the URL
+//            newsArticleImage.sd_setImage(with: imageUrl, placeholderImage: placehoderImage, options: [.progressiveLoad])
+//        } else {
+//            // Handle articles without a valid image URL by setting the placeholder image directly
+//            newsArticleImage.image = placehoderImage
+//        }
+//        newsArticleTitle.text = data.title.rendered
+//        newsDate.text = data.date
+//    }
+//}
 extension NewsCollectionViewCell {
     func configure(withData data: Post) {
         let placehoderImage = UIImage(named: "404")
+        
+        // Reset the image view to the placeholder image and show the loading indicator
+        newsArticleImage.image = placehoderImage
+        let activityIndicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.medium)
+        newsArticleImage.addSubview(activityIndicator)
+        activityIndicator.center = newsArticleImage.center
+        activityIndicator.startAnimating()
+        
         if let imageUrl = URL(string: data.jetpackFeaturedMediaURL) {
             // Use SDWebImage to load and set the image from the URL
-            newsArticleImage.sd_setImage(with: imageUrl, placeholderImage: placehoderImage, options: [.progressiveLoad])
+            newsArticleImage.sd_setImage(
+                with: imageUrl,
+                placeholderImage: placehoderImage,
+                options: [.progressiveLoad]
+            ) { _, _, _, _ in
+                // Hide the loading indicator when the image has finished loading
+                activityIndicator.stopAnimating()
+                activityIndicator.removeFromSuperview()
+            }
         } else {
             // Handle articles without a valid image URL by setting the placeholder image directly
-            newsArticleImage.image = placehoderImage
+            activityIndicator.stopAnimating()
+            activityIndicator.removeFromSuperview()
         }
+        
         newsArticleTitle.text = data.title.rendered
         newsDate.text = data.date
     }
