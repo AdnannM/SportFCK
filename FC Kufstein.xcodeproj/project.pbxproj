@@ -16,6 +16,11 @@
 		A661E8F32AEBC12B00AE28EC /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A661E8F22AEBC12B00AE28EC /* NetworkError.swift */; };
 		A6652A192AE2DEE3006B6A92 /* ShopDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6652A182AE2DEE3006B6A92 /* ShopDataModel.swift */; };
 		A6652A1B2AE2DF13006B6A92 /* ShopCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6652A1A2AE2DF13006B6A92 /* ShopCollectionViewCell.swift */; };
+		A675C3642AF54B8400145CBC /* MatchInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A675C3632AF54B8400145CBC /* MatchInfo.swift */; };
+		A675C3662AF54BCE00145CBC /* LastGameInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A675C3652AF54BCE00145CBC /* LastGameInfo.swift */; };
+		A675C3682AF54BE500145CBC /* LeagueInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A675C3672AF54BE500145CBC /* LeagueInfo.swift */; };
+		A675C36A2AF54D4B00145CBC /* ApiURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = A675C3692AF54D4B00145CBC /* ApiURL.swift */; };
+		A675C36C2AF54DB100145CBC /* TestingAndPrintingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A675C36B2AF54DB100145CBC /* TestingAndPrintingData.swift */; };
 		A677DC722AE14B9900A9006F /* TeamsModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A677DC712AE14B9800A9006F /* TeamsModelData.swift */; };
 		A677DC742AE1689800A9006F /* ShopContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A677DC732AE1689800A9006F /* ShopContainerView.swift */; };
 		A69A3EDF2AE9546E0085F7A4 /* ScreenSizeCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69A3EDE2AE9546E0085F7A4 /* ScreenSizeCategory.swift */; };
@@ -80,6 +85,11 @@
 		A661E8F22AEBC12B00AE28EC /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		A6652A182AE2DEE3006B6A92 /* ShopDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopDataModel.swift; sourceTree = "<group>"; };
 		A6652A1A2AE2DF13006B6A92 /* ShopCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopCollectionViewCell.swift; sourceTree = "<group>"; };
+		A675C3632AF54B8400145CBC /* MatchInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchInfo.swift; sourceTree = "<group>"; };
+		A675C3652AF54BCE00145CBC /* LastGameInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastGameInfo.swift; sourceTree = "<group>"; };
+		A675C3672AF54BE500145CBC /* LeagueInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeagueInfo.swift; sourceTree = "<group>"; };
+		A675C3692AF54D4B00145CBC /* ApiURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiURL.swift; sourceTree = "<group>"; };
+		A675C36B2AF54DB100145CBC /* TestingAndPrintingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingAndPrintingData.swift; sourceTree = "<group>"; };
 		A677DC712AE14B9800A9006F /* TeamsModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsModelData.swift; sourceTree = "<group>"; };
 		A677DC732AE1689800A9006F /* ShopContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopContainerView.swift; sourceTree = "<group>"; };
 		A69A3EDE2AE9546E0085F7A4 /* ScreenSizeCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSizeCategory.swift; sourceTree = "<group>"; };
@@ -161,6 +171,8 @@
 				A661E8F02AEBC10F00AE28EC /* ApiManager.swift */,
 				A661E8F22AEBC12B00AE28EC /* NetworkError.swift */,
 				A6286F802AF02C6C00FDDFE0 /* NewsFetcher.swift */,
+				A675C3692AF54D4B00145CBC /* ApiURL.swift */,
+				A675C36B2AF54DB100145CBC /* TestingAndPrintingData.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -337,6 +349,9 @@
 				A677DC712AE14B9800A9006F /* TeamsModelData.swift */,
 				A6652A182AE2DEE3006B6A92 /* ShopDataModel.swift */,
 				A661E8ED2AEBC0F200AE28EC /* Post.swift */,
+				A675C3632AF54B8400145CBC /* MatchInfo.swift */,
+				A675C3652AF54BCE00145CBC /* LastGameInfo.swift */,
+				A675C3672AF54BE500145CBC /* LeagueInfo.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -422,6 +437,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A6EB08522AD97C5800F4CBD5 /* SponsorsCell.swift in Sources */,
+				A675C36C2AF54DB100145CBC /* TestingAndPrintingData.swift in Sources */,
 				A6E45F2C2AD3EA100057D668 /* MainController.swift in Sources */,
 				A6EB08262AD595CB00F4CBD5 /* Colors.swift in Sources */,
 				A6EB08282AD5CE8800F4CBD5 /* CustomListRowView.swift in Sources */,
@@ -434,10 +450,13 @@
 				A661E8EE2AEBC0F200AE28EC /* Post.swift in Sources */,
 				A6EB084C2AD963F700F4CBD5 /* TeamsCell.swift in Sources */,
 				A6EB08332AD71BB300F4CBD5 /* CustomButtons.swift in Sources */,
+				A675C36A2AF54D4B00145CBC /* ApiURL.swift in Sources */,
 				A6EB2F742AE056CD001B733C /* PresentSafariControler.swift in Sources */,
 				A69A3EDF2AE9546E0085F7A4 /* ScreenSizeCategory.swift in Sources */,
 				A625E53A2ADEF92A00BD004F /* TeamsCollectionViewCell.swift in Sources */,
+				A675C3662AF54BCE00145CBC /* LastGameInfo.swift in Sources */,
 				A6EB08202AD4983F00F4CBD5 /* MatchController.swift in Sources */,
+				A675C3682AF54BE500145CBC /* LeagueInfo.swift in Sources */,
 				A6EB08392AD7F8BC00F4CBD5 /* AllMatchView.swift in Sources */,
 				A6EB08502AD972BC00F4CBD5 /* TeamsView.swift in Sources */,
 				A6EB08242AD58D0D00F4CBD5 /* SettingsSwiftUIView.swift in Sources */,
@@ -472,6 +491,7 @@
 				A69A3EE12AE97C390085F7A4 /* NewsCollectionViewCell.swift in Sources */,
 				A6652A192AE2DEE3006B6A92 /* ShopDataModel.swift in Sources */,
 				A6EB08192AD4763E00F4CBD5 /* HomeController.swift in Sources */,
+				A675C3642AF54B8400145CBC /* MatchInfo.swift in Sources */,
 				A6EB2F722AE05117001B733C /* TeamsController.swift in Sources */,
 				A661E8F32AEBC12B00AE28EC /* NetworkError.swift in Sources */,
 				A677DC742AE1689800A9006F /* ShopContainerView.swift in Sources */,
