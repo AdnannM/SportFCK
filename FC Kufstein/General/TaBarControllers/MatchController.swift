@@ -12,6 +12,8 @@ class MatchController: UIViewController {
     // MARK: - Components
     private let tableView: UITableView = {
         let tableView = UITableView()
+        tableView.register(LastMatchCell.self, forCellReuseIdentifier: LastMatchCell.cellID)
+        tableView.backgroundColor = .systemGray6
         return tableView
     }()
     
@@ -50,12 +52,18 @@ private extension MatchController {
 // MARK: - TableViewDelegate and TableViewDataSource
 extension MatchController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        cell.textLabel?.text = "Testing ✅"
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: LastMatchCell.cellID,
+            for: indexPath
+        ) as? LastMatchCell else {
+            return UITableViewCell()
+        }
+        
+        cell.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
         return cell
     }
     
