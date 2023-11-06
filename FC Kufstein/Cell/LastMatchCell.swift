@@ -27,6 +27,7 @@ class LastMatchCell: UITableViewCell {
     }
 }
 
+
 // MARK: - SetupUI
 private extension LastMatchCell {
     private func setupUI() {
@@ -46,80 +47,50 @@ private extension LastMatchCell {
     }
 }
 
-class LastMatchContainerView: UIView {
-    
-    let gamePlace = UILabel.createCustomLabel(
-        text: "Kufstein Arena",
-        textColor: .label,
-        fontSize: 15,
-        fontWeight: .bold
-    )
-    
-    let dateLabel = UILabel.createCustomLabel(
-        text: "Sat, Nov 23, 2023",
-        textColor: .label,
-        fontSize: 14,
-        fontWeight: .heavy
-    )
-    
-    private let dateSeparator = createView(color: .separator)
-    private let gameSeparator = createView(color: .separator)
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        backgroundColor = .systemBackground.withAlphaComponent(0.6)
-        layer.cornerRadius = 20
-        setupUI()
+// MARK: - Configure cell
+extension LastMatchCell {
+    func configureCell(withViewModel viewModel: LastGameInfoViewModel) {
+        let date = Date(timeIntervalSince1970: TimeInterval(viewModel.model.letztes.datum / 1000))
+        lastMatchContainerView.gamePlace.text = viewModel.model.letztes.spielort
+        
+        let dateFormatter = getDateFormatter("E, MMM dd, yyyy")
+        lastMatchContainerView.dateLabel.text = dateFormatter.string(from: date)
+        
+        if let heimLogoURL = viewModel.heimLogoURL() {
+            lastMatchContainerView.homeImageView.sd_setImage(with: heimLogoURL, placeholderImage: nil, options: .refreshCached)
+        }
+        
+        if let gastLogoURL = viewModel.gastLogoURL() {
+            lastMatchContainerView.guestImageView.sd_setImage(with: gastLogoURL, placeholderImage: nil, options: .refreshCached)
+        }
+        
+        // Convert scores to integers if they are strings
+        if let homeScore = Int(viewModel.model.letztes.heimTore), let guestScore = Int(viewModel.model.letztes.gastTore) {
+            lastMatchContainerView.homeScoreLabel.text = viewModel.model.letztes.heimTore
+            lastMatchContainerView.guestScoreLabel.text = viewModel.model.letztes.gastTore
+            
+            // Determine which score is higher and set its label to red
+            if homeScore > guestScore {
+                lastMatchContainerView.homeScoreLabel.textColor = .red
+                lastMatchContainerView.guestScoreLabel.textColor = .label
+            } else if homeScore < guestScore {
+                lastMatchContainerView.homeScoreLabel.textColor = .label
+                lastMatchContainerView.guestScoreLabel.textColor = .red
+            } else {
+                // Scores are equal, set both to black (or another color of your choice)
+                lastMatchContainerView.homeScoreLabel.textColor = .label
+                lastMatchContainerView.guestScoreLabel.textColor = .label
+            }
+        }
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override var intrinsicContentSize: CGSize {
-        return CGSize(width: 200, height: 400)
+    /// Helpers
+    func getDateFormatter(_ format: String) -> DateFormatter {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        return dateFormatter
     }
 }
 
-// MARK: - Setup
-private extension LastMatchContainerView {
-    private func setupUI() {
-        setupLabels()
-        setupSeparator()
-    }
-    
-    private func setupLabels() {
-        addSubview(dateLabel)
-        addSubview(gamePlace)
-        dateLabel.translatesAutoresizingMaskIntoConstraints = false
-        gamePlace.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            dateLabel.centerYAnchor.constraint(equalTo: gamePlace.centerYAnchor),
-            dateLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            gamePlace.topAnchor.constraint(equalTo: topAnchor, constant: 16),
-            gamePlace.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16)
-        ])
-    }
-    
-    private func setupSeparator() {
-        addSubview(dateSeparator)
-        addSubview(gameSeparator)
-        
-        dateSeparator.translatesAutoresizingMaskIntoConstraints = false
-        gameSeparator.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            gameSeparator.topAnchor.constraint(equalTo: gamePlace.bottomAnchor, constant: 4),
-            gameSeparator.leadingAnchor.constraint(equalTo: gamePlace.leadingAnchor),
-            gameSeparator.trailingAnchor.constraint(equalTo: gamePlace.trailingAnchor),
-            gameSeparator.heightAnchor.constraint(equalToConstant: 1),
-            
-            dateSeparator.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 4),
-            dateSeparator.leadingAnchor.constraint(equalTo: dateLabel.leadingAnchor),
-            dateSeparator.trailingAnchor.constraint(equalTo: dateLabel.trailingAnchor),
-            dateSeparator.heightAnchor.constraint(equalToConstant: 1),
-        ])
-    }
-}
+
 

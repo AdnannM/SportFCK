@@ -11,7 +11,7 @@ struct LastGameInfo: Decodable {
     let letztes: LastMatch
     
     struct LastMatch: Decodable {
-        let datum: Date
+        let datum: Int
         let heimName: String
         let heimTore: String
         let gastName: String
@@ -27,7 +27,7 @@ struct LastGameInfo: Decodable {
         let ergebnis: String
         let type: String?
     }
-    
+
     struct Tore: Decodable {
         let minute: String
         let spielerName: String

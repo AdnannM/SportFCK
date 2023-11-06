@@ -9,6 +9,9 @@ import UIKit
 
 class MatchController: UIViewController {
     
+    // MARK: - Properties
+    private var lastGameInfo = [LastGameInfo]()
+    
     // MARK: - Components
     private let tableView: UITableView = {
         let tableView = UITableView()
@@ -31,6 +34,10 @@ private extension MatchController {
         title = "Match"
         
         setupTableView()
+        
+        Task {
+            await fetchLastMatchTest()
+        }
     }
     
     private func setupTableView() {
@@ -52,7 +59,7 @@ private extension MatchController {
 // MARK: - TableViewDelegate and TableViewDataSource
 extension MatchController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return lastGameInfo.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -63,6 +70,11 @@ extension MatchController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         
+        
+        let modelData = lastGameInfo[indexPath.row]
+        let viewModel = LastGameInfoViewModel(model: modelData)
+        
+        cell.configureCell(withViewModel: viewModel)
         cell.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
         return cell
     }
@@ -71,3 +83,22 @@ extension MatchController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
+
+// MARK: - FetchData
+extension MatchController {
+    func fetchLastMatchTest() async {
+        do {
+            let lastGameInfo = try await ApiManager.shared.fetchLastGameInfo()
+            self.lastGameInfo = [lastGameInfo] // Assuming you want to display a single match
+            print(lastGameInfo.letztes.datum)
+            
+            tableView.reloadData()
+        } catch {
+            print("Error: \(error)")
+        }
+    }
+}
+
+
+
+

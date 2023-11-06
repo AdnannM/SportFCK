@@ -191,20 +191,6 @@ extension NewsCollectionViewCell {
 }
 
 //MARK: - ConfigureCell
-//extension NewsCollectionViewCell {
-//    func configure(withData data: Post) {
-//        let placehoderImage = UIImage(named: "404")
-//        if let imageUrl = URL(string: data.jetpackFeaturedMediaURL) {
-//            // Use SDWebImage to load and set the image from the URL
-//            newsArticleImage.sd_setImage(with: imageUrl, placeholderImage: placehoderImage, options: [.progressiveLoad])
-//        } else {
-//            // Handle articles without a valid image URL by setting the placeholder image directly
-//            newsArticleImage.image = placehoderImage
-//        }
-//        newsArticleTitle.text = data.title.rendered
-//        newsDate.text = data.date
-//    }
-//}
 extension NewsCollectionViewCell {
     func configure(withData data: Post) {
         let placehoderImage = UIImage(named: "404")
