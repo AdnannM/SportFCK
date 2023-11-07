@@ -11,26 +11,40 @@ class MatchController: UIViewController {
     
     // MARK: - Properties
     var finishedMatches: [MetchInfo.KMData] = []
+    var isFetchingData: Bool = false
     
     // MARK: - Components
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(FinishedMatchTableCell.self, forCellReuseIdentifier: FinishedMatchTableCell.cellID)
+        tableView.register(ShimmerFinishedMatchTableCell.self, forCellReuseIdentifier: ShimmerFinishedMatchTableCell.cellID)
         return tableView
     }()
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        startShimmer()
         setupUI()
         fetchData()
     }
-    
+        
     /// Fetch Data
     private func fetchData() {
         Task {
             await fetchMatchData()
+            stopShimmer()
         }
+    }
+    
+    func startShimmer() {
+        isFetchingData = true
+        tableView.reloadData()
+    }
+    
+    func stopShimmer() {
+        isFetchingData = false
+        tableView.reloadData()
     }
 }
 
@@ -62,25 +76,29 @@ private extension MatchController {
 // MARK: - TableViewDelegate & TableViewDataSoruce
 extension MatchController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return finishedMatches.count
+        return isFetchingData ? 7 : finishedMatches.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(
-            withIdentifier: FinishedMatchTableCell.cellID,
-            for: indexPath
-        ) as? FinishedMatchTableCell else {
-            return UITableViewCell()
+        if isFetchingData {
+            return tableView.dequeueReusableCell(withIdentifier: ShimmerFinishedMatchTableCell.cellID, for: indexPath)
+        } else {
+            guard let cell = tableView.dequeueReusableCell(
+                withIdentifier: FinishedMatchTableCell.cellID,
+                for: indexPath
+            ) as? FinishedMatchTableCell else {
+                return UITableViewCell()
+            }
+            
+            // Reverse the order of items to display the last item first
+            let matchData = finishedMatches.reversed()[indexPath.row]
+            let viewModel = MatchViewMode(model: matchData)
+            cell.configureCell(withViewModel: viewModel)
+            
+            cell.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+            cell.isUserInteractionEnabled = false
+            return cell
         }
-        
-        // Reverse the order of items to display the last item first
-        let matchData = finishedMatches.reversed()[indexPath.row]
-        let viewModel = MatchViewMode(model: matchData)
-        cell.configureCell(withViewModel: viewModel)
-        
-        cell.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
-        cell.isUserInteractionEnabled = false
-        return cell
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -93,16 +111,16 @@ extension MatchController: UITableViewDelegate, UITableViewDataSource {
 }
 
 
+
 // MARK: - Networking
 extension MatchController {
     // Fetch and display finished matches in the table view
     func fetchMatchData() async {
         do {
-//            startShimmer() // Set isFetchingData to true before fetching data
+            startShimmer() // Set isFetchingData to true before fetching data
             let matchInfo = try await ApiManager.shared.fetchMatchInfo()
             let currentDate = Date()
 
-            // Clear the existing array
             finishedMatches.removeAll()
 
             print("Match Info:")
@@ -113,13 +131,14 @@ extension MatchController {
                         finishedMatches.append(item)
                     }
                 }
-
-                // Reload the table view to display finished matches
-                DispatchQueue.main.async { [weak self] in
-                    self?.tableView.reloadData()
-//                    self?.stopShimmer() // Set isFetchingData to false after fetching and updating data
-                }
             }
+
+            // Add an artificial delay (e.g., 2 seconds) to show the shimmer
+            try await Task.sleep(nanoseconds: 1 * 1_000_000_000) // 2 seconds
+
+            // Reload the table view to display finished matches after the delay
+            tableView.reloadData()
+            stopShimmer()
         } catch {
             print("Error: \(error)")
         }

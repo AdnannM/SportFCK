@@ -33,6 +33,8 @@
 		A69A3EDF2AE9546E0085F7A4 /* ScreenSizeCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69A3EDE2AE9546E0085F7A4 /* ScreenSizeCategory.swift */; };
 		A69A3EE12AE97C390085F7A4 /* NewsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69A3EE02AE97C390085F7A4 /* NewsCollectionViewCell.swift */; };
 		A6A153332ADD26E000DD83B3 /* VideoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6A153322ADD26E000DD83B3 /* VideoCollectionViewCell.swift */; };
+		A6A82CEF2AFAE73B00AC253C /* ShimmerFinishedMatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6A82CEE2AFAE73B00AC253C /* ShimmerFinishedMatchView.swift */; };
+		A6A82CF12AFAE7E500AC253C /* ShimmerFinishedMatchTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6A82CF02AFAE7E500AC253C /* ShimmerFinishedMatchTableCell.swift */; };
 		A6A9E0512AE6AD5900D2DE68 /* AllVideosContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6A9E0502AE6AD5900D2DE68 /* AllVideosContainerView.swift */; };
 		A6A9E0532AE6B6D300D2DE68 /* AllVideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6A9E0522AE6B6D300D2DE68 /* AllVideoTableViewCell.swift */; };
 		A6DEEE892AEBCAAD005EB18A /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = A6DEEE882AEBCAAD005EB18A /* SDWebImage */; };
@@ -109,6 +111,8 @@
 		A69A3EDE2AE9546E0085F7A4 /* ScreenSizeCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSizeCategory.swift; sourceTree = "<group>"; };
 		A69A3EE02AE97C390085F7A4 /* NewsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCollectionViewCell.swift; sourceTree = "<group>"; };
 		A6A153322ADD26E000DD83B3 /* VideoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewCell.swift; sourceTree = "<group>"; };
+		A6A82CEE2AFAE73B00AC253C /* ShimmerFinishedMatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerFinishedMatchView.swift; sourceTree = "<group>"; };
+		A6A82CF02AFAE7E500AC253C /* ShimmerFinishedMatchTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerFinishedMatchTableCell.swift; sourceTree = "<group>"; };
 		A6A9E0502AE6AD5900D2DE68 /* AllVideosContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllVideosContainerView.swift; sourceTree = "<group>"; };
 		A6A9E0522AE6B6D300D2DE68 /* AllVideoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllVideoTableViewCell.swift; sourceTree = "<group>"; };
 		A6DEEE8F2AEC2B04005EB18A /* ShimmerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -192,6 +196,8 @@
 			isa = PBXGroup;
 			children = (
 				A6DEEE8F2AEC2B04005EB18A /* ShimmerCollectionViewCell.swift */,
+				A6A82CEE2AFAE73B00AC253C /* ShimmerFinishedMatchView.swift */,
+				A6A82CF02AFAE7E500AC253C /* ShimmerFinishedMatchTableCell.swift */,
 			);
 			path = ShimmerView;
 			sourceTree = "<group>";
@@ -477,6 +483,7 @@
 				A675C36C2AF54DB100145CBC /* TestingAndPrintingData.swift in Sources */,
 				A6E45F2C2AD3EA100057D668 /* MainController.swift in Sources */,
 				A6EB08262AD595CB00F4CBD5 /* Colors.swift in Sources */,
+				A6A82CF12AFAE7E500AC253C /* ShimmerFinishedMatchTableCell.swift in Sources */,
 				A6EB08282AD5CE8800F4CBD5 /* CustomListRowView.swift in Sources */,
 				A6A9E0512AE6AD5900D2DE68 /* AllVideosContainerView.swift in Sources */,
 				A6DEEE902AEC2B04005EB18A /* ShimmerCollectionViewCell.swift in Sources */,
@@ -488,6 +495,7 @@
 				A661E8EE2AEBC0F200AE28EC /* Post.swift in Sources */,
 				A6EB084C2AD963F700F4CBD5 /* TeamsCell.swift in Sources */,
 				A6EB08332AD71BB300F4CBD5 /* CustomButtons.swift in Sources */,
+				A6A82CEF2AFAE73B00AC253C /* ShimmerFinishedMatchView.swift in Sources */,
 				A6401CFE2AF96BAE007ADC82 /* UIImageView.swift in Sources */,
 				A675C36A2AF54D4B00145CBC /* ApiURL.swift in Sources */,
 				A6EB2F742AE056CD001B733C /* PresentSafariControler.swift in Sources */,
