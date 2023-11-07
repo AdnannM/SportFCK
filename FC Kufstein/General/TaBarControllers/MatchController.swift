@@ -14,6 +14,7 @@ class MatchController: UIViewController {
     // MARK: - Components
     private let tableView: UITableView = {
         let tableView = UITableView()
+        tableView.register(FinishedMatchTableCell.self, forCellReuseIdentifier: FinishedMatchTableCell.cellID)
         return tableView
     }()
     
@@ -28,7 +29,7 @@ class MatchController: UIViewController {
 private extension MatchController {
     private func setupUI() {
         view.backgroundColor = .systemBackground
-        title = "Match"
+        title = "Spiele"
         
         setupTableView()
     }
@@ -43,9 +44,39 @@ private extension MatchController {
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
+        
+        tableView.delegate = self
+        tableView.dataSource = self
     }
 }
 
+// MARK: - TableViewDelegate & TableViewDataSoruce
+extension MatchController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: FinishedMatchTableCell.cellID,
+            for: indexPath
+        ) as? FinishedMatchTableCell else {
+            return UITableViewCell()
+        }
+        
+        cell.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        cell.isUserInteractionEnabled = false
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Abgeschlossene Spiele"
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
 
 
 
