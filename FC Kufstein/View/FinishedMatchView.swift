@@ -45,6 +45,27 @@ class FinishedMatchView: UIView {
         fontWeight: .heavy
     )
     
+    let homeScoreLabel = UILabel.createCustomLabel(
+        text: "0",
+        textColor: .label,
+        fontSize: 20,
+        fontWeight: .bold
+    )
+    
+    let separatorScoreLabel = UILabel.createCustomLabel(
+        text: "FT",
+        textColor: .label,
+        fontSize: 18,
+        fontWeight: .bold
+    )
+    
+    let guestScoreLabel = UILabel.createCustomLabel(
+        text: "0",
+        textColor: .label,
+        fontSize: 20,
+        fontWeight: .bold
+    )
+    
     // MARK: - LifeCycle
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -73,6 +94,7 @@ private extension FinishedMatchView {
         setupScoreStackView()
         setupHalfTimeScore()
         setupGamePlaceLabel()
+        setupScoresLables()
     }
     
     private func setupHeadersLabels() {
@@ -184,6 +206,27 @@ private extension FinishedMatchView {
         NSLayoutConstraint.activate([
             gamePlaceLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
             gamePlaceLabel.centerXAnchor.constraint(equalTo: centerXAnchor)
+        ])
+    }
+    
+    private func setupScoresLables() {
+        homeScoreContainerView.addSubview(homeScoreLabel)
+        separatorScoreContainerView.addSubview(separatorScoreLabel)
+        guestScoreContainerView.addSubview(guestScoreLabel)
+        
+        homeScoreLabel.translatesAutoresizingMaskIntoConstraints = false
+        separatorScoreLabel.translatesAutoresizingMaskIntoConstraints = false
+        guestScoreLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            homeScoreLabel.centerXAnchor.constraint(equalTo: homeScoreContainerView.centerXAnchor),
+            homeScoreLabel.centerYAnchor.constraint(equalTo: homeScoreContainerView.centerYAnchor),
+            
+            separatorScoreLabel.centerXAnchor.constraint(equalTo: separatorScoreContainerView.centerXAnchor),
+            separatorScoreLabel.centerYAnchor.constraint(equalTo: separatorScoreContainerView.centerYAnchor),
+            
+            guestScoreLabel.centerXAnchor.constraint(equalTo: guestScoreContainerView.centerXAnchor),
+            guestScoreLabel.centerYAnchor.constraint(equalTo: guestScoreContainerView.centerYAnchor),
         ])
     }
 }

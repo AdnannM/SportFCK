@@ -64,6 +64,9 @@ extension FinishedMatchTableCell {
         
         finishedMatchView.halfTimeScore.text = viewModel.model.ergebnis
         finishedMatchView.gamePlaceLabel.text = viewModel.model.spielort
+        
+        finishedMatchView.homeScoreLabel.text = viewModel.model.heimTore
+        finishedMatchView.guestScoreLabel.text = viewModel.model.gastTore
     }
     
     /// Helpers
