@@ -10,6 +10,7 @@ import UIKit
 class MatchController: UIViewController {
     
     // MARK: - Properties
+    var finishedMatches: [MetchInfo.KMData] = []
     
     // MARK: - Components
     private let tableView: UITableView = {
@@ -22,6 +23,14 @@ class MatchController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        fetchData()
+    }
+    
+    /// Fetch Data
+    private func fetchData() {
+        Task {
+            await fetchMatchData()
+        }
     }
 }
 
@@ -53,7 +62,7 @@ private extension MatchController {
 // MARK: - TableViewDelegate & TableViewDataSoruce
 extension MatchController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return finishedMatches.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -63,6 +72,11 @@ extension MatchController: UITableViewDelegate, UITableViewDataSource {
         ) as? FinishedMatchTableCell else {
             return UITableViewCell()
         }
+        
+        // Reverse the order of items to display the last item first
+        let matchData = finishedMatches.reversed()[indexPath.row]
+        let viewModel = MatchViewMode(model: matchData)
+        cell.configureCell(withViewModel: viewModel)
         
         cell.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
         cell.isUserInteractionEnabled = false
@@ -78,6 +92,39 @@ extension MatchController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+
+// MARK: - Networking
+extension MatchController {
+    // Fetch and display finished matches in the table view
+    func fetchMatchData() async {
+        do {
+//            startShimmer() // Set isFetchingData to true before fetching data
+            let matchInfo = try await ApiManager.shared.fetchMatchInfo()
+            let currentDate = Date()
+
+            // Clear the existing array
+            finishedMatches.removeAll()
+
+            print("Match Info:")
+            if let items = matchInfo.plan["KM"] {
+                for item in items {
+                    let matchDate = Date(timeIntervalSince1970: TimeInterval(item.datum) / 1000)
+                    if matchDate < currentDate {
+                        finishedMatches.append(item)
+                    }
+                }
+
+                // Reload the table view to display finished matches
+                DispatchQueue.main.async { [weak self] in
+                    self?.tableView.reloadData()
+//                    self?.stopShimmer() // Set isFetchingData to false after fetching and updating data
+                }
+            }
+        } catch {
+            print("Error: \(error)")
+        }
+    }
+}
 
 
 

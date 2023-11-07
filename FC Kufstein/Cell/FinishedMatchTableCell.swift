@@ -44,3 +44,32 @@ private extension FinishedMatchTableCell {
         ])
     }
 }
+
+// MARK: - Confifure Cell
+extension FinishedMatchTableCell {
+    func configureCell(withViewModel viewModel: MatchViewMode) {
+        let date = Date(timeIntervalSince1970: TimeInterval(viewModel.model.datum / 1000))
+        let dateFormatter = getDateFormatter("E, MMM dd, yyyy | HH:mm")
+        
+        finishedMatchView.gameLigaLabel.text = "\(viewModel.model.bewerbBezeichnung) | \(dateFormatter.string(from: date))"
+        
+        if let heimLogoURL = viewModel.heimLogoURL() {
+            finishedMatchView.homeImageView.sd_setImage(with: heimLogoURL, placeholderImage: nil, options: .refreshCached)
+        }
+        
+        if let gastLogoURL = viewModel.gastLogoURL() {
+            finishedMatchView.guestImageView.sd_setImage(with: gastLogoURL, placeholderImage: nil, options: .refreshCached)
+            
+        }
+        
+        finishedMatchView.halfTimeScore.text = viewModel.model.ergebnis
+        finishedMatchView.gamePlaceLabel.text = viewModel.model.spielort
+    }
+    
+    /// Helpers
+    func getDateFormatter(_ format: String) -> DateFormatter {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        return dateFormatter
+    }
+}
