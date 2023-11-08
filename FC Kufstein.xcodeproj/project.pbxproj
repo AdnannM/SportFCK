@@ -30,6 +30,9 @@
 		A675C36C2AF54DB100145CBC /* TestingAndPrintingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A675C36B2AF54DB100145CBC /* TestingAndPrintingData.swift */; };
 		A677DC722AE14B9900A9006F /* TeamsModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A677DC712AE14B9800A9006F /* TeamsModelData.swift */; };
 		A677DC742AE1689800A9006F /* ShopContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A677DC732AE1689800A9006F /* ShopContainerView.swift */; };
+		A687E8482AFC2E0F001AB97E /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A687E8472AFC2E0F001AB97E /* TableViewCell.swift */; };
+		A687E84A2AFC2E21001AB97E /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A687E8492AFC2E21001AB97E /* TableView.swift */; };
+		A687E84C2AFC3E0C001AB97E /* ResultMatchTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A687E84B2AFC3E0C001AB97E /* ResultMatchTitleView.swift */; };
 		A69A3EDF2AE9546E0085F7A4 /* ScreenSizeCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69A3EDE2AE9546E0085F7A4 /* ScreenSizeCategory.swift */; };
 		A69A3EE12AE97C390085F7A4 /* NewsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69A3EE02AE97C390085F7A4 /* NewsCollectionViewCell.swift */; };
 		A6A153332ADD26E000DD83B3 /* VideoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6A153322ADD26E000DD83B3 /* VideoCollectionViewCell.swift */; };
@@ -108,6 +111,9 @@
 		A675C36B2AF54DB100145CBC /* TestingAndPrintingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingAndPrintingData.swift; sourceTree = "<group>"; };
 		A677DC712AE14B9800A9006F /* TeamsModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsModelData.swift; sourceTree = "<group>"; };
 		A677DC732AE1689800A9006F /* ShopContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopContainerView.swift; sourceTree = "<group>"; };
+		A687E8472AFC2E0F001AB97E /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		A687E8492AFC2E21001AB97E /* TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
+		A687E84B2AFC3E0C001AB97E /* ResultMatchTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultMatchTitleView.swift; sourceTree = "<group>"; };
 		A69A3EDE2AE9546E0085F7A4 /* ScreenSizeCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSizeCategory.swift; sourceTree = "<group>"; };
 		A69A3EE02AE97C390085F7A4 /* NewsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCollectionViewCell.swift; sourceTree = "<group>"; };
 		A6A153322ADD26E000DD83B3 /* VideoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -317,6 +323,8 @@
 				A677DC732AE1689800A9006F /* ShopContainerView.swift */,
 				A6A9E0502AE6AD5900D2DE68 /* AllVideosContainerView.swift */,
 				A6401D3B2AFA9AD9007ADC82 /* FinishedMatchView.swift */,
+				A687E8492AFC2E21001AB97E /* TableView.swift */,
+				A687E84B2AFC3E0C001AB97E /* ResultMatchTitleView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -369,6 +377,7 @@
 				A6EB08512AD97C5800F4CBD5 /* SponsorsCell.swift */,
 				A6A9E0522AE6B6D300D2DE68 /* AllVideoTableViewCell.swift */,
 				A6401D392AFA9A63007ADC82 /* FinishedMatchTableCell.swift */,
+				A687E8472AFC2E0F001AB97E /* TableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -484,6 +493,7 @@
 				A6E45F2C2AD3EA100057D668 /* MainController.swift in Sources */,
 				A6EB08262AD595CB00F4CBD5 /* Colors.swift in Sources */,
 				A6A82CF12AFAE7E500AC253C /* ShimmerFinishedMatchTableCell.swift in Sources */,
+				A687E8482AFC2E0F001AB97E /* TableViewCell.swift in Sources */,
 				A6EB08282AD5CE8800F4CBD5 /* CustomListRowView.swift in Sources */,
 				A6A9E0512AE6AD5900D2DE68 /* AllVideosContainerView.swift in Sources */,
 				A6DEEE902AEC2B04005EB18A /* ShimmerCollectionViewCell.swift in Sources */,
@@ -508,6 +518,7 @@
 				A6EB08502AD972BC00F4CBD5 /* TeamsView.swift in Sources */,
 				A6EB08242AD58D0D00F4CBD5 /* SettingsSwiftUIView.swift in Sources */,
 				A6EB08372AD7F27600F4CBD5 /* ShopController.swift in Sources */,
+				A687E84C2AFC3E0C001AB97E /* ResultMatchTitleView.swift in Sources */,
 				A6EB08112AD45EE500F4CBD5 /* TabBarController.swift in Sources */,
 				A6EB08562AD980B000F4CBD5 /* SponsorsView.swift in Sources */,
 				A6EB082C2AD6956600F4CBD5 /* NotificationController.swift in Sources */,
@@ -523,6 +534,7 @@
 				A6EB083B2AD8218A00F4CBD5 /* NewsContainerView.swift in Sources */,
 				A6652A1B2AE2DF13006B6A92 /* ShopCollectionViewCell.swift in Sources */,
 				A661E8F12AEBC10F00AE28EC /* ApiManager.swift in Sources */,
+				A687E84A2AFC2E21001AB97E /* TableView.swift in Sources */,
 				A6EB08452AD87A8B00F4CBD5 /* VideoContainerView.swift in Sources */,
 				A6EB2F6B2ADFEE88001B733C /* SponsorsCollectionViewCell.swift in Sources */,
 				A6401D3E2AFAA2A1007ADC82 /* UIStackView.swift in Sources */,

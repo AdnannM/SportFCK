@@ -22,6 +22,8 @@ class TableViewController: UIViewController {
         return segControl
     }()
     
+    private let tableTitleView = ResultMatchTitleView()
+    
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(TableViewCell.self, forCellReuseIdentifier: TableViewCell.cellID)
@@ -43,6 +45,7 @@ private extension TableViewController {
         title = "Table"
         navigationController?.navigationBar.prefersLargeTitles = true
         setupSegmentControl()
+        setupResutlTitleView()
         setupTableView()
     }
     
@@ -59,12 +62,21 @@ private extension TableViewController {
 //        segmentedControl.addTarget(self, action: #selector(segmentedControlValueChanged(_:)), for: .valueChanged)
     }
     
+    private func setupResutlTitleView() {
+        view.addSubview(tableTitleView)
+
+        tableTitleView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 8).isActive = true
+        tableTitleView.leadingAnchor.constraint(equalTo: segmentedControl.leadingAnchor, constant: 8).isActive = true
+        tableTitleView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -8).isActive = true
+        tableTitleView.heightAnchor.constraint(equalToConstant: 20).isActive = true
+    }
+    
     private func setupTableView() {
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 8),
+            tableView.topAnchor.constraint(equalTo: tableTitleView.bottomAnchor, constant: 8),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
@@ -100,67 +112,7 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
 
 
 
-class TableViewCell: UITableViewCell {
-    
-    // MARK: - Properties
-    static let cellID = "TableViewCell"
-    
-    // MARK: - Components
-    private let tableView = TableView()
-    
-    // MARK: - LifeCycle
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setupUI()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-}
-
-// MARK: - SetupUI
-private extension TableViewCell {
-    private func setupUI() {
-        setupTableView()
-    }
-    
-    private func setupTableView() {
-        contentView.addSubview(tableView)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            tableView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
-        ])
-    }
-}
 
 
-class TableView: UIView {
-    // MARK: - Components
-    
-    // MARK: - LifeCycle
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setupUI()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override var intrinsicContentSize: CGSize {
-        return CGSize(width: 200, height: 80)
-    }
-}
 
-// MARK: - SetupUI
-private extension TableView {
-    private func setupUI() {
-        backgroundColor = .systemBackground
-    }
-}
+
