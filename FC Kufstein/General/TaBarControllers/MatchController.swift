@@ -14,6 +14,16 @@ class MatchController: UIViewController {
     var isFetchingData: Bool = false
     
     // MARK: - Components
+    private let segmentedControl: UISegmentedControl = {
+        let segControl = UISegmentedControl(items: ["FC Kufstein", "FC Kufstein 1b"])
+        segControl.selectedSegmentIndex = 0
+        segControl.selectedSegmentTintColor = .systemBlue.withAlphaComponent(0.5)
+        segControl.backgroundImage(for: .normal, barMetrics: .default)
+        segControl.backgroundColor = .systemBackground
+        segControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.label], for: .normal)
+        return segControl
+    }()
+    
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(FinishedMatchTableCell.self, forCellReuseIdentifier: FinishedMatchTableCell.cellID)
@@ -24,7 +34,6 @@ class MatchController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        startShimmer()
         setupUI()
         fetchData()
     }
@@ -33,7 +42,6 @@ class MatchController: UIViewController {
     private func fetchData() {
         Task {
             await fetchMatchData()
-            stopShimmer()
         }
     }
     
@@ -51,10 +59,25 @@ class MatchController: UIViewController {
 // MARK: - Setup
 private extension MatchController {
     private func setupUI() {
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .systemGray5
         title = "Spiele"
+        navigationController?.navigationBar.prefersLargeTitles = true
         
+        setupSegmentControl()
         setupTableView()
+    }
+    
+    private func setupSegmentControl() {
+        view.addSubview(segmentedControl)
+        segmentedControl.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            segmentedControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            segmentedControl.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 8),
+            segmentedControl.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -8),
+        ])
+        
+//        segmentedControl.addTarget(self, action: #selector(segmentedControlValueChanged(_:)), for: .valueChanged)
     }
     
     private func setupTableView() {
@@ -62,7 +85,7 @@ private extension MatchController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 8),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
@@ -101,10 +124,6 @@ extension MatchController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Abgeschlossene Spiele"
-    }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -120,9 +139,9 @@ extension MatchController {
             startShimmer() // Set isFetchingData to true before fetching data
             let matchInfo = try await ApiManager.shared.fetchMatchInfo()
             let currentDate = Date()
-
+            
             finishedMatches.removeAll()
-
+            
             print("Match Info:")
             if let items = matchInfo.plan["KM"] {
                 for item in items {
@@ -132,13 +151,12 @@ extension MatchController {
                     }
                 }
             }
-
-            // Add an artificial delay (e.g., 2 seconds) to show the shimmer
-            try await Task.sleep(nanoseconds: 1 * 1_000_000_000) // 2 seconds
-
+            
             // Reload the table view to display finished matches after the delay
-            tableView.reloadData()
-            stopShimmer()
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+                self.stopShimmer()
+            }
         } catch {
             print("Error: \(error)")
         }
