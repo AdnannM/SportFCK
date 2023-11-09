@@ -7,6 +7,11 @@
 
 import UIKit
 
+enum TeamType {
+    case mainTeam
+    case juniors
+}
+
 struct League: Codable {
     let bezeichnung: String
     let tabellen: Tabellen

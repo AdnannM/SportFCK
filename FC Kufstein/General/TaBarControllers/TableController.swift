@@ -7,10 +7,11 @@
 
 import UIKit
 
-class TableViewController: UIViewController {
+final class TableViewController: UIViewController {
     
     // MARK: - Properties
     var mainTeamEntries: [Entry] = []
+    var juniorTeamEntries: [Entry] = []
     
     // MARK: - Components
     private let segmentedControl: UISegmentedControl = {
@@ -35,10 +36,8 @@ class TableViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        
-        Task {
-            await fetchMainTeamTableDataAndReloadTableView()
-        }
+        fetchData(for: .mainTeam)
+        fetchData(for: .juniors)
     }
 }
 
@@ -56,6 +55,8 @@ private extension TableViewController {
     
     private func setupSegmentControl() {
         view.addSubview(segmentedControl)
+        
+        segmentedControl.selectedSegmentIndex = 0
         segmentedControl.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -64,7 +65,7 @@ private extension TableViewController {
             segmentedControl.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -8),
         ])
         
-//        segmentedControl.addTarget(self, action: #selector(segmentedControlValueChanged(_:)), for: .valueChanged)
+        segmentedControl.addTarget(self, action: #selector(segmentedControlValueChanged(_:)), for: .valueChanged)
     }
     
     private func setupResutlTitleView() {
@@ -96,7 +97,11 @@ private extension TableViewController {
 // MARK: - TableViewDelegate and TableViewDataSource
 extension TableViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return mainTeamEntries.count
+        if segmentedControl.selectedSegmentIndex == 0 {
+            return mainTeamEntries.count
+        } else {
+            return juniorTeamEntries.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -107,9 +112,15 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         
-        let entry = mainTeamEntries[indexPath.row]
-        let viewModel = TableEntryViewModel(entry: entry)
-        cell.configure(with: viewModel)
+        if segmentedControl.selectedSegmentIndex == 0 {
+            let entry = mainTeamEntries[indexPath.row]
+            let viewModel = TableEntryViewModel(entry: entry)
+            cell.configure(with: viewModel)
+        } else {
+            let entry = juniorTeamEntries[indexPath.row]
+            let viewModel = TableEntryViewModel(entry: entry)
+            cell.configure(with: viewModel)
+        }
         
         cell.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
         cell.isUserInteractionEnabled = false
@@ -121,25 +132,54 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+// MARK: - Action
+extension TableViewController {
+    @objc private func segmentedControlValueChanged(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            // Fetch and display data for the main team
+            fetchData(for: .mainTeam)
+        case 1:
+            fetchData(for: .juniors)
+        default:
+            break
+        }
+    }
+}
+
+
+
 // MARK: - Networking
 extension TableViewController {
-    //MARK: - Function to fetch and print table data for the main team
-    func fetchMainTeamTableDataAndReloadTableView() async {
-        do {
-            let tableInfo = try await ApiManager.shared.fetchMainTeamTableInfo()
-            
-            // Access the properties of the League and Entry structs and append them to the class-level array
-            mainTeamEntries = [] // Clear the existing data
-            for entry in tableInfo.tabellen.HEIM.eintraege {
-                mainTeamEntries.append(entry)
+    // MARK: - Function to fetch and print table data for the main team
+    private func fetchData(for teamType: TeamType) {
+        Task {
+            do {
+                let tableInfo = try await fetchTableInfo(for: teamType)
+                updateEntries(for: teamType, with: tableInfo.eintraege)
+            } catch {
+                print("Error fetching \(teamType) team table data: \(error)")
             }
-            
-            // Reload the table view with the new data
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        } catch {
-            print("Error fetching main team table data: \(error)")
         }
+    }
+    
+    private func fetchTableInfo(for teamType: TeamType) async throws -> Table {
+        switch teamType {
+        case .mainTeam:
+            return try await ApiManager.shared.fetchMainTeamTableInfo().tabellen.HEIM
+        case .juniors:
+            return try await ApiManager.shared.fetchJuniorsTableInfo().tabellen.HEIM
+        }
+    }
+    
+    private func updateEntries(for teamType: TeamType, with newEntries: [Entry]) {
+        switch teamType {
+        case .mainTeam:
+            mainTeamEntries = newEntries
+        case .juniors:
+            juniorTeamEntries = newEntries
+        }
+        
+        tableView.reloadData()
     }
 }
