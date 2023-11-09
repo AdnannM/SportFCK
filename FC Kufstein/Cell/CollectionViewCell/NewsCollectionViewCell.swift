@@ -15,9 +15,9 @@ class NewsCollectionViewCell: UICollectionViewCell {
     weak var delegate: NewsViewDelegate?
 
     // MARK: - Components
-    private let containerView = createView(color: .systemGray6)
-    private let circleView = createView(color: .systemBackground)
-    private let shareButtonView = createView(color: .systemGray6)
+    private let containerView = createView(withColor: .systemGray6)
+    private let circleView = createView(withColor: .systemBackground)
+    private let shareButtonView = createView(withColor: .systemGray6)
     
     private let shareImage: UIImageView = {
         let imageView = UIImageView()

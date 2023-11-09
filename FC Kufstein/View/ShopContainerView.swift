@@ -133,7 +133,7 @@ extension ShopContainerView: UICollectionViewDelegate, UICollectionViewDataSourc
 
         switch screenSizeCategory {
         case .small:
-            cellSize = CGSize(width: 150, height: 220)
+            cellSize = CGSize(width: 170, height: 220)
         case .medium:
             cellSize = CGSize(width: 180, height: 220)
         case .large:

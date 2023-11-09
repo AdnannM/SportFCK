@@ -28,10 +28,5 @@ func getScreenSizeCategory(for deviceName: String) -> ScreenSizeCategory {
     }
 }
 
-// MARK: - Helpers
-func createView(color: UIColor) -> UIView {
-    let view = UIView()
-    view.translatesAutoresizingMaskIntoConstraints = false
-    view.backgroundColor = color
-    return view
-}
+
+

@@ -10,6 +10,7 @@ import UIKit
 class TableViewController: UIViewController {
     
     // MARK: - Properties
+    var mainTeamEntries: [Entry] = []
     
     // MARK: - Components
     private let segmentedControl: UISegmentedControl = {
@@ -34,6 +35,10 @@ class TableViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        
+        Task {
+            await fetchMainTeamTableDataAndReloadTableView()
+        }
     }
 }
 
@@ -91,7 +96,7 @@ private extension TableViewController {
 // MARK: - TableViewDelegate and TableViewDataSource
 extension TableViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+        return mainTeamEntries.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -102,6 +107,11 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         
+        let tableData = mainTeamEntries[indexPath.row]
+        cell.configure(with: tableData)
+        
+        cell.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
+        cell.isUserInteractionEnabled = false
         return cell
     }
     
@@ -110,9 +120,25 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-
-
-
-
-
-
+// MARK: - Networking
+extension TableViewController {
+    //MARK: - Function to fetch and print table data for the main team
+    func fetchMainTeamTableDataAndReloadTableView() async {
+        do {
+            let tableInfo = try await ApiManager.shared.fetchMainTeamTableInfo()
+            
+            // Access the properties of the League and Entry structs and append them to the class-level array
+            mainTeamEntries = [] // Clear the existing data
+            for entry in tableInfo.tabellen.HEIM.eintraege {
+                mainTeamEntries.append(entry)
+            }
+            
+            // Reload the table view with the new data
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        } catch {
+            print("Error fetching main team table data: \(error)")
+        }
+    }
+}

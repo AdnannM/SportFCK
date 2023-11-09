@@ -17,19 +17,19 @@ class FinishedMatchView: UIView {
         fontWeight: .heavy
     )
     
-    private let gameSeparator = createView(color: .separator)
+    private let gameSeparator = UIView.createView(withColor: .separator)
     
-    private let homeImageContainerView = createView(color: .white)
-    private let guestImageContainerView = createView(color: .white)
+    private let homeImageContainerView = createView(withColor: .white)
+    private let guestImageContainerView = createView(withColor: .white)
     
     let homeImageView = UIImageView.createImageView(withImage: UIImage(named: "fcklogo")!)
     let guestImageView = UIImageView.createImageView(withImage: UIImage(named: "fcklogo")!)
     
     private lazy var scoreStackView = UIStackView.createStackView()
     
-    private let homeScoreContainerView = createView(color: .separator)
-    private let separatorScoreContainerView = createView(color: .separator)
-    private let guestScoreContainerView = createView(color: .separator)
+    private let homeScoreContainerView = createView(withColor: .separator)
+    private let separatorScoreContainerView = createView(withColor: .separator)
+    private let guestScoreContainerView = createView(withColor: .separator)
     
     let halfTimeScore = UILabel.createCustomLabel(
         text: "(0:0)",

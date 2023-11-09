@@ -12,6 +12,7 @@ extension UILabel {
         let label = UILabel()
         label.textColor = textColor
         label.textAlignment = .center
+        label.adjustsFontSizeToFitWidth = true
         label.font = UIFont.systemFont(ofSize: fontSize, weight: fontWeight)
         label.text = text
         return label

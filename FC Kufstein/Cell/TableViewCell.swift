@@ -45,3 +45,17 @@ private extension TableViewCell {
         ])
     }
 }
+
+// MARK: - ConfigureCell
+extension TableViewCell {
+    func configure(with entry: Entry) {
+        tableView.rankLabel.text = "\(entry.rang)." // Set the rank label text
+        tableView.teamNameLabel.text = entry.mannschaftBezeichnung // Set the team name label text
+        
+        // Fix the URL by appending 'https:' before loading it
+        let imageURLString = "https:" + entry.mannschaftIcon
+        if let imageURL = URL(string: imageURLString) {
+            tableView.logoImageView.sd_setImage(with: imageURL, completed: nil)
+        }
+    }
+}
