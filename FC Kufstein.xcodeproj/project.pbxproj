@@ -31,6 +31,7 @@
 		A677DC722AE14B9900A9006F /* TeamsModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A677DC712AE14B9800A9006F /* TeamsModelData.swift */; };
 		A677DC742AE1689800A9006F /* ShopContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A677DC732AE1689800A9006F /* ShopContainerView.swift */; };
 		A67DCB152AFCD95F00F83A9B /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67DCB142AFCD95F00F83A9B /* UIView.swift */; };
+		A67DCB172AFD128900F83A9B /* TableEntryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67DCB162AFD128900F83A9B /* TableEntryViewModel.swift */; };
 		A687E8482AFC2E0F001AB97E /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A687E8472AFC2E0F001AB97E /* TableViewCell.swift */; };
 		A687E84A2AFC2E21001AB97E /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A687E8492AFC2E21001AB97E /* TableView.swift */; };
 		A687E84C2AFC3E0C001AB97E /* ResultMatchTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A687E84B2AFC3E0C001AB97E /* ResultMatchTitleView.swift */; };
@@ -113,6 +114,7 @@
 		A677DC712AE14B9800A9006F /* TeamsModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsModelData.swift; sourceTree = "<group>"; };
 		A677DC732AE1689800A9006F /* ShopContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopContainerView.swift; sourceTree = "<group>"; };
 		A67DCB142AFCD95F00F83A9B /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		A67DCB162AFD128900F83A9B /* TableEntryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableEntryViewModel.swift; sourceTree = "<group>"; };
 		A687E8472AFC2E0F001AB97E /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		A687E8492AFC2E21001AB97E /* TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
 		A687E84B2AFC3E0C001AB97E /* ResultMatchTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultMatchTitleView.swift; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 			children = (
 				A6401D022AF96C1F007ADC82 /* LastGameInfoViewModel.swift */,
 				A6401D3F2AFAA447007ADC82 /* MatchViewModel.swift */,
+				A67DCB162AFD128900F83A9B /* TableEntryViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -535,6 +538,7 @@
 				A677DC722AE14B9900A9006F /* TeamsModelData.swift in Sources */,
 				A6EB081D2AD4768000F4CBD5 /* TableController.swift in Sources */,
 				A6EB083B2AD8218A00F4CBD5 /* NewsContainerView.swift in Sources */,
+				A67DCB172AFD128900F83A9B /* TableEntryViewModel.swift in Sources */,
 				A6652A1B2AE2DF13006B6A92 /* ShopCollectionViewCell.swift in Sources */,
 				A661E8F12AEBC10F00AE28EC /* ApiManager.swift in Sources */,
 				A687E84A2AFC2E21001AB97E /* TableView.swift in Sources */,

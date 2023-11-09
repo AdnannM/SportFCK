@@ -107,8 +107,9 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         
-        let tableData = mainTeamEntries[indexPath.row]
-        cell.configure(with: tableData)
+        let entry = mainTeamEntries[indexPath.row]
+        let viewModel = TableEntryViewModel(entry: entry)
+        cell.configure(with: viewModel)
         
         cell.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
         cell.isUserInteractionEnabled = false

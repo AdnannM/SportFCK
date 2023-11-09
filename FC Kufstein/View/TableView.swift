@@ -10,28 +10,50 @@ import UIKit
 class TableView: UIView {
     
     // MARK: - Components
-    let rankLabel = UILabel.createCustomLabel(
+    lazy var rankLabel = UILabel.createCustomLabel(
         text: "1.",
         textColor: .label,
         fontSize: 15,
         fontWeight: .bold
     )
     
-    let logoView = UIView.createView(withColor: .white)
-    let logoImageView = UIImageView.createImageView(withImage: UIImage(named: "fcklogo")!)
+    lazy var logoView = UIView.createView(withColor: .white)
+    lazy var logoImageView = UIImageView.createImageView(withImage: UIImage(named: "fcklogo")!)
     
-    let teamNameLabel = UILabel.createCustomLabel(
+    lazy var teamNameLabel = UILabel.createCustomLabel(
         text: "FC Kufstein",
         textColor: .label,
         fontSize: 15,
         fontWeight: .bold
     )
     
-    private let stackView = UIStackView.createStackView()
+    private lazy var stackView = UIStackView.createStackView()
     
-    lazy var firstView = UIView.createView(withColor: .separator)
-    lazy var secondView = UIView.createView(withColor: .separator)
-    lazy var thirdView = UIView.createView(withColor: .separator)
+    lazy var gamePlayedView = UIView.createView(withColor: .separator)
+    lazy var scoreDifferenceView = UIView.createView(withColor: .separator)
+    lazy var pointsView = UIView.createView(withColor: .separator)
+    
+    lazy var gamePlayesLabel = UILabel.createCustomLabel(
+        text: "-",
+        textColor: .label,
+        fontSize: 15,
+        fontWeight: .bold
+    )
+    
+    lazy var scoreDifferenceLabel = UILabel.createCustomLabel(
+        text: "-",
+        textColor: .label,
+        fontSize: 15,
+        fontWeight: .bold
+    )
+    
+    lazy var pointsLabel = UILabel.createCustomLabel(
+        text: "-",
+        textColor: .label,
+        fontSize: 15,
+        fontWeight: .bold
+    )
+    
     
     // MARK: - LifeCycle
     override init(frame: CGRect) {
@@ -57,7 +79,7 @@ private extension TableView {
         setupLogoView()
         setupTeamNameLabel()
         setupStackView()
-        
+        setupPointsLabel()
     }
     
     private func setupRankLabel() {
@@ -110,25 +132,46 @@ private extension TableView {
     
     private func setupStackView() {
         addSubview(stackView)
-        stackView.addArrangedSubview(firstView)
-        stackView.addArrangedSubview(secondView)
-        stackView.addArrangedSubview(thirdView)
+        stackView.addArrangedSubview(gamePlayedView)
+        stackView.addArrangedSubview(scoreDifferenceView)
+        stackView.addArrangedSubview(pointsView)
         
         stackView.spacing = 10
         NSLayoutConstraint.activate([
             stackView.centerYAnchor.constraint(equalTo: centerYAnchor), // Center the stackView vertically
             stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -14),
-            firstView.heightAnchor.constraint(equalToConstant: 30),
-            firstView.widthAnchor.constraint(equalToConstant: 30),
-            secondView.heightAnchor.constraint(equalToConstant: 30),
-            secondView.widthAnchor.constraint(equalToConstant: 30),
-            thirdView.heightAnchor.constraint(equalToConstant: 30),
-            thirdView.widthAnchor.constraint(equalToConstant: 30),
+            gamePlayedView.heightAnchor.constraint(equalToConstant: 30),
+            gamePlayedView.widthAnchor.constraint(equalToConstant: 30),
+            scoreDifferenceView.heightAnchor.constraint(equalToConstant: 30),
+            scoreDifferenceView.widthAnchor.constraint(equalToConstant: 30),
+            pointsView.heightAnchor.constraint(equalToConstant: 30),
+            pointsView.widthAnchor.constraint(equalToConstant: 30),
         ])
         
-        firstView.layer.cornerRadius = 8
-        secondView.layer.cornerRadius = 8
-        thirdView.layer.cornerRadius = 8
+        gamePlayedView.layer.cornerRadius = 8
+        scoreDifferenceView.layer.cornerRadius = 8
+        pointsView.layer.cornerRadius = 8
+    }
+    
+    private func setupPointsLabel() {
+        gamePlayedView.addSubview(gamePlayesLabel)
+        scoreDifferenceView.addSubview(scoreDifferenceLabel)
+        pointsView.addSubview(pointsLabel)
+        
+        gamePlayesLabel.translatesAutoresizingMaskIntoConstraints = false
+        scoreDifferenceLabel.translatesAutoresizingMaskIntoConstraints = false
+        pointsLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            gamePlayesLabel.centerXAnchor.constraint(equalTo: gamePlayedView.centerXAnchor),
+            gamePlayesLabel.centerYAnchor.constraint(equalTo: gamePlayedView.centerYAnchor),
+            
+            scoreDifferenceLabel.centerXAnchor.constraint(equalTo: scoreDifferenceView.centerXAnchor),
+            scoreDifferenceLabel.centerYAnchor.constraint(equalTo: scoreDifferenceView.centerYAnchor),
+            
+            pointsLabel.centerXAnchor.constraint(equalTo: pointsView.centerXAnchor),
+            pointsLabel.centerYAnchor.constraint(equalTo: pointsView.centerYAnchor),
+        ])
     }
 
 }
