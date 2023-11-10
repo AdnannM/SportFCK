@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A605DF542AFE34100060CC7F /* ShimmerTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A605DF532AFE34100060CC7F /* ShimmerTableView.swift */; };
+		A605DF562AFE36A40060CC7F /* ShimmerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A605DF552AFE36A40060CC7F /* ShimmerTableViewCell.swift */; };
 		A609C4FC2AF2AEA000D5AC65 /* AllMatchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A609C4FB2AF2AEA000D5AC65 /* AllMatchCollectionViewCell.swift */; };
 		A625E5382ADEA97000BD004F /* VideoPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A625E5372ADEA97000BD004F /* VideoPlayerViewController.swift */; };
 		A625E53A2ADEF92A00BD004F /* TeamsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A625E5392ADEF92A00BD004F /* TeamsCollectionViewCell.swift */; };
@@ -90,6 +92,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A605DF532AFE34100060CC7F /* ShimmerTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerTableView.swift; sourceTree = "<group>"; };
+		A605DF552AFE36A40060CC7F /* ShimmerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerTableViewCell.swift; sourceTree = "<group>"; };
 		A609C4FB2AF2AEA000D5AC65 /* AllMatchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllMatchCollectionViewCell.swift; sourceTree = "<group>"; };
 		A625E5372ADEA97000BD004F /* VideoPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerViewController.swift; sourceTree = "<group>"; };
 		A625E5392ADEF92A00BD004F /* TeamsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -209,6 +213,8 @@
 				A6DEEE8F2AEC2B04005EB18A /* ShimmerCollectionViewCell.swift */,
 				A6A82CEE2AFAE73B00AC253C /* ShimmerFinishedMatchView.swift */,
 				A6A82CF02AFAE7E500AC253C /* ShimmerFinishedMatchTableCell.swift */,
+				A605DF532AFE34100060CC7F /* ShimmerTableView.swift */,
+				A605DF552AFE36A40060CC7F /* ShimmerTableViewCell.swift */,
 			);
 			path = ShimmerView;
 			sourceTree = "<group>";
@@ -497,6 +503,7 @@
 				A6EB08522AD97C5800F4CBD5 /* SponsorsCell.swift in Sources */,
 				A675C36C2AF54DB100145CBC /* TestingAndPrintingData.swift in Sources */,
 				A6E45F2C2AD3EA100057D668 /* MainController.swift in Sources */,
+				A605DF542AFE34100060CC7F /* ShimmerTableView.swift in Sources */,
 				A6EB08262AD595CB00F4CBD5 /* Colors.swift in Sources */,
 				A6A82CF12AFAE7E500AC253C /* ShimmerFinishedMatchTableCell.swift in Sources */,
 				A687E8482AFC2E0F001AB97E /* TableViewCell.swift in Sources */,
@@ -530,6 +537,7 @@
 				A6EB082C2AD6956600F4CBD5 /* NotificationController.swift in Sources */,
 				A6EB2F6D2AE028AA001B733C /* SafariViewControllerContainer.swift in Sources */,
 				A609C4FC2AF2AEA000D5AC65 /* AllMatchCollectionViewCell.swift in Sources */,
+				A605DF562AFE36A40060CC7F /* ShimmerTableViewCell.swift in Sources */,
 				A625E5382ADEA97000BD004F /* VideoPlayerViewController.swift in Sources */,
 				A6401D032AF96C1F007ADC82 /* LastGameInfoViewModel.swift in Sources */,
 				A6EB08412AD8350900F4CBD5 /* NewsController.swift in Sources */,

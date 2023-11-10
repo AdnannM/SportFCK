@@ -60,7 +60,7 @@ class MatchController: UIViewController {
 private extension MatchController {
     private func setupUI() {
         view.backgroundColor = .systemGray5
-        title = "Spiele"
+        title = "Letzte Spiele"
         navigationController?.navigationBar.prefersLargeTitles = true
         
         setupSegmentControl()

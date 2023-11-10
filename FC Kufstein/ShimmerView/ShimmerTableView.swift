@@ -1,13 +1,13 @@
 //
-//  TableView.swift
+//  ShimmerTableView.swift
 //  FC Kufstein
 //
-//  Created by Adnann Muratovic on 08.11.23.
+//  Created by Adnann Muratovic on 10.11.23.
 //
 
 import UIKit
 
-class TableView: UIView {
+class ShimmerTableView: UIView {
     
     // MARK: - Components
     lazy var rankLabel = UILabel.createCustomLabel(
@@ -59,6 +59,7 @@ class TableView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
+        setupShimmerEffect()
     }
     
     required init?(coder: NSCoder) {
@@ -71,7 +72,7 @@ class TableView: UIView {
 }
 
 // MARK: - SetupUI
-private extension TableView {
+private extension ShimmerTableView {
     private func setupUI() {
         backgroundColor = .systemBackground
         
@@ -120,10 +121,8 @@ private extension TableView {
         teamNameLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            teamNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 8),
+            teamNameLabel.centerYAnchor.constraint(equalTo: logoView.centerYAnchor),
             teamNameLabel.leadingAnchor.constraint(equalTo: logoView.trailingAnchor, constant: 8),
-            teamNameLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
-            teamNameLabel.widthAnchor.constraint(equalToConstant: 150)
         ])
         
         teamNameLabel.numberOfLines = 2
@@ -172,5 +171,38 @@ private extension TableView {
             pointsLabel.centerXAnchor.constraint(equalTo: pointsView.centerXAnchor),
             pointsLabel.centerYAnchor.constraint(equalTo: pointsView.centerYAnchor),
         ])
+    }
+    
+    func setupShimmerEffect() {
+        rankLabel.isSkeletonable = true
+        rankLabel.showAnimatedGradientSkeleton()
+        
+        logoView.isSkeletonable = true
+        logoView.skeletonCornerRadius = 12
+        logoView.showAnimatedGradientSkeleton()
+        
+        teamNameLabel.isSkeletonable = true
+        teamNameLabel.showAnimatedGradientSkeleton()
+        
+        gamePlayedView.isSkeletonable = true
+        gamePlayedView.skeletonCornerRadius = 12
+        gamePlayedView.showAnimatedGradientSkeleton()
+        
+        scoreDifferenceView.isSkeletonable = true
+        scoreDifferenceView.skeletonCornerRadius = 12
+        scoreDifferenceView.showAnimatedGradientSkeleton()
+        
+        pointsView.isSkeletonable = true
+        pointsView.skeletonCornerRadius = 12
+        pointsView.showAnimatedGradientSkeleton()
+    }
+    
+    func stopShimmer() {
+        rankLabel.hideSkeleton()
+        logoView.hideSkeleton()
+        teamNameLabel.hideSkeleton()
+        gamePlayedView.hideSkeleton()
+        scoreDifferenceView.hideSkeleton()
+        pointsView.hideSkeleton()
     }
 }

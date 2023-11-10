@@ -12,6 +12,7 @@ final class TableViewController: UIViewController {
     // MARK: - Properties
     var mainTeamEntries: [Entry] = []
     var juniorTeamEntries: [Entry] = []
+    var isFetchingData: Bool = false
     
     // MARK: - Components
     private let segmentedControl: UISegmentedControl = {
@@ -29,6 +30,7 @@ final class TableViewController: UIViewController {
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(TableViewCell.self, forCellReuseIdentifier: TableViewCell.cellID)
+        tableView.register(ShimmerTableViewCell.self, forCellReuseIdentifier: ShimmerTableViewCell.cellID)
         return tableView
     }()
     
@@ -38,6 +40,16 @@ final class TableViewController: UIViewController {
         setupUI()
         fetchData(for: .mainTeam)
         fetchData(for: .juniors)
+    }
+    
+    func startShimmer() {
+        isFetchingData = true
+        tableView.reloadData()
+    }
+    
+    func stopShimmer() {
+        isFetchingData = false
+        tableView.reloadData()
     }
 }
 
@@ -70,7 +82,7 @@ private extension TableViewController {
     
     private func setupResutlTitleView() {
         view.addSubview(tableTitleView)
-
+        
         tableTitleView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 8).isActive = true
         tableTitleView.leadingAnchor.constraint(equalTo: segmentedControl.leadingAnchor, constant: 8).isActive = true
         tableTitleView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -8).isActive = true
@@ -97,35 +109,48 @@ private extension TableViewController {
 // MARK: - TableViewDelegate and TableViewDataSource
 extension TableViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if segmentedControl.selectedSegmentIndex == 0 {
-            return mainTeamEntries.count
+        if isFetchingData {
+            // Return the number of shimmer cells you want to display
+            return 10 // Adjust this based on your preference
         } else {
-            return juniorTeamEntries.count
+            if segmentedControl.selectedSegmentIndex == 0 {
+                return mainTeamEntries.count
+            } else {
+                return juniorTeamEntries.count
+            }
         }
     }
     
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(
-            withIdentifier: TableViewCell.cellID,
-            for: indexPath
-        ) as? TableViewCell else {
-            return UITableViewCell()
-        }
-        
-        if segmentedControl.selectedSegmentIndex == 0 {
-            let entry = mainTeamEntries[indexPath.row]
-            let viewModel = TableEntryViewModel(entry: entry)
-            cell.configure(with: viewModel)
+        if isFetchingData {
+            return tableView.dequeueReusableCell(withIdentifier: ShimmerTableViewCell.cellID, for: indexPath)
         } else {
-            let entry = juniorTeamEntries[indexPath.row]
+            // Normal cell configuration
+            guard let cell = tableView.dequeueReusableCell(
+                withIdentifier: TableViewCell.cellID,
+                for: indexPath
+            ) as? TableViewCell else {
+                return UITableViewCell()
+            }
+            
+            var entry: Entry
+            if segmentedControl.selectedSegmentIndex == 0 {
+                entry = mainTeamEntries[indexPath.row]
+            } else {
+                entry = juniorTeamEntries[indexPath.row]
+            }
+            
             let viewModel = TableEntryViewModel(entry: entry)
             cell.configure(with: viewModel)
+            
+            cell.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
+            cell.isUserInteractionEnabled = false
+            
+            return cell
         }
-        
-        cell.separatorInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
-        cell.isUserInteractionEnabled = false
-        return cell
     }
+    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
@@ -155,8 +180,10 @@ extension TableViewController {
     private func fetchData(for teamType: TeamType) {
         Task {
             do {
+                startShimmer()
                 let tableInfo = try await fetchTableInfo(for: teamType)
                 updateEntries(for: teamType, with: tableInfo.eintraege)
+                stopShimmer()
             } catch {
                 print("Error fetching \(teamType) team table data: \(error)")
             }
@@ -179,7 +206,6 @@ extension TableViewController {
         case .juniors:
             juniorTeamEntries = newEntries
         }
-        
         tableView.reloadData()
     }
 }
