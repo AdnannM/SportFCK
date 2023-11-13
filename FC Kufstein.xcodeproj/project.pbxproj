@@ -39,6 +39,8 @@
 		A687E84C2AFC3E0C001AB97E /* ResultMatchTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A687E84B2AFC3E0C001AB97E /* ResultMatchTitleView.swift */; };
 		A69A3EDF2AE9546E0085F7A4 /* ScreenSizeCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69A3EDE2AE9546E0085F7A4 /* ScreenSizeCategory.swift */; };
 		A69A3EE12AE97C390085F7A4 /* NewsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69A3EE02AE97C390085F7A4 /* NewsCollectionViewCell.swift */; };
+		A69F957B2B02272D009779D1 /* AllMatchContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69F957A2B02272D009779D1 /* AllMatchContainerView.swift */; };
+		A69F957D2B025280009779D1 /* UpcommingMatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69F957C2B025280009779D1 /* UpcommingMatchViewModel.swift */; };
 		A6A153332ADD26E000DD83B3 /* VideoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6A153322ADD26E000DD83B3 /* VideoCollectionViewCell.swift */; };
 		A6A82CEF2AFAE73B00AC253C /* ShimmerFinishedMatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6A82CEE2AFAE73B00AC253C /* ShimmerFinishedMatchView.swift */; };
 		A6A82CF12AFAE7E500AC253C /* ShimmerFinishedMatchTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6A82CF02AFAE7E500AC253C /* ShimmerFinishedMatchTableCell.swift */; };
@@ -124,6 +126,8 @@
 		A687E84B2AFC3E0C001AB97E /* ResultMatchTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultMatchTitleView.swift; sourceTree = "<group>"; };
 		A69A3EDE2AE9546E0085F7A4 /* ScreenSizeCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSizeCategory.swift; sourceTree = "<group>"; };
 		A69A3EE02AE97C390085F7A4 /* NewsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCollectionViewCell.swift; sourceTree = "<group>"; };
+		A69F957A2B02272D009779D1 /* AllMatchContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllMatchContainerView.swift; sourceTree = "<group>"; };
+		A69F957C2B025280009779D1 /* UpcommingMatchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcommingMatchViewModel.swift; sourceTree = "<group>"; };
 		A6A153322ADD26E000DD83B3 /* VideoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewCell.swift; sourceTree = "<group>"; };
 		A6A82CEE2AFAE73B00AC253C /* ShimmerFinishedMatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerFinishedMatchView.swift; sourceTree = "<group>"; };
 		A6A82CF02AFAE7E500AC253C /* ShimmerFinishedMatchTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerFinishedMatchTableCell.swift; sourceTree = "<group>"; };
@@ -203,6 +207,7 @@
 				A6401D022AF96C1F007ADC82 /* LastGameInfoViewModel.swift */,
 				A6401D3F2AFAA447007ADC82 /* MatchViewModel.swift */,
 				A67DCB162AFD128900F83A9B /* TableEntryViewModel.swift */,
+				A69F957C2B025280009779D1 /* UpcommingMatchViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -337,6 +342,7 @@
 				A6401D3B2AFA9AD9007ADC82 /* FinishedMatchView.swift */,
 				A687E8492AFC2E21001AB97E /* TableView.swift */,
 				A687E84B2AFC3E0C001AB97E /* ResultMatchTitleView.swift */,
+				A69F957A2B02272D009779D1 /* AllMatchContainerView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -502,12 +508,14 @@
 			files = (
 				A6EB08522AD97C5800F4CBD5 /* SponsorsCell.swift in Sources */,
 				A675C36C2AF54DB100145CBC /* TestingAndPrintingData.swift in Sources */,
+				A69F957D2B025280009779D1 /* UpcommingMatchViewModel.swift in Sources */,
 				A6E45F2C2AD3EA100057D668 /* MainController.swift in Sources */,
 				A605DF542AFE34100060CC7F /* ShimmerTableView.swift in Sources */,
 				A6EB08262AD595CB00F4CBD5 /* Colors.swift in Sources */,
 				A6A82CF12AFAE7E500AC253C /* ShimmerFinishedMatchTableCell.swift in Sources */,
 				A687E8482AFC2E0F001AB97E /* TableViewCell.swift in Sources */,
 				A6EB08282AD5CE8800F4CBD5 /* CustomListRowView.swift in Sources */,
+				A69F957B2B02272D009779D1 /* AllMatchContainerView.swift in Sources */,
 				A6A9E0512AE6AD5900D2DE68 /* AllVideosContainerView.swift in Sources */,
 				A6DEEE902AEC2B04005EB18A /* ShimmerCollectionViewCell.swift in Sources */,
 				A6EB084E2AD9700100F4CBD5 /* TeamsContainerView.swift in Sources */,

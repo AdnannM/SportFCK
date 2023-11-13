@@ -13,13 +13,7 @@ class AllMatchCollectionViewCell: UICollectionViewCell {
     static let cellID = "AllMatchCollectionViewCell"
     
     // MARK: - Components
-    private let containerView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .systemGray6.withAlphaComponent(0.8)
-        view.layer.cornerRadius = 20
-        return view
-    }()
+    private let containerView = AllMatchContainerView()
     
     // MARK: - LifeCycle
     override init(frame: CGRect) {
@@ -43,6 +37,7 @@ private extension AllMatchCollectionViewCell {
     
     private func setupContainerView() {
         contentView.addSubview(containerView)
+        containerView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             containerView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
@@ -50,5 +45,12 @@ private extension AllMatchCollectionViewCell {
             containerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
             containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
         ])
+    }
+}
+
+// MARK: - ConfigureCell
+extension AllMatchCollectionViewCell {
+    func configureCell(viewModel: UpcommingMatchViewModel) {
+        
     }
 }
