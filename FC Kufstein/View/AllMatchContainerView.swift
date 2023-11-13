@@ -62,7 +62,7 @@ class AllMatchContainerView: UIView {
     )
     
     let minPlaceHolderLabel = UILabel.createCustomLabel(
-        text: "mins",
+        text: "hrs",
         textColor: .label,
         fontSize: 10,
         fontWeight: .bold
@@ -76,7 +76,7 @@ class AllMatchContainerView: UIView {
     )
     
     let secPlaceHolderLabel = UILabel.createCustomLabel(
-        text: "sec",
+        text: "mins",
         textColor: .label,
         fontSize: 10,
         fontWeight: .bold

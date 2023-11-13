@@ -11,6 +11,13 @@ class AllMatchCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
     static let cellID = "AllMatchCollectionViewCell"
+    var timer: Timer?
+        
+    let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.yyyy HH:mm:ss" // You can adjust the format as needed
+        return formatter
+    }()
     
     // MARK: - Components
     private let containerView = AllMatchContainerView()
@@ -50,7 +57,73 @@ private extension AllMatchCollectionViewCell {
 
 // MARK: - ConfigureCell
 extension AllMatchCollectionViewCell {
-    func configureCell(viewModel: UpcommingMatchViewModel) {
+   
+    func configureCell(withViewModel viewModel: UpcommingMatchViewModel) {
+        let date = Date(timeIntervalSince1970: TimeInterval(viewModel.model.datum / 1000))
+        let dateFormatter = getDateFormatter("E, MMM dd, yyyy")
         
+        containerView.gameLigaLabel.text = "\(viewModel.model.bewerbBezeichnung) | \(dateFormatter.string(from: date))"
+        let timeRemaining = self.timeRemainingUntilMatch(date)
+        
+        if let heimLogoURL = viewModel.heimLogoURL() {
+            containerView.homeImageView.sd_setImage(with: heimLogoURL, placeholderImage: nil, options: .refreshCached)
+        }
+        
+        if let gastLogoURL = viewModel.gastLogoURL() {
+            containerView.guestImageView.sd_setImage(with: gastLogoURL, placeholderImage: nil, options: .refreshCached)
+            
+        }
+        
+        // Start timer to update labels
+        startTimer(matchDate: date)
+        
+        let formattedDate = self.formatDate(unixTimestamp: viewModel.model.datum)
+        containerView.dayLabel.text = ""
+        containerView.minLabel.text = ""
+        containerView.secLabel.text = ""
+        
+        containerView.gamePlaceLabel.text = viewModel.model.spielort
+    }
+
+    func startTimer(matchDate: Date) {
+        timer?.invalidate() // Stop the timer if it's already running
+        
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
+            guard let self = self else { return }
+            
+            let timeRemaining = self.timeRemainingUntilMatch(matchDate)
+            
+            if timeRemaining.days <= 0 && timeRemaining.hours <= 0 && timeRemaining.minutes <= 0 {
+                // Stop the timer when remaining time is zero or negative
+                self.timer?.invalidate()
+            } else {
+                self.containerView.dayLabel.text = "\(timeRemaining.days)"
+                self.containerView.minLabel.text = "\(timeRemaining.hours)"
+                self.containerView.secLabel.text = "\(timeRemaining.minutes)"
+            }
+        }
+    }
+    
+    /// Helpers
+    func getDateFormatter(_ format: String) -> DateFormatter {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        return dateFormatter
+    }
+    
+    func formatDate(unixTimestamp: Int) -> String {
+        let date = Date(timeIntervalSince1970: TimeInterval(unixTimestamp) / 1000)
+        return dateFormatter.string(from: date)
+    }
+    
+    func timeRemainingUntilMatch(_ matchDate: Date) -> (days: Int, hours: Int, minutes: Int) {
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.day, .hour, .minute], from: Date(), to: matchDate)
+
+        if let days = components.day, let hours = components.hour, let minutes = components.minute {
+            return (days, hours, minutes)
+        }
+
+        return (0, 0, 0)
     }
 }

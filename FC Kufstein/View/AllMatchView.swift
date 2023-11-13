@@ -9,6 +9,8 @@ import UIKit
 
 class AllMatchView: UIView {
     
+    // MARK: - Properties
+    var upcommingMatchs: [MetchInfo.KMData] = []
     // MARK: - Components
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -16,7 +18,6 @@ class AllMatchView: UIView {
         layout.sectionInset = UIEdgeInsets(top: 2, left: 0, bottom: 2, right: 0)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(AllMatchCollectionViewCell.self, forCellWithReuseIdentifier: AllMatchCollectionViewCell.cellID)
-        //        collectionView.register(ShimmerCollectionViewCell.self, forCellWithReuseIdentifier: ShimmerCollectionViewCell.cellID)
         collectionView.backgroundColor = .systemBackground
         collectionView.isPagingEnabled = true
         collectionView.layer.cornerRadius = 20
@@ -36,6 +37,10 @@ class AllMatchView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
+        
+        Task {
+            await fetchMatchData()
+        }
     }
     
     required init?(coder: NSCoder) {
@@ -86,7 +91,7 @@ private extension AllMatchView {
 // MARK: - CollectionViewDelegate and CollectionViewDataSource
 extension AllMatchView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return upcommingMatchs.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -97,6 +102,9 @@ extension AllMatchView: UICollectionViewDelegate, UICollectionViewDataSource, UI
             return UICollectionViewCell()
         }
         
+        let matchData = upcommingMatchs[indexPath.row]
+        let viewModel = UpcommingMatchViewModel(model: matchData)
+        cell.configureCell(withViewModel: viewModel)
         return cell
     }
     
@@ -124,7 +132,37 @@ extension AllMatchView: UICollectionViewDelegate, UICollectionViewDataSource, UI
 
 // MARK: - Networking
 extension AllMatchView {
+    func fetchMatchData() async {
+        do {
+            let matchInfo = try await ApiManager.shared.fetchMatchInfo()
+            let currentDate = Date()
+            
+            upcommingMatchs.removeAll()
+            
+            if let items = matchInfo.plan["KM"] {
+                for item in items {
+                    let matchDate = Date(timeIntervalSince1970: TimeInterval(item.datum) / 1000)
+                    if matchDate >= currentDate {
+                        upcommingMatchs.append(item)
+                    }
+                }
+            }
+            
+            updatePageControl()
+            
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+            
+        } catch {
+            print("Error: \(error)")
+        }
+    }
     
+    // Update the page control based on the count of upcommingMatchs
+    private func updatePageControl() {
+        pageControl.numberOfPages = upcommingMatchs.count
+    }
 }
 
 
