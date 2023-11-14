@@ -12,10 +12,14 @@ class AllMatchController: UIViewController {
     // MARK: - Properties
     var upcommingMatchs: [MetchInfo.KMData] = []
     
+    var isFetchingData: Bool = false
+    private let refreshControl = UIRefreshControl()
+    
     // MARK: - Components
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(AllMatchTableViewCell.self, forCellReuseIdentifier: AllMatchTableViewCell.cellID)
+        tableView.register(ShimmerAllMatchTableViewCell.self, forCellReuseIdentifier: ShimmerAllMatchTableViewCell.cellID)
         return tableView
     }()
     
@@ -23,10 +27,24 @@ class AllMatchController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        
+        fetchData()
+    }
+    
+    private func fetchData() {
         Task {
             await fetchMatchData()
         }
+    }
+    
+    func startShimmer() {
+        isFetchingData = true
+        tableView.reloadData()
+    }
+    
+    func stopShimmer() {
+        isFetchingData = false
+        tableView.reloadData()
+        refreshControl.endRefreshing()
     }
 }
 
@@ -37,6 +55,10 @@ private extension AllMatchController {
         title = "Alle Spiele"
         
         setupTableView()
+        
+        tableView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
+            
     }
     
     private func setupTableView() {
@@ -58,22 +80,38 @@ private extension AllMatchController {
 // MARK: - UITableViewDelegate, UITableViewDataSource
 extension AllMatchController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return upcommingMatchs.count
+        return isFetchingData ? 5 : upcommingMatchs.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(
-            withIdentifier: AllMatchTableViewCell.cellID,
-            for: indexPath
-        ) as? AllMatchTableViewCell else {
-            return UITableViewCell()
+        if isFetchingData {
+            return tableView.dequeueReusableCell(withIdentifier: ShimmerAllMatchTableViewCell.cellID, for: indexPath)
+        } else {
+            guard let cell = tableView.dequeueReusableCell(
+                withIdentifier: AllMatchTableViewCell.cellID,
+                for: indexPath
+            ) as? AllMatchTableViewCell else {
+                return UITableViewCell()
+            }
+            
+            let matchData = upcommingMatchs[indexPath.row]
+            let viewModel = UpcommingMatchViewModel(model: matchData)
+            cell.isUserInteractionEnabled = false
+            cell.configureCell(withViewModel: viewModel)
+            
+            return cell
         }
-        
-        let matchData = upcommingMatchs[indexPath.row]
-        let viewModel = UpcommingMatchViewModel(model: matchData)
-        cell.configureCell(withViewModel: viewModel)
-        
-        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+
+// MARK: - Action
+extension AllMatchController {
+    @objc private func refreshData(_ sender: Any) {
+        fetchData()
     }
 }
 
@@ -82,7 +120,7 @@ extension AllMatchController {
     func fetchMatchData() async {
         do {
             
-//            startShimmer()
+            startShimmer()
             let matchInfo = try await ApiManager.shared.fetchMatchInfo()
             let currentDate = Date()
             
@@ -98,7 +136,7 @@ extension AllMatchController {
             }
             
             DispatchQueue.main.async {
-//                self.stopShimmer()
+                self.stopShimmer()
                 self.tableView.reloadData()
             }
             

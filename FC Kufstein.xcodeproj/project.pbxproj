@@ -52,6 +52,7 @@
 		A6E21E472B0388BA000F5562 /* ShimmerUpcommingMatchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E21E462B0388BA000F5562 /* ShimmerUpcommingMatchCell.swift */; };
 		A6E21E492B038BFD000F5562 /* ShimmerUpcommingMatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E21E482B038BFD000F5562 /* ShimmerUpcommingMatchView.swift */; };
 		A6E21E4B2B03B6C3000F5562 /* AllMatchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E21E4A2B03B6C3000F5562 /* AllMatchTableViewCell.swift */; };
+		A6E21E4D2B03C2CB000F5562 /* ShimmerAllMatchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E21E4C2B03C2CB000F5562 /* ShimmerAllMatchTableViewCell.swift */; };
 		A6E45F282AD3EA100057D668 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E45F272AD3EA100057D668 /* AppDelegate.swift */; };
 		A6E45F2A2AD3EA100057D668 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E45F292AD3EA100057D668 /* SceneDelegate.swift */; };
 		A6E45F2C2AD3EA100057D668 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E45F2B2AD3EA100057D668 /* MainController.swift */; };
@@ -138,6 +139,7 @@
 		A6E21E462B0388BA000F5562 /* ShimmerUpcommingMatchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerUpcommingMatchCell.swift; sourceTree = "<group>"; };
 		A6E21E482B038BFD000F5562 /* ShimmerUpcommingMatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerUpcommingMatchView.swift; sourceTree = "<group>"; };
 		A6E21E4A2B03B6C3000F5562 /* AllMatchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllMatchTableViewCell.swift; sourceTree = "<group>"; };
+		A6E21E4C2B03C2CB000F5562 /* ShimmerAllMatchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerAllMatchTableViewCell.swift; sourceTree = "<group>"; };
 		A6E45F242AD3EA100057D668 /* FC Kufstein.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FC Kufstein.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6E45F272AD3EA100057D668 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A6E45F292AD3EA100057D668 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 				A605DF552AFE36A40060CC7F /* ShimmerTableViewCell.swift */,
 				A6E21E462B0388BA000F5562 /* ShimmerUpcommingMatchCell.swift */,
 				A6E21E482B038BFD000F5562 /* ShimmerUpcommingMatchView.swift */,
+				A6E21E4C2B03C2CB000F5562 /* ShimmerAllMatchTableViewCell.swift */,
 			);
 			path = ShimmerView;
 			sourceTree = "<group>";
@@ -544,6 +547,7 @@
 				A675C3682AF54BE500145CBC /* LeagueInfo.swift in Sources */,
 				A6EB08392AD7F8BC00F4CBD5 /* AllMatchView.swift in Sources */,
 				A6EB08502AD972BC00F4CBD5 /* TeamsView.swift in Sources */,
+				A6E21E4D2B03C2CB000F5562 /* ShimmerAllMatchTableViewCell.swift in Sources */,
 				A6EB08242AD58D0D00F4CBD5 /* SettingsSwiftUIView.swift in Sources */,
 				A6EB08372AD7F27600F4CBD5 /* ShopController.swift in Sources */,
 				A687E84C2AFC3E0C001AB97E /* ResultMatchTitleView.swift in Sources */,
