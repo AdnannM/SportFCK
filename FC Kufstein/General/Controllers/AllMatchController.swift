@@ -16,6 +16,17 @@ class AllMatchController: UIViewController {
     private let refreshControl = UIRefreshControl()
     
     // MARK: - Components
+    private let segmentedControl: UISegmentedControl = {
+        let segControl = UISegmentedControl(items: ["FC Kufstein", "FC Kufstein 1b"])
+        segControl.selectedSegmentIndex = 0
+        segControl.selectedSegmentTintColor = .systemBlue.withAlphaComponent(0.5)
+        segControl.backgroundImage(for: .normal, barMetrics: .default)
+        segControl.backgroundColor = .systemBackground
+        segControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.label], for: .normal)
+        return segControl
+    }()
+    
+    // MARK: - Components
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(AllMatchTableViewCell.self, forCellReuseIdentifier: AllMatchTableViewCell.cellID)
@@ -54,11 +65,25 @@ private extension AllMatchController {
         view.backgroundColor = .systemGray6
         title = "Alle Spiele"
         
+        pullToRefrash()
+        setupSegmentControl()
         setupTableView()
-        
+    }
+    
+    private func pullToRefrash() {
         tableView.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
-            
+    }
+    
+    private func setupSegmentControl() {
+        view.addSubview(segmentedControl)
+        segmentedControl.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            segmentedControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            segmentedControl.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 8),
+            segmentedControl.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -8),
+        ])
     }
     
     private func setupTableView() {
@@ -66,7 +91,7 @@ private extension AllMatchController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 4),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
