@@ -62,7 +62,6 @@ private extension NewsController {
     private func setupUI() {
         title = "FC Kufstein News"
         view.backgroundColor = .systemGray6
-        
         setupTableView()
     }
     
@@ -153,7 +152,6 @@ extension NewsController {
     private func setupRefreshControl() {
         collectionView.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
-        refreshControl.beginRefreshing()
         refreshData()
     }
 }

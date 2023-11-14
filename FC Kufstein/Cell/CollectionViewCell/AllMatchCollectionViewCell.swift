@@ -63,7 +63,6 @@ extension AllMatchCollectionViewCell {
         let dateFormatter = getDateFormatter("E, MMM dd, yyyy")
         
         containerView.gameLigaLabel.text = "\(viewModel.model.bewerbBezeichnung) | \(dateFormatter.string(from: date))"
-        let timeRemaining = self.timeRemainingUntilMatch(date)
         
         if let heimLogoURL = viewModel.heimLogoURL() {
             containerView.homeImageView.sd_setImage(with: heimLogoURL, placeholderImage: nil, options: .refreshCached)
@@ -77,7 +76,6 @@ extension AllMatchCollectionViewCell {
         // Start timer to update labels
         startTimer(matchDate: date)
         
-        let formattedDate = self.formatDate(unixTimestamp: viewModel.model.datum)
         containerView.dayLabel.text = ""
         containerView.minLabel.text = ""
         containerView.secLabel.text = ""

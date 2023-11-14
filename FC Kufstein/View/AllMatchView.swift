@@ -11,6 +11,9 @@ class AllMatchView: UIView {
     
     // MARK: - Properties
     var upcommingMatchs: [MetchInfo.KMData] = []
+    
+    var isFetchingData: Bool = false
+    
     // MARK: - Components
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -18,6 +21,7 @@ class AllMatchView: UIView {
         layout.sectionInset = UIEdgeInsets(top: 2, left: 0, bottom: 2, right: 0)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(AllMatchCollectionViewCell.self, forCellWithReuseIdentifier: AllMatchCollectionViewCell.cellID)
+        collectionView.register(ShimmerUpcommingMatchCell.self, forCellWithReuseIdentifier: ShimmerUpcommingMatchCell.cellID)
         collectionView.backgroundColor = .systemBackground
         collectionView.isPagingEnabled = true
         collectionView.layer.cornerRadius = 20
@@ -49,6 +53,16 @@ class AllMatchView: UIView {
     
     override var intrinsicContentSize: CGSize {
         return CGSize(width: 200, height: 200)
+    }
+    
+    func startShimmer() {
+        isFetchingData = true
+        collectionView.reloadData()
+    }
+    
+    func stopShimmer() {
+        isFetchingData = false
+        collectionView.reloadData()
     }
 }
 
@@ -91,35 +105,40 @@ private extension AllMatchView {
 // MARK: - CollectionViewDelegate and CollectionViewDataSource
 extension AllMatchView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return upcommingMatchs.count
+        return isFetchingData ? 5 : upcommingMatchs.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: AllMatchCollectionViewCell.cellID,
-            for: indexPath
-        ) as? AllMatchCollectionViewCell else {
-            return UICollectionViewCell()
+        if isFetchingData {
+            return collectionView.dequeueReusableCell(withReuseIdentifier: ShimmerUpcommingMatchCell.cellID, for: indexPath)
+        } else {
+            guard let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: AllMatchCollectionViewCell.cellID,
+                for: indexPath
+            ) as? AllMatchCollectionViewCell else {
+                return UICollectionViewCell()
+            }
+            
+            let matchData = upcommingMatchs[indexPath.row]
+            let viewModel = UpcommingMatchViewModel(model: matchData)
+            cell.configureCell(withViewModel: viewModel)
+            return cell
         }
-        
-        let matchData = upcommingMatchs[indexPath.row]
-        let viewModel = UpcommingMatchViewModel(model: matchData)
-        cell.configureCell(withViewModel: viewModel)
-        return cell
     }
     
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-      return 0
+        return 0
         
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-      return 0
+        return 0
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-      let insets = collectionView.contentInset
-      return CGSize(width: collectionView.frame.width - insets.left - insets.right, height: collectionView.frame.height - insets.top - insets.bottom)
+        let insets = collectionView.contentInset
+        return CGSize(width: collectionView.frame.width - insets.left - insets.right, height: collectionView.frame.height - insets.top - insets.bottom)
     }
     
     // Implement UIScrollViewDelegate method to update page control
@@ -134,6 +153,8 @@ extension AllMatchView: UICollectionViewDelegate, UICollectionViewDataSource, UI
 extension AllMatchView {
     func fetchMatchData() async {
         do {
+            
+            startShimmer()
             let matchInfo = try await ApiManager.shared.fetchMatchInfo()
             let currentDate = Date()
             
@@ -151,6 +172,7 @@ extension AllMatchView {
             updatePageControl()
             
             DispatchQueue.main.async {
+                self.stopShimmer()
                 self.collectionView.reloadData()
             }
             

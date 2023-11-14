@@ -11,8 +11,8 @@ class ShimmerFinishedMatchTableCell: UITableViewCell {
     
     static let cellID = "ShimmerFinishedMatchTableCell"
     
-    private let shimmerView: ShimmerFinishedMatchView = {
-        let view = ShimmerFinishedMatchView()
+    private let shimmerView: ShimmerUpcommingMatchView = {
+        let view = ShimmerUpcommingMatchView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()

@@ -35,6 +35,11 @@ private extension TabBarController {
         let tableNav = UINavigationController(rootViewController: table)
         
         setViewControllers([homeNav, matchNav, tableNav], animated: true)
+        
+        // Separate instances of UITabBarItem for customization
+        home.navigationItem.title = "FC Kufstein News"
+        match.navigationItem.title = "Letzte Spiele"
+        table.navigationItem.title = "Tabelen"
     }
 }
 

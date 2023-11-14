@@ -42,7 +42,6 @@ class HomeController: UIViewController {
 private extension HomeController {
     private func setupUI() {
         view.backgroundColor = .systemGray5
-        title = "Feed"
         setupRightBarButton()
         setupTableView()
         setupShopButton()

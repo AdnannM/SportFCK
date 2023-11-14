@@ -58,7 +58,6 @@ final class TableViewController: UIViewController {
 private extension TableViewController {
     private func setupUI() {
         view.backgroundColor = .systemGray5
-        title = "Table"
         navigationController?.navigationBar.prefersLargeTitles = true
         setupSegmentControl()
         setupResutlTitleView()
