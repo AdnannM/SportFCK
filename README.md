@@ -1,21 +1,21 @@
 # FC Kufstein iOS App Documentation
 
 ## Overview
-Welcome to the FC Kufstein iOS app! This app is designed to provide comprehensive information about the club, including news updates, upcoming and finished matches, league tables, a club shop, sponsor information, team details, and more. The app utilizes asynchronous API calls, follows the MVVM architecture, and leverages various features of iOS 17 and above.
+Welcome to the FC Kufstein iOS app! This app provides comprehensive information about the club, including news updates, upcoming and finished matches, league tables, a club shop, sponsor information, team details, and more. The app utilizes asynchronous API calls, follows the MVVM architecture, and leverages various features of iOS 17 and above.
 
 ## Features
 - **News Section:** View the latest updates and news about FC Kufstein.
 - **Matches:**
-  - Upcoming Matches: Get details about scheduled matches.
+  - Upcoming Matches: Get details about scheduled matches with pull-to-refresh functionality.
   - Finished Matches: Review match results and details.
-- **League Table:** Access league standings and statistics.
+- **League Table:** Access league standings and statistics for both main and junior teams.
 - **APIs:** Utilizes 4 different APIs for fetching data asynchronously.
 - **MVVM Architecture:** Organized code following the Model-View-ViewModel pattern for better maintainability and scalability.
 - **Club Shop:** Browse and purchase club merchandise directly from the app.
 - **Video Integration:** Watch club-related videos from YouTube within the app.
 - **Sponsors:** Explore information about the club's sponsors.
 - **Team Information:** Access information about all teams associated with FC Kufstein through a webpage integration.
-- **Settings:** Utilizes SwiftUI for creating and managing app settings.
+- **Settings:** Utilizes SwiftUI for creating and managing app settings, including the ability to change the app icon among multiple icons.
 - **Shimmer Effect:** Enhances user experience with shimmer effects during data loading.
 - **Notifications:** Local notifications to inform users about upcoming matches and provide reminders.
 - **Timer:** Timer functionality for tracking match timings.
@@ -32,11 +32,14 @@ Welcome to the FC Kufstein iOS app! This app is designed to provide comprehensiv
 
 ## Usage
 - Explore different sections of the app to view news, match details, shop for merchandise, watch videos, and more.
-- Adjust settings using the SwiftUI-based settings panel.
+- Use pull-to-refresh to update information about upcoming matches.
+- Check league tables for both main and junior teams.
+- Adjust settings, including changing the app icon, using the SwiftUI-based settings panel.
 
 ## Contributions
 Contributions to enhance the app are welcome! Please follow the guidelines in CONTRIBUTING.md.
 
 ## Support
 For any queries or assistance, contact [Your Contact Information].
+
 
