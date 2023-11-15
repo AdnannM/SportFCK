@@ -11,6 +11,7 @@ class AllMatchController: UIViewController {
     
     // MARK: - Properties
     var upcommingMatchs: [MetchInfo.KMData] = []
+    var upcommingMatchsJuniors: [MetchInfo.KMData] = []
     
     var isFetchingData: Bool = false
     private let refreshControl = UIRefreshControl()
@@ -35,17 +36,20 @@ class AllMatchController: UIViewController {
     }()
     
     // MARK: - Lifecycle
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         fetchData()
     }
-    
+
     private func fetchData() {
         Task {
-            await fetchMatchData()
+            await fetchMatchData(for: .KM) // Fetch initial data for KM
+            await fetchMatchData(for: .oneB) // Fetch initial data for 1b
         }
     }
+
     
     func startShimmer() {
         isFetchingData = true
@@ -78,12 +82,15 @@ private extension AllMatchController {
     private func setupSegmentControl() {
         view.addSubview(segmentedControl)
         segmentedControl.translatesAutoresizingMaskIntoConstraints = false
+        segmentedControl.selectedSegmentIndex = 0
         
         NSLayoutConstraint.activate([
             segmentedControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             segmentedControl.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 8),
             segmentedControl.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -8),
         ])
+        
+        segmentedControl.addTarget(self, action: #selector(segmentedControlValueChanged(_:)), for: .valueChanged)
     }
     
     private func setupTableView() {
@@ -105,7 +112,16 @@ private extension AllMatchController {
 // MARK: - UITableViewDelegate, UITableViewDataSource
 extension AllMatchController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return isFetchingData ? 5 : upcommingMatchs.count
+        if isFetchingData {
+            return 6 // Adjust this based on your preference
+        } else {
+            if segmentedControl.selectedSegmentIndex == 0 {
+                return upcommingMatchs.count
+            } else {
+                return upcommingMatchsJuniors.count
+            }
+        }
+
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -119,7 +135,16 @@ extension AllMatchController: UITableViewDelegate, UITableViewDataSource {
                 return UITableViewCell()
             }
             
-            let matchData = upcommingMatchs[indexPath.row]
+            var matchData: MetchInfo.KMData
+            
+            if segmentedControl.selectedSegmentIndex == 0 {
+                // Display data for FC Kufstein
+                matchData = upcommingMatchs[indexPath.row]
+            } else {
+                // Display data for FC Kufstein Juniors
+                matchData = upcommingMatchsJuniors[indexPath.row]
+            }
+            
             let viewModel = UpcommingMatchViewModel(model: matchData)
             cell.isUserInteractionEnabled = false
             cell.configureCell(withViewModel: viewModel)
@@ -127,6 +152,7 @@ extension AllMatchController: UITableViewDelegate, UITableViewDataSource {
             return cell
         }
     }
+
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
@@ -138,35 +164,49 @@ extension AllMatchController {
     @objc private func refreshData(_ sender: Any) {
         fetchData()
     }
+    
+    @objc func segmentedControlValueChanged(_ sender: UISegmentedControl) {
+        fetchDataAndUpdateTableView(for: sender.selectedSegmentIndex == 0 ? .KM : .oneB)
+    }
 }
 
 // MARK: - Networking
 extension AllMatchController {
-    func fetchMatchData() async {
+    func fetchMatchData(for dataType: MatchDataType) async {
         do {
-            
             startShimmer()
             let matchInfo = try await ApiManager.shared.fetchMatchInfo()
             let currentDate = Date()
             
-            upcommingMatchs.removeAll()
+            var updatedMatches: [MetchInfo.KMData] = []
             
-            if let items = matchInfo.plan["KM"] {
+            if let items = matchInfo.plan[dataType.rawValue] {
                 for item in items {
                     let matchDate = Date(timeIntervalSince1970: TimeInterval(item.datum) / 1000)
                     if matchDate >= currentDate {
-                        upcommingMatchs.append(item)
+                        updatedMatches.append(item)
                     }
                 }
+            }
+            
+            if dataType == .KM {
+                upcommingMatchs = updatedMatches
+            } else if dataType == .oneB {
+                upcommingMatchsJuniors = updatedMatches
             }
             
             DispatchQueue.main.async {
                 self.stopShimmer()
                 self.tableView.reloadData()
             }
-            
         } catch {
             print("Error: \(error)")
+        }
+    }
+    
+    private func fetchDataAndUpdateTableView(for dataType: MatchDataType) {
+        Task {
+            await fetchMatchData(for: dataType)
         }
     }
 }
