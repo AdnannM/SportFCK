@@ -15,6 +15,7 @@ class NewsContainerView: UIView {
     
     // MARK: - Properties
     weak var delegate: NewsContainerViewDelegate?
+    let newsView = NewsView()
     
     // MARK: - Components
     private let titleLabel = UILabel.createCustomLabel(
@@ -30,8 +31,7 @@ class NewsContainerView: UIView {
         fontSize: .med
     )
     
-    let newsView = NewsView()
-    
+
     // MARK: - Lifecycle
     override init(frame: CGRect) {
         super.init(frame: frame)

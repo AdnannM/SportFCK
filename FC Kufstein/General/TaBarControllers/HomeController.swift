@@ -13,6 +13,7 @@ import WebKit
 class HomeController: UIViewController {
     
     // MARK: - Propperties
+    private let newsContainerView = NewsContainerView()
     
     // MARK: - Components
     private let tableView: UITableView = {
@@ -284,14 +285,41 @@ extension HomeController: SponsorsViewDelegate {
 
 // MARK: - NewsViewDelegate
 extension HomeController: NewsViewDelegate {
+   
     func didTapNewsCell(_ url: String) {
         presentSafariController(withURL: URL(string: url)!)
     }
     
-    func didTapShareButton(in cell: NewsCollectionViewCell) {
-        print("Debug: share button tapped")
+    func didTapShareButton(in cell: NewsCollectionViewCell, at indexPath: IndexPath) {
+        let postIndex = indexPath.row
+        let postsCount = newsContainerView.newsView.posts.count
+
+        guard postIndex >= 0, postIndex < postsCount else {
+            print("Index out of bounds")
+            return
+        }
+
+        let post = newsContainerView.newsView.posts[postIndex]
+
+        // Ensure the properties of 'post' are valid
+        guard let url = URL(string: post.link) else {
+            print("URL couldn't be created")
+            return
+        }
+        
+        let shareText = "Check out this article: \(post.title.rendered)\n\(post.link)"
+        let activityViewController = UIActivityViewController(activityItems: [shareText, url], applicationActivities: nil)
+
+        activityViewController.excludedActivityTypes = [
+            .addToReadingList,
+            .assignToContact,
+            // Add more excluded activities as per your requirement
+        ]
+
+        present(activityViewController, animated: true)
     }
 }
+
 
 
 

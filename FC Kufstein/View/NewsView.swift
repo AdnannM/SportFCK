@@ -9,7 +9,7 @@ import UIKit
 
 protocol NewsViewDelegate: AnyObject {
     func didTapNewsCell(_ url: String)
-    func didTapShareButton(in cell: NewsCollectionViewCell)
+    func didTapShareButton(in cell: NewsCollectionViewCell, at indexPath: IndexPath)
 }
 
 class NewsView: UIView {
@@ -35,6 +35,7 @@ class NewsView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
+        fetchData()
     }
     
     required init?(coder: NSCoder) {
@@ -45,8 +46,7 @@ class NewsView: UIView {
         return CGSize(width: 150, height: 150)
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
+    func fetchData() {
         Task {
             do {
                 startShimmer()

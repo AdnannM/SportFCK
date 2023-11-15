@@ -13,7 +13,8 @@ class NewsCollectionViewCell: UICollectionViewCell {
     // MARK: - Properties
     static let cellID = "NewsCollectionViewCell"
     weak var delegate: NewsViewDelegate?
-
+    var postURL: String = ""
+    
     // MARK: - Components
     private let containerView = createView(withColor: .systemGray6)
     private let circleView = createView(withColor: .systemBackground)
@@ -184,8 +185,9 @@ private extension NewsCollectionViewCell {
 // MARK: - Action
 extension NewsCollectionViewCell {
     @objc private func shareButtonTapped() {
-        if let delegate = delegate {
-            delegate.didTapShareButton(in: self)
+        if let collectionView = superview as? UICollectionView, let indexPath = collectionView.indexPath(for: self) {
+            print("Tapped on indexPath.row: \(indexPath.row)") // Check if the correct indexPath is obtained
+            delegate?.didTapShareButton(in: self, at: indexPath)
         }
     }
 }
@@ -219,6 +221,7 @@ extension NewsCollectionViewCell {
             activityIndicator.removeFromSuperview()
         }
         
+        postURL = data.link
         newsArticleTitle.text = data.title.rendered
         newsDate.text = data.date
     }
