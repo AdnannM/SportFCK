@@ -7,10 +7,26 @@
 
 import UIKit
 
+enum MatchDataType: String {
+    case KM = "KM"
+    case oneB = "1b"
+}
+
+
 class MatchController: UIViewController {
     
     // MARK: - Properties
     var finishedMatches: [MetchInfo.KMData] = []
+    var finishedMatchesJuniors: [MetchInfo.KMData] = []
+    
+    var reversedFinishedMatches: [MetchInfo.KMData] {
+        return finishedMatches.reversed()
+    }
+
+    var reversedFinishedMatchesJuniors: [MetchInfo.KMData] {
+        return finishedMatchesJuniors.reversed()
+    }
+    
     var isFetchingData: Bool = false
     
     // MARK: - Components
@@ -37,11 +53,22 @@ class MatchController: UIViewController {
         setupUI()
         fetchData()
     }
-        
+
     /// Fetch Data
     private func fetchData() {
         Task {
-            await fetchMatchData()
+            await withTaskGroup(of: Void.self) { group in
+                group.addTask {
+                    await self.fetchMatchData(for: .KM)
+                }
+                group.addTask {
+                    await self.fetchMatchData(for: .oneB)
+                }
+                for await _ in group {} // Wait for all tasks to complete
+            }
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
     }
     
@@ -70,13 +97,15 @@ private extension MatchController {
         view.addSubview(segmentedControl)
         segmentedControl.translatesAutoresizingMaskIntoConstraints = false
         
+        segmentedControl.selectedSegmentIndex = 0
+        
         NSLayoutConstraint.activate([
             segmentedControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             segmentedControl.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 8),
             segmentedControl.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -8),
         ])
         
-//        segmentedControl.addTarget(self, action: #selector(segmentedControlValueChanged(_:)), for: .valueChanged)
+        segmentedControl.addTarget(self, action: #selector(segmentedControlValueChanged(_:)), for: .valueChanged)
     }
     
     private func setupTableView() {
@@ -98,7 +127,15 @@ private extension MatchController {
 // MARK: - TableViewDelegate & TableViewDataSoruce
 extension MatchController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return isFetchingData ? 7 : finishedMatches.count
+        if isFetchingData {
+            return 10 // Adjust this based on your preference
+        } else {
+            if segmentedControl.selectedSegmentIndex == 0 {
+                return finishedMatches.count
+            } else {
+                return finishedMatchesJuniors.count
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -111,50 +148,94 @@ extension MatchController: UITableViewDelegate, UITableViewDataSource {
             ) as? FinishedMatchTableCell else {
                 return UITableViewCell()
             }
+
+            var matchData: MetchInfo.KMData?
             
-            // Reverse the order of items to display the last item first
-            let matchData = finishedMatches.reversed()[indexPath.row]
-            let viewModel = MatchViewMode(model: matchData)
-            cell.configureCell(withViewModel: viewModel)
+            // Determine which array to use based on segmented control value
+            if segmentedControl.selectedSegmentIndex == 0 {
+                // Display KM data
+                matchData = reversedFinishedMatches[indexPath.row]
+            } else {
+                // Display 1b data for FC Kufstein Juniors
+                matchData = reversedFinishedMatchesJuniors[indexPath.row]
+            }
             
+            if let data = matchData {
+                let viewModel = MatchViewMode(model: data)
+                cell.configureCell(withViewModel: viewModel)
+            }
+
             cell.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
             cell.isUserInteractionEnabled = false
             return cell
         }
     }
+
+
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
+// MARK: - Action
+extension MatchController {
+    // Update segmented control action to handle team selection
+    @objc func segmentedControlValueChanged(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            fetchDataAndUpdateTableView(for: .KM)
+        case 1:
+            fetchDataAndUpdateTableView(for: .oneB)
+        default:
+            break
+        }
+    }
+    
+    private func fetchDataAndUpdateTableView(for dataType: MatchDataType) {
+        Task {
+            await fetchMatchData(for: dataType)
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
+}
 
 
 // MARK: - Networking
 extension MatchController {
     // Fetch and display finished matches in the table view
-    func fetchMatchData() async {
+    func fetchMatchData(for dataType: MatchDataType) async {
         do {
             startShimmer() // Set isFetchingData to true before fetching data
             let matchInfo = try await ApiManager.shared.fetchMatchInfo()
             let currentDate = Date()
             
-            finishedMatches.removeAll()
+            var updatedMatches: [MetchInfo.KMData] = [] // Temporary array to hold updated data
             
-            print("Match Info:")
-            if let items = matchInfo.plan["KM"] {
+            if let items = matchInfo.plan[dataType.rawValue] {
                 for item in items {
                     let matchDate = Date(timeIntervalSince1970: TimeInterval(item.datum) / 1000)
                     if matchDate < currentDate {
-                        finishedMatches.append(item)
+                        updatedMatches.append(item)
                     }
                 }
+            } else {
+                print("No \(dataType.rawValue) data found")
+            }
+            
+            // Update the appropriate data array
+            if dataType == .KM {
+                finishedMatches = updatedMatches
+            } else if dataType == .oneB {
+                finishedMatchesJuniors = updatedMatches
             }
             
             // Reload the table view to display finished matches after the delay
             DispatchQueue.main.async {
-                self.tableView.reloadData()
                 self.stopShimmer()
+                self.tableView.reloadData()
             }
         } catch {
             print("Error: \(error)")
