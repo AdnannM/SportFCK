@@ -16,6 +16,8 @@ final class SafariViewControllerContainer: UIViewController {
     // MARK: - Components
     private var safariViewController: SFSafariViewController!
     private var activityIndicator: UIActivityIndicatorView!
+    
+    private let loadingLabel = UILabel.createCustomLabel(text: "Laden...", textColor: .systemGray6, fontSize: 16, fontWeight: .regular)
 
     // MARK: - Lifecycle
     init(url: URL) {
@@ -44,8 +46,18 @@ extension SafariViewControllerContainer {
         safariViewController.didMove(toParent: self)
         
         activityIndicator.center = view.center
+        activityIndicator.color = .systemGray6
         activityIndicator.hidesWhenStopped = true
         view.addSubview(activityIndicator)
+        
+        view.addSubview(loadingLabel)
+        // Position the label below the activity indicator
+        loadingLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            loadingLabel.topAnchor.constraint(equalTo: activityIndicator.bottomAnchor, constant: 8),
+            loadingLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
+        
         
         // Start the activity indicator when the view appears
         activityIndicator.startAnimating()
@@ -77,6 +89,7 @@ extension SafariViewControllerContainer: SFSafariViewControllerDelegate {
         if didLoadSuccessfully {
             // If the website loads successfully, we can stop the activity indicator
             activityIndicator.stopAnimating()
+            loadingLabel.isHidden = true
             invalidateTimer()
         }
     }

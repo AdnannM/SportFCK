@@ -178,36 +178,47 @@ extension AllMatchController {
             let matchInfo = try await ApiManager.shared.fetchMatchInfo()
             let currentDate = Date()
             
-            var updatedMatches: [MetchInfo.KMData] = []
-            
-            if let items = matchInfo.plan[dataType.rawValue] {
-                for item in items {
-                    let matchDate = Date(timeIntervalSince1970: TimeInterval(item.datum) / 1000)
-                    if matchDate >= currentDate {
-                        updatedMatches.append(item)
-                    }
-                }
-            }
-            
-            if dataType == .KM {
-                upcommingMatchs = updatedMatches
-            } else if dataType == .oneB {
-                upcommingMatchsJuniors = updatedMatches
-            }
-            
-            DispatchQueue.main.async {
-                self.stopShimmer()
-                self.tableView.reloadData()
-            }
+            let updatedMatches = filterMatches(from: matchInfo, for: dataType, currentDate: currentDate)
+            updateMatches(for: dataType, with: updatedMatches)
+            reloadTableView()
         } catch {
             print("Error: \(error)")
         }
     }
     
-    private func fetchDataAndUpdateTableView(for dataType: MatchDataType) {
+    private func filterMatches(from matchInfo: MetchInfo, for dataType: MatchDataType, currentDate: Date) -> [MetchInfo.KMData] {
+        guard let items = matchInfo.plan[dataType.rawValue] else {
+            print("No \(dataType.rawValue) data found")
+            return []
+        }
+        
+        return items.filter { item in
+            let matchDate = Date(timeIntervalSince1970: TimeInterval(item.datum) / 1000)
+            return matchDate >= currentDate
+        }
+    }
+    
+    private func updateMatches(for dataType: MatchDataType, with updatedMatches: [MetchInfo.KMData]) {
+        switch dataType {
+        case .KM:
+            upcommingMatchs = updatedMatches
+        case .oneB:
+            upcommingMatchsJuniors = updatedMatches
+        }
+    }
+    
+    private func reloadTableView() {
+        DispatchQueue.main.async {
+            self.stopShimmer()
+            self.tableView.reloadData()
+        }
+    }
+    
+    func fetchDataAndUpdateTableView(for dataType: MatchDataType) {
         Task {
             await fetchMatchData(for: dataType)
         }
     }
 }
+
 
