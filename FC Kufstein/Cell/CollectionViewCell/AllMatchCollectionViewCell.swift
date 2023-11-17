@@ -31,6 +31,17 @@ class AllMatchCollectionViewCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        containerView.gameLigaLabel.text = nil
+        containerView.homeImageView.image = nil
+        containerView.guestImageView.image = nil
+        containerView.dayLabel.text = nil
+        containerView.minLabel.text = nil
+        containerView.secLabel.text = nil
+        containerView.gamePlaceLabel.text = nil
+    }
 }
 
 // MARK: - SetupUI

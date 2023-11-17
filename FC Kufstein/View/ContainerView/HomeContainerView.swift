@@ -17,14 +17,14 @@ class HomeContainerView: UIView {
     weak var delegate: HomeContainerViewDelegate?
 
     // MARK: - Components
-    private let titleLabel = UILabel.createCustomLabel(
+    let titleLabel = UILabel.createCustomLabel(
         text: "Next Match",
         textColor: .label,
         fontSize: 18,
         fontWeight: .black
     )
     
-    private let allMatchButton = CustomButton(
+    let allMatchButton = CustomButton(
         title: "All Match",
         hasBackground: false,
         fontSize: .med

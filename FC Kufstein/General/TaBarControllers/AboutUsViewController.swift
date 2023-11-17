@@ -6,11 +6,12 @@
 //
 
 import UIKit
+import MessageUI
 
 class AboutUsViewController: UIViewController {
     
     // MARK: - Properties
-    private var models = [AboutUsSection]()
+    private var viewModel = AboutUsViewModel()
     
     // MARK: - Components
     private let tableView: UITableView = {
@@ -23,7 +24,8 @@ class AboutUsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        congigure()
+        viewModel.configure()
+        tableView.reloadData()
     }
 }
 
@@ -34,6 +36,7 @@ private extension AboutUsViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         view.backgroundColor = .systemGray6
         setupTableView()
+        viewModel.delegate = self
     }
     
     private func setupTableView() {
@@ -55,15 +58,15 @@ private extension AboutUsViewController {
 // MARK: - UITableViewDelegate, UITableViewDataSource
 extension AboutUsViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return models.count
+        return viewModel.models.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return models[section].options.count
+        return viewModel.models[section].options.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let model = models[indexPath.section].options[indexPath.row]
+        let model = viewModel.models[indexPath.section].options[indexPath.row]
         guard let cell = tableView.dequeueReusableCell(withIdentifier: AboutUsTableViewCell.cellID, for: indexPath) as? AboutUsTableViewCell else {
             return UITableViewCell()
         }
@@ -74,74 +77,87 @@ extension AboutUsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let model = models[indexPath.section].options[indexPath.row]
+        let model = viewModel.models[indexPath.section].options[indexPath.row]
         model.handler()
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let model = models[section]
+        let model = viewModel.models[section]
         return model.tittle
     }
 }
 
-extension AboutUsViewController {
-    func congigure() {
-        if let originalImage = UIImage(named: "facebook") {
-            let resizedImage3 = originalImage.resized(to: CGSize(width: 100, height: 100))
-            
-            models.append(AboutUsSection(tittle: "General", options: [
-                AboutUsOptions(title: "Wifi", icon: resizedImage3, iconBackground: .systemGray4, handler: {
-                    print("First")
-                }),
-                AboutUsOptions(title: "Wifi", icon: resizedImage3, iconBackground: .systemGray5, handler: {
-                    print("Second")
-                }),
-                AboutUsOptions(title: "Wifi", icon: resizedImage3, iconBackground: .systemGray2, handler: {
-                    print("Third")
-                }),
-                AboutUsOptions(title: "Wifi", icon: resizedImage3, iconBackground: .systemOrange, handler: {
-                    print("Fourth")
-                }),
-            ]))
+extension AboutUsViewController: AboutUsViewModelDelegate {
+    
+    func sendEmail() {
+        sendingEmail()
+    }
+    
+    func phoneCall() {        
+        makePhoneCall()
+    }
+    
+    func openURL(withURL url: String) {
+        presentSafariController(withURL: URL(string: url)!)
+    }
+    
+    /// Helpers
+    fileprivate func sendingEmail() {
+        guard MFMailComposeViewController.canSendMail() else {
+            showMessage(title: "Fehler", message: "Ihr Gerät kann keine E-Mails senden. Bitte überprüfen Sie Ihre E-Mail-Einstellungen.")
+            return
         }
         
-        models.append(AboutUsSection(tittle: "Media", options: [
-            AboutUsOptions(title: "Wifi", icon: UIImage(systemName: "house"), iconBackground: .systemBlue, handler: {
-                
-            }),
-            AboutUsOptions(title: "Wifi", icon: UIImage(systemName: "house"), iconBackground: .systemRed, handler: {
-                
-            }),
-            AboutUsOptions(title: "Wifi", icon: UIImage(systemName: "house"), iconBackground: .systemYellow, handler: {
-                
-            }),
-            AboutUsOptions(title: "Wifi", icon: UIImage(systemName: "house"), iconBackground: .systemOrange, handler: {
-                
-            }),
-        ]))
+        let composer = MFMailComposeViewController()
+        composer.mailComposeDelegate = self
+        composer.setSubject("FC Kufstein Unterstützung")
+        composer.setToRecipients(["info@fc-kufstein.at"])
+        composer.setMessageBody("Hallo,\n\nVielen Dank, dass Sie uns kontaktieren. Bitte hinterlassen Sie hier Ihre Nachricht oder Anfrage.\n\nMit freundlichen Grüßen,\nIhr Team von FC Kufstein", isHTML: false)
+        present(composer, animated: true)
+    }
+    
+    // Helpers
+    fileprivate func makePhoneCall() {
+        guard let numberURL = URL(string: "tel://+43537264801") else {
+            return
+        }
         
-        models.append(AboutUsSection(tittle: "Kontact", options: [
-            AboutUsOptions(title: "Wifi", icon: UIImage(systemName: "app-store-circle-fill"), iconBackground: .systemBlue, handler: {
-                
-            }),
-            AboutUsOptions(title: "Wifi", icon: UIImage(systemName: "house"), iconBackground: .systemRed, handler: {
-                
-            }),
-            AboutUsOptions(title: "Wifi", icon: UIImage(systemName: "house"), iconBackground: .systemYellow, handler: {
-                
-            }),
-            AboutUsOptions(title: "Wifi", icon: UIImage(systemName: "house"), iconBackground: .systemOrange, handler: {
-                
-            }),
-        ]))
+        UIApplication.shared.open(numberURL, options: [:], completionHandler: nil)
     }
 }
 
-extension UIImage {
-    func resized(to size: CGSize) -> UIImage? {
-        UIGraphicsBeginImageContextWithOptions(size, false, scale)
-        defer { UIGraphicsEndImageContext() }
-        draw(in: CGRect(origin: .zero, size: size))
-        return UIGraphicsGetImageFromCurrentImageContext()
+
+extension AboutUsViewController: MFMailComposeViewControllerDelegate {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        switch result {
+        case .cancelled:
+            controller.dismiss(animated: true) {
+                self.showMessage(title: "E-Mail Abgebrochen", message: "Sie haben die E-Mail-Komposition abgebrochen.")
+            }
+        case .sent:
+            controller.dismiss(animated: true) {
+                self.showMessage(title: "E-Mail Gesendet", message: "Ihre E-Mail wurde erfolgreich gesendet.")
+            }
+        case .failed:
+            controller.dismiss(animated: true) {
+                self.showMessage(title: "E-Mail Sendefehler", message: "Senden der E-Mail fehlgeschlagen. Bitte versuchen Sie es erneut.")
+            }
+        case .saved:
+            controller.dismiss(animated: true) {
+                self.showMessage(title: "E-Mail Gespeichert", message: "Ihre E-Mail wurde als Entwurf gespeichert.")
+            }
+        @unknown default:
+            break
+        }
+    }
+    
+    private func showMessage(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+        present(alert, animated: true)
     }
 }
+
+
+
+

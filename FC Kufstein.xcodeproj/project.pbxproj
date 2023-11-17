@@ -97,6 +97,7 @@
 		A6EB2F702AE04D74001B733C /* SponsorsModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EB2F6F2AE04D74001B733C /* SponsorsModelData.swift */; };
 		A6EB2F722AE05117001B733C /* TeamsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EB2F712AE05117001B733C /* TeamsController.swift */; };
 		A6EB2F742AE056CD001B733C /* PresentSafariControler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EB2F732AE056CD001B733C /* PresentSafariControler.swift */; };
+		A6F4FF7E2B07C0B000F903A4 /* AboutUsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F4FF7D2B07C0B000F903A4 /* AboutUsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -189,6 +190,7 @@
 		A6EB2F6F2AE04D74001B733C /* SponsorsModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SponsorsModelData.swift; sourceTree = "<group>"; };
 		A6EB2F712AE05117001B733C /* TeamsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsController.swift; sourceTree = "<group>"; };
 		A6EB2F732AE056CD001B733C /* PresentSafariControler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentSafariControler.swift; sourceTree = "<group>"; };
+		A6F4FF7D2B07C0B000F903A4 /* AboutUsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,6 +222,7 @@
 				A6401D3F2AFAA447007ADC82 /* MatchViewModel.swift */,
 				A67DCB162AFD128900F83A9B /* TableEntryViewModel.swift */,
 				A69F957C2B025280009779D1 /* UpcommingMatchViewModel.swift */,
+				A6F4FF7D2B07C0B000F903A4 /* AboutUsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -584,6 +587,7 @@
 				A6EB2F6B2ADFEE88001B733C /* SponsorsCollectionViewCell.swift in Sources */,
 				A6401D3E2AFAA2A1007ADC82 /* UIStackView.swift in Sources */,
 				A67DCB152AFCD95F00F83A9B /* UIView.swift in Sources */,
+				A6F4FF7E2B07C0B000F903A4 /* AboutUsViewModel.swift in Sources */,
 				A6EB08582AD9862500F4CBD5 /* SponsorsController.swift in Sources */,
 				A6286F812AF02C6C00FDDFE0 /* NewsFetcher.swift in Sources */,
 				A6EB083D2AD8223800F4CBD5 /* NewsCell.swift in Sources */,
