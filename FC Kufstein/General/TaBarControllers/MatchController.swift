@@ -10,6 +10,7 @@ import UIKit
 enum MatchDataType: String {
     case KM = "KM"
     case oneB = "1b"
+    case u16 = "U16 A"
 }
 
 
@@ -18,6 +19,7 @@ class MatchController: UIViewController {
     // MARK: - Properties
     var finishedMatches: [MetchInfo.KMData] = []
     var finishedMatchesJuniors: [MetchInfo.KMData] = []
+    var finishedMatchesU16: [MetchInfo.KMData] = []
     
     var reversedFinishedMatches: [MetchInfo.KMData] {
         return finishedMatches.reversed()
@@ -27,11 +29,15 @@ class MatchController: UIViewController {
         return finishedMatchesJuniors.reversed()
     }
     
+    var reversedFinishedMatchesU16: [MetchInfo.KMData] {
+        return finishedMatchesU16.reversed()
+    }
+    
     var isFetchingData: Bool = false
     
     // MARK: - Components
     private let segmentedControl: UISegmentedControl = {
-        let segControl = UISegmentedControl(items: ["FC Kufstein", "FC Kufstein 1b"])
+        let segControl = UISegmentedControl(items: ["FC Kufstein", "FC Kufstein 1b", "FCK U16A"])
         segControl.selectedSegmentIndex = 0
         segControl.selectedSegmentTintColor = .systemBlue.withAlphaComponent(0.5)
         segControl.backgroundImage(for: .normal, barMetrics: .default)
@@ -64,6 +70,10 @@ class MatchController: UIViewController {
                 group.addTask {
                     await self.fetchMatchData(for: .oneB)
                 }
+                group.addTask {
+                    await self.fetchMatchData(for: .u16)
+                }
+                
                 for await _ in group {} // Wait for all tasks to complete
             }
             DispatchQueue.main.async {
@@ -132,8 +142,10 @@ extension MatchController: UITableViewDelegate, UITableViewDataSource {
         } else {
             if segmentedControl.selectedSegmentIndex == 0 {
                 return finishedMatches.count
-            } else {
+            } else if segmentedControl.selectedSegmentIndex == 1 {
                 return finishedMatchesJuniors.count
+            } else {
+                return finishedMatchesU16.count
             }
         }
     }
@@ -155,9 +167,11 @@ extension MatchController: UITableViewDelegate, UITableViewDataSource {
             if segmentedControl.selectedSegmentIndex == 0 {
                 // Display KM data
                 matchData = reversedFinishedMatches[indexPath.row]
-            } else {
+            } else if segmentedControl.selectedSegmentIndex == 1 {
                 // Display 1b data for FC Kufstein Juniors
                 matchData = reversedFinishedMatchesJuniors[indexPath.row]
+            } else {
+                matchData = reversedFinishedMatchesU16[indexPath.row]
             }
             
             if let data = matchData {
@@ -187,6 +201,8 @@ extension MatchController {
             fetchDataAndUpdateTableView(for: .KM)
         case 1:
             fetchDataAndUpdateTableView(for: .oneB)
+        case 2:
+            fetchDataAndUpdateTableView(for: .u16)
         default:
             break
         }
@@ -240,6 +256,8 @@ extension MatchController {
             finishedMatches = updatedMatches
         case .oneB:
             finishedMatchesJuniors = updatedMatches
+        case .u16:
+            finishedMatchesU16 = updatedMatches
         }
     }
     
