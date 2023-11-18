@@ -99,7 +99,7 @@ extension SponsorsView: UICollectionViewDelegate, UICollectionViewDataSource, UI
         case .medium:
             cellSize = CGSize(width: 110, height: 80)
         case .large:
-            cellSize = CGSize(width: 110, height: 80)
+            cellSize = CGSize(width: 120, height: 90)
         }
 
         return cellSize

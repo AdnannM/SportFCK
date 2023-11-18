@@ -85,7 +85,7 @@ extension SponsorsController: UICollectionViewDelegate, UICollectionViewDataSour
         case .medium:
             cellSize = CGSize(width: 110, height: 80)
         case .large:
-            cellSize = CGSize(width: 150, height: 150)
+            cellSize = CGSize(width: 120, height: 90)
         }
 
         return cellSize

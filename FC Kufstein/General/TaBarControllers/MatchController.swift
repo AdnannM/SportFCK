@@ -37,7 +37,7 @@ class MatchController: UIViewController {
     
     // MARK: - Components
     private let segmentedControl: UISegmentedControl = {
-        let segControl = UISegmentedControl(items: ["FC Kufstein", "FC Kufstein 1b", "FCK U16A"])
+        let segControl = UISegmentedControl(items: ["FC Kufstein", "FC Kufstein 1b", "FCK U16 A"])
         segControl.selectedSegmentIndex = 0
         segControl.selectedSegmentTintColor = .systemBlue.withAlphaComponent(0.5)
         segControl.backgroundImage(for: .normal, barMetrics: .default)
