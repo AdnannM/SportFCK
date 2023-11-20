@@ -25,11 +25,12 @@ private extension TabBarController {
         let aboutUs = AboutUsViewController()
         let nextGen = NextGenerationController()
         
-        home.tabBarItem = UITabBarItem(title: "Feed", image: UIImage(systemName: "soccerball.inverse"), selectedImage: nil)
-        match.tabBarItem = UITabBarItem(title: "Match", image: UIImage(systemName: "sportscourt"), selectedImage: nil)
-        table.tabBarItem = UITabBarItem(title: "Table", image: UIImage(systemName: "list.number"), selectedImage: nil)
-        aboutUs.tabBarItem = UITabBarItem(title: "AboutUs", image: UIImage(systemName: "filemenu.and.selection"), selectedImage: nil)
-        nextGen.tabBarItem = UITabBarItem(title: "NextGen", image: UIImage(systemName: "person.3.fill"), selectedImage: nil)
+        home.tabBarItem = UITabBarItem(title: "Aktuelles", image: UIImage(systemName: "newspaper"), selectedImage: nil)
+        match.tabBarItem = UITabBarItem(title: "Spiele", image: UIImage(systemName: "sportscourt"), selectedImage: nil)
+        table.tabBarItem = UITabBarItem(title: "Tabelen", image: UIImage(systemName: "list.bullet"), selectedImage: nil)
+        aboutUs.tabBarItem = UITabBarItem(title: "Über uns", image: UIImage(systemName: "info.circle.fill"), selectedImage: nil)
+        nextGen.tabBarItem = UITabBarItem(title: "NextGen", image: UIImage(systemName: "person.2"), selectedImage: nil)
+
         
         tabBar.tintColor = .label
         tabBar.backgroundColor = .systemGray6
@@ -46,8 +47,8 @@ private extension TabBarController {
         home.navigationItem.title = "FC Kufstein News"
         match.navigationItem.title = "Letzte Spiele"
         table.navigationItem.title = "Tabelen"
-        aboutUs.navigationItem.title = "About Us"
-        nextGen.navigationItem.title = "Next Generation"
+        aboutUs.navigationItem.title = "Über uns"
+        nextGen.navigationItem.title = "Nächste Generation"
     }
 }
 

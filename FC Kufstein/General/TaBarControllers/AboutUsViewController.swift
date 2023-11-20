@@ -32,7 +32,7 @@ class AboutUsViewController: UIViewController {
 // MARK: - SetupUI
 private extension AboutUsViewController {
     private func setupUI() {
-        title = "About Us"
+        title = "Über uns"
         navigationController?.navigationBar.prefersLargeTitles = true
         view.backgroundColor = .systemGray6
         setupTableView()
