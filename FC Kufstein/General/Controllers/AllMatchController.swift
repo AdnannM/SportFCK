@@ -204,8 +204,6 @@ extension AllMatchController {
             upcommingMatchs = updatedMatches
         case .oneB:
             upcommingMatchsJuniors = updatedMatches
-        case .u16:
-            print("DEBUG:")
         }
     }
     
