@@ -78,6 +78,16 @@ extension TeamsView: UICollectionViewDelegate, UICollectionViewDataSource, UICol
         
         let model = teamsModelData[indexPath.item]
         cell.configure(withModel: model)
+        
+        // Check if indexPath.item is equal to 0 or 1
+        if indexPath.item == 0 || indexPath.item == 1 {
+            // Hide the logo for indexPath 0 and 1
+            cell.logoImage.isHidden = true
+        } else {
+            // Show the logo for other indexPaths
+            cell.logoImage.isHidden = false
+        }
+        
         return cell
     }
     
@@ -101,6 +111,7 @@ extension TeamsView: UICollectionViewDelegate, UICollectionViewDataSource, UICol
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let model = teamsModelData[indexPath.item]
+        print(indexPath.row)
         delegate?.openTeamsURL(URL(string: model.url)!)
     }
 }

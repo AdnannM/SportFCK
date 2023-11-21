@@ -21,6 +21,16 @@ class TeamsCollectionViewCell: UICollectionViewCell {
         return imageView
     }()
     
+    let logoImage : UIImageView = {
+        let imageView = UIImageView()
+        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFit
+        imageView.layer.cornerRadius = 8
+        let image = UIImage(named: "fcklogo")
+        imageView.image = image
+        return imageView
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
@@ -42,13 +52,20 @@ private extension TeamsCollectionViewCell {
     
     private func setupTeamsImage() {
         contentView.addSubview(teamsImage)
+        contentView.addSubview(logoImage)
         teamsImage.translatesAutoresizingMaskIntoConstraints = false
+        logoImage.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             teamsImage.topAnchor.constraint(equalTo: topAnchor),
             teamsImage.leadingAnchor.constraint(equalTo: leadingAnchor),
             teamsImage.trailingAnchor.constraint(equalTo: trailingAnchor),
             teamsImage.bottomAnchor.constraint(equalTo: bottomAnchor),
+            
+            logoImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
+            logoImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            logoImage.heightAnchor.constraint(equalToConstant: 50),
+            logoImage.widthAnchor.constraint(equalToConstant: 50)
         ])
     }
 }

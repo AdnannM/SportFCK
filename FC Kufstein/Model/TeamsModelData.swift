@@ -29,27 +29,27 @@ enum AgeGroup: String, CaseIterable {
     var image: UIImage? {
         switch self {
         case .u16:
-            return UIImage(named: "u16")
+            return UIImage(named: "U16A")
         case .u15a:
-            return UIImage(named: "u15a")
+            return UIImage(named: "U16B")
         case .u15b:
-            return UIImage(named: "u15b")
+            return UIImage(named: "U14")
         case .u13:
-            return UIImage(named: "u13")
+            return UIImage(named: "U13")
         case .u12:
-            return UIImage(named: "u12")
+            return UIImage(named: "U12")
         case .u11:
-            return UIImage(named: "u11")
+            return UIImage(named: "U11")
         case .u10:
-            return UIImage(named: "u10")
+            return UIImage(named: "U10")
         case .u9:
-            return UIImage(named: "u9")
+            return UIImage(named: "U9")
         case .u8:
-            return UIImage(named: "u8")
+            return UIImage(named: "U8")
         case .u7:
-            return UIImage(named: "u7")
+            return UIImage(named: "U7")
         case .kindergarten:
-            return UIImage(named: "u6")
+            return UIImage(named: "U6")
         case .kufstein:
             return UIImage(named: "kufstein")
         case .juniors:
