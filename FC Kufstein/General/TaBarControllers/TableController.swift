@@ -38,6 +38,7 @@ final class TableViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        addPullToRefresh()
         fetchData(for: .mainTeam)
         fetchData(for: .juniors)
     }
@@ -50,6 +51,12 @@ final class TableViewController: UIViewController {
     func stopShimmer() {
         isFetchingData = false
         tableView.reloadData()
+    }
+    
+    private func addPullToRefresh() {
+        tableView.addPullToRefresh { [weak self] in
+            self?.refreshData()
+        }
     }
 }
 
@@ -168,6 +175,12 @@ extension TableViewController {
         default:
             break
         }
+    }
+    
+    @objc private func refreshData() {
+        fetchData(for: segmentedControl.selectedSegmentIndex == 0 ? .mainTeam : .juniors)
+        tableView.reloadData()
+        self.tableView.refreshControl?.endRefreshing()
     }
 }
 

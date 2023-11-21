@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		A605DF542AFE34100060CC7F /* ShimmerTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A605DF532AFE34100060CC7F /* ShimmerTableView.swift */; };
 		A605DF562AFE36A40060CC7F /* ShimmerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A605DF552AFE36A40060CC7F /* ShimmerTableViewCell.swift */; };
+		A6097D512B0CF703007056B3 /* PullToRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6097D502B0CF703007056B3 /* PullToRefresh.swift */; };
 		A609C4FC2AF2AEA000D5AC65 /* AllMatchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A609C4FB2AF2AEA000D5AC65 /* AllMatchCollectionViewCell.swift */; };
 		A625E5382ADEA97000BD004F /* VideoPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A625E5372ADEA97000BD004F /* VideoPlayerViewController.swift */; };
 		A625E53A2ADEF92A00BD004F /* TeamsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A625E5392ADEF92A00BD004F /* TeamsCollectionViewCell.swift */; };
@@ -105,6 +106,7 @@
 /* Begin PBXFileReference section */
 		A605DF532AFE34100060CC7F /* ShimmerTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerTableView.swift; sourceTree = "<group>"; };
 		A605DF552AFE36A40060CC7F /* ShimmerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerTableViewCell.swift; sourceTree = "<group>"; };
+		A6097D502B0CF703007056B3 /* PullToRefresh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullToRefresh.swift; sourceTree = "<group>"; };
 		A609C4FB2AF2AEA000D5AC65 /* AllMatchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllMatchCollectionViewCell.swift; sourceTree = "<group>"; };
 		A625E5372ADEA97000BD004F /* VideoPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerViewController.swift; sourceTree = "<group>"; };
 		A625E5392ADEF92A00BD004F /* TeamsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -211,6 +213,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A6097D522B0CF781007056B3 /* ContainerControllers */ = {
+			isa = PBXGroup;
+			children = (
+				A6EB2F6C2AE028AA001B733C /* SafariViewControllerContainer.swift */,
+			);
+			path = ContainerControllers;
+			sourceTree = "<group>";
+		};
 		A625E5362ADEA95E00BD004F /* VideoPlayer */ = {
 			isa = PBXGroup;
 			children = (
@@ -315,10 +325,9 @@
 		A6EB08122AD4745C00F4CBD5 /* General */ = {
 			isa = PBXGroup;
 			children = (
-				A6EB082A2AD6955300F4CBD5 /* Controllers */,
-				A6EB08102AD45EE400F4CBD5 /* TabBarController.swift */,
 				A6EB08132AD4746D00F4CBD5 /* TaBarControllers */,
-				A6EB2F6C2AE028AA001B733C /* SafariViewControllerContainer.swift */,
+				A6EB082A2AD6955300F4CBD5 /* Controllers */,
+				A6097D522B0CF781007056B3 /* ContainerControllers */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -326,6 +335,7 @@
 		A6EB08132AD4746D00F4CBD5 /* TaBarControllers */ = {
 			isa = PBXGroup;
 			children = (
+				A6EB08102AD45EE400F4CBD5 /* TabBarController.swift */,
 				A6EB08182AD4763E00F4CBD5 /* HomeController.swift */,
 				A6EB081F2AD4983F00F4CBD5 /* MatchController.swift */,
 				A6EB081C2AD4768000F4CBD5 /* TableController.swift */,
@@ -345,6 +355,7 @@
 				A6401D042AF96C4B007ADC82 /* Date.swift */,
 				A6401D3D2AFAA2A1007ADC82 /* UIStackView.swift */,
 				A67DCB142AFCD95F00F83A9B /* UIView.swift */,
+				A6097D502B0CF703007056B3 /* PullToRefresh.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -594,6 +605,7 @@
 				A6EB2F6B2ADFEE88001B733C /* SponsorsCollectionViewCell.swift in Sources */,
 				A6401D3E2AFAA2A1007ADC82 /* UIStackView.swift in Sources */,
 				A67DCB152AFCD95F00F83A9B /* UIView.swift in Sources */,
+				A6097D512B0CF703007056B3 /* PullToRefresh.swift in Sources */,
 				A6B3952C2B0B515300943F46 /* NextGenerationController.swift in Sources */,
 				A6F4FF7E2B07C0B000F903A4 /* AboutUsViewModel.swift in Sources */,
 				A6EB08582AD9862500F4CBD5 /* SponsorsController.swift in Sources */,

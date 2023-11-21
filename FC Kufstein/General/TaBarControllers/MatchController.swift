@@ -12,6 +12,12 @@ class MatchController: BaseMatchController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Add pull-to-refresh functionality
+        tableView.addPullToRefresh { [weak self] in
+            // Perform refresh logic here, which might involve fetching data
+            self?.fetchData()
+        }
     }
     
     // MARK: - Networking
@@ -26,11 +32,15 @@ class MatchController: BaseMatchController {
                 }
                 for await _ in group {} // Wait for all tasks to complete
             }
+
+            // After fetching and updating data
             DispatchQueue.main.async {
                 self.tableView.reloadData()
+                self.tableView.refreshControl?.endRefreshing() // Stop pull-to-refresh
             }
         }
     }
+
     
     override func segmentedControlValueChanged(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
@@ -143,3 +153,6 @@ extension MatchController {
         }
     }
 }
+
+
+

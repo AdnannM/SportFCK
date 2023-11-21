@@ -63,6 +63,12 @@ class NextGenerationController: UIViewController {
         super.viewDidLoad()
         setupUI()
         fetchData()
+        
+        // Add pull-to-refresh functionality
+        tableView.addPullToRefresh { [weak self] in
+            // Perform refresh logic here, which might involve fetching data
+            self?.fetchData()
+        }
     }
     
     private func fetchData() {
@@ -84,6 +90,7 @@ class NextGenerationController: UIViewController {
             }
             DispatchQueue.main.async {
                 self.tableView.reloadData()
+                self.tableView.refreshControl?.endRefreshing()
             }
         }
     }
