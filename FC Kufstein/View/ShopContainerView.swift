@@ -48,6 +48,26 @@ class ShopContainerView: UIView {
         return collectionView
     }()
     
+    private let shippingOptions: UILabel = {
+        let label = UILabel.createCustomLabel(
+            text: "Achtung: Keine Versandkosten ab einem Bestellwert von € 150!",
+            textColor: .secondaryLabel,
+            fontSize: 16,
+            fontWeight: .ultraLight
+        )
+        
+        let attributedString = NSMutableAttributedString(string: "Achtung: Keine Versandkosten ab einem Bestellwert von ")
+        let euroValueAttributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: UIColor.systemBlue,
+            .font: UIFont.boldSystemFont(ofSize: 16)
+        ]
+        let euroValueString = NSAttributedString(string: "€ 150", attributes: euroValueAttributes)
+        attributedString.append(euroValueString)
+        label.attributedText = attributedString
+        
+        return label
+    }()
+    
     // MARK: - Lifecycle
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -78,8 +98,11 @@ private extension ShopContainerView {
         didTapSegmentControl(segmentedControl)
 
         setupSegmentControl()
+        setupShippingOptionsLabel()
         setupCollectionView()
     }
+    
+  
     
     private func setupSegmentControl() {
         addSubview(segmentedControl)
@@ -94,12 +117,26 @@ private extension ShopContainerView {
         segmentedControl.addTarget(self, action: #selector(didTapSegmentControl(_:)), for: .valueChanged)
     }
     
+    private func setupShippingOptionsLabel() {
+        addSubview(shippingOptions)
+        shippingOptions.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            shippingOptions.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 8),
+            shippingOptions.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 50),
+            shippingOptions.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -50)
+        ])
+        
+        shippingOptions.numberOfLines = 2
+        shippingOptions.textAlignment = .center
+    }
+    
     private func setupCollectionView() {
         addSubview(collectionView)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalToSystemSpacingBelow: segmentedControl.bottomAnchor, multiplier: 1),
+            collectionView.topAnchor.constraint(equalToSystemSpacingBelow: shippingOptions.bottomAnchor, multiplier: 1),
             collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: bottomAnchor)
@@ -137,7 +174,7 @@ extension ShopContainerView: UICollectionViewDelegate, UICollectionViewDataSourc
         case .medium:
             cellSize = CGSize(width: 180, height: 220)
         case .large:
-            cellSize = CGSize(width: 190, height: 220)
+            cellSize = CGSize(width: 200, height: 240)
         }
 
         return cellSize
@@ -145,7 +182,7 @@ extension ShopContainerView: UICollectionViewDelegate, UICollectionViewDataSourc
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         // Set the vertical spacing between items
-        return 20.0  // Adjust this value as needed
+        return 20.0 
     }
         
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
