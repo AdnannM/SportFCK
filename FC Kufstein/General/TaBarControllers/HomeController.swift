@@ -12,6 +12,7 @@ class HomeController: UIViewController {
     
     // MARK: - Propperties
     let newsContainerView = NewsContainerView()
+    let notificationHandler = NotificationHandler.shared
     
     // MARK: - Components
     private let tableView: UITableView = {
@@ -34,7 +35,7 @@ class HomeController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        print("Home Controller")
+        notificationHandler.requestNotificationPermission()
     }
 }
 
@@ -178,7 +179,7 @@ extension HomeController: UITableViewDelegate, UITableViewDataSource {
             }
             
             cell.sponsorsContainerView.sponsorsView.delegate = self
-            cell.sponsorsContainerView.delegate = self 
+            cell.sponsorsContainerView.delegate = self
             cell.selectionStyle = .none
             cell.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
             return cell
@@ -210,3 +211,5 @@ extension HomeController: UITableViewDelegate, UITableViewDataSource {
         }
     }
 }
+
+

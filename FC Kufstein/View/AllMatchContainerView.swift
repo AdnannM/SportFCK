@@ -205,7 +205,7 @@ private extension AllMatchContainerView {
         
         NSLayoutConstraint.activate([
             containerView.topAnchor.constraint(equalTo: gameSeparator.bottomAnchor, constant: imageContainerSpacing),
-            (leadingAnchor != nil) ? containerView.leadingAnchor.constraint(equalTo: leadingAnchor!, constant: 20) : containerView.trailingAnchor.constraint(equalTo: trailingAnchor!, constant: -16),
+            (leadingAnchor != nil) ? containerView.leadingAnchor.constraint(equalTo: leadingAnchor!, constant: 16) : containerView.trailingAnchor.constraint(equalTo: trailingAnchor!, constant: -16),
             containerView.widthAnchor.constraint(equalToConstant: containerWidth),
             containerView.heightAnchor.constraint(equalToConstant: containerHeight),
             

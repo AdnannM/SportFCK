@@ -50,6 +50,7 @@
 		A6B3952C2B0B515300943F46 /* NextGenerationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B3952B2B0B515300943F46 /* NextGenerationController.swift */; };
 		A6B863472B06961600B765AA /* AboutUsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B863462B06961600B765AA /* AboutUsTableViewCell.swift */; };
 		A6B863492B06966E00B765AA /* AboutUsOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B863482B06966E00B765AA /* AboutUsOptions.swift */; };
+		A6C750212B11228300AFB0EA /* NotificationPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C750202B11228300AFB0EA /* NotificationPermission.swift */; };
 		A6D62D5C2B0E6A31003F4D79 /* HomeController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D62D5B2B0E6A31003F4D79 /* HomeController+Extension.swift */; };
 		A6DEEE892AEBCAAD005EB18A /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = A6DEEE882AEBCAAD005EB18A /* SDWebImage */; };
 		A6DEEE8B2AEBCAAD005EB18A /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = A6DEEE8A2AEBCAAD005EB18A /* SDWebImageMapKit */; };
@@ -148,6 +149,7 @@
 		A6B3952B2B0B515300943F46 /* NextGenerationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextGenerationController.swift; sourceTree = "<group>"; };
 		A6B863462B06961600B765AA /* AboutUsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsTableViewCell.swift; sourceTree = "<group>"; };
 		A6B863482B06966E00B765AA /* AboutUsOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsOptions.swift; sourceTree = "<group>"; };
+		A6C750202B11228300AFB0EA /* NotificationPermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationPermission.swift; sourceTree = "<group>"; };
 		A6D62D5B2B0E6A31003F4D79 /* HomeController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeController+Extension.swift"; sourceTree = "<group>"; };
 		A6DEEE8F2AEC2B04005EB18A /* ShimmerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerCollectionViewCell.swift; sourceTree = "<group>"; };
 		A6E21E462B0388BA000F5562 /* ShimmerUpcommingMatchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerUpcommingMatchCell.swift; sourceTree = "<group>"; };
@@ -330,6 +332,7 @@
 				A6EB08132AD4746D00F4CBD5 /* TaBarControllers */,
 				A6EB082A2AD6955300F4CBD5 /* Controllers */,
 				A6097D522B0CF781007056B3 /* ContainerControllers */,
+				A6C750202B11228300AFB0EA /* NotificationPermission.swift */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -558,6 +561,7 @@
 				A6EB08282AD5CE8800F4CBD5 /* CustomListRowView.swift in Sources */,
 				A69F957B2B02272D009779D1 /* AllMatchContainerView.swift in Sources */,
 				A6A9E0512AE6AD5900D2DE68 /* AllVideosContainerView.swift in Sources */,
+				A6C750212B11228300AFB0EA /* NotificationPermission.swift in Sources */,
 				A6DEEE902AEC2B04005EB18A /* ShimmerCollectionViewCell.swift in Sources */,
 				A6EB084E2AD9700100F4CBD5 /* TeamsContainerView.swift in Sources */,
 				A6401D402AFAA447007ADC82 /* MatchViewModel.swift in Sources */,

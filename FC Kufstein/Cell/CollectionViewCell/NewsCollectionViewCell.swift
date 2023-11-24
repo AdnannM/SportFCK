@@ -39,7 +39,7 @@ class NewsCollectionViewCell: UICollectionViewCell {
     private let newsArticleTitle = UILabel.createCustomLabel(
         text: "Der SK Ebbs siegte beim Qualifikationsturnier – unsere Mannschaft erreichte Platz 8",
         textColor: .label,
-        fontSize: 17,
+        fontSize: 18,
         fontWeight: .medium
     )
     
