@@ -25,7 +25,7 @@ private extension TabBarController {
         let aboutUs = AboutUsViewController()
         let nextGen = NextGenerationController()
         
-        home.tabBarItem = UITabBarItem(title: "Aktuelles", image: UIImage(systemName: "newspaper"), selectedImage: nil)
+        home.tabBarItem = UITabBarItem(title: "Aktuell", image: UIImage(systemName: "newspaper"), selectedImage: nil)
         match.tabBarItem = UITabBarItem(title: "Spiele", image: UIImage(systemName: "sportscourt"), selectedImage: nil)
         table.tabBarItem = UITabBarItem(title: "Tabelen", image: UIImage(systemName: "list.bullet"), selectedImage: nil)
         aboutUs.tabBarItem = UITabBarItem(title: "Über uns", image: UIImage(systemName: "info.circle.fill"), selectedImage: nil)

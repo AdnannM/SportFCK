@@ -50,6 +50,7 @@
 		A6B3952C2B0B515300943F46 /* NextGenerationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B3952B2B0B515300943F46 /* NextGenerationController.swift */; };
 		A6B863472B06961600B765AA /* AboutUsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B863462B06961600B765AA /* AboutUsTableViewCell.swift */; };
 		A6B863492B06966E00B765AA /* AboutUsOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B863482B06966E00B765AA /* AboutUsOptions.swift */; };
+		A6D62D5C2B0E6A31003F4D79 /* HomeController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D62D5B2B0E6A31003F4D79 /* HomeController+Extension.swift */; };
 		A6DEEE892AEBCAAD005EB18A /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = A6DEEE882AEBCAAD005EB18A /* SDWebImage */; };
 		A6DEEE8B2AEBCAAD005EB18A /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = A6DEEE8A2AEBCAAD005EB18A /* SDWebImageMapKit */; };
 		A6DEEE8E2AEBF244005EB18A /* SkeletonView in Frameworks */ = {isa = PBXBuildFile; productRef = A6DEEE8D2AEBF244005EB18A /* SkeletonView */; };
@@ -147,6 +148,7 @@
 		A6B3952B2B0B515300943F46 /* NextGenerationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextGenerationController.swift; sourceTree = "<group>"; };
 		A6B863462B06961600B765AA /* AboutUsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsTableViewCell.swift; sourceTree = "<group>"; };
 		A6B863482B06966E00B765AA /* AboutUsOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsOptions.swift; sourceTree = "<group>"; };
+		A6D62D5B2B0E6A31003F4D79 /* HomeController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeController+Extension.swift"; sourceTree = "<group>"; };
 		A6DEEE8F2AEC2B04005EB18A /* ShimmerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerCollectionViewCell.swift; sourceTree = "<group>"; };
 		A6E21E462B0388BA000F5562 /* ShimmerUpcommingMatchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerUpcommingMatchCell.swift; sourceTree = "<group>"; };
 		A6E21E482B038BFD000F5562 /* ShimmerUpcommingMatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerUpcommingMatchView.swift; sourceTree = "<group>"; };
@@ -337,6 +339,7 @@
 			children = (
 				A6EB08102AD45EE400F4CBD5 /* TabBarController.swift */,
 				A6EB08182AD4763E00F4CBD5 /* HomeController.swift */,
+				A6D62D5B2B0E6A31003F4D79 /* HomeController+Extension.swift */,
 				A6EB081F2AD4983F00F4CBD5 /* MatchController.swift */,
 				A6EB081C2AD4768000F4CBD5 /* TableController.swift */,
 				A6E2AADF2B062E5900BF413E /* AboutUsViewController.swift */,
@@ -571,6 +574,7 @@
 				A6EB2F742AE056CD001B733C /* PresentSafariControler.swift in Sources */,
 				A6E21E472B0388BA000F5562 /* ShimmerUpcommingMatchCell.swift in Sources */,
 				A69A3EDF2AE9546E0085F7A4 /* ScreenSizeCategory.swift in Sources */,
+				A6D62D5C2B0E6A31003F4D79 /* HomeController+Extension.swift in Sources */,
 				A625E53A2ADEF92A00BD004F /* TeamsCollectionViewCell.swift in Sources */,
 				A675C3662AF54BCE00145CBC /* LastGameInfo.swift in Sources */,
 				A6EB08202AD4983F00F4CBD5 /* MatchController.swift in Sources */,
