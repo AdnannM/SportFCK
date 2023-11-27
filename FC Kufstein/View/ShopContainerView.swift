@@ -174,7 +174,7 @@ extension ShopContainerView: UICollectionViewDelegate, UICollectionViewDataSourc
         case .medium:
             cellSize = CGSize(width: 180, height: 220)
         case .large:
-            cellSize = CGSize(width: 200, height: 240)
+            cellSize = CGSize(width: 190, height: 240)
         }
 
         return cellSize
