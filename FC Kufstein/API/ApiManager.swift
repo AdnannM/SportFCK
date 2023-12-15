@@ -29,6 +29,7 @@ final class ApiManager {
             let posts = try JSONDecoder().decode([Post].self, from: data)
             return posts
         } catch {
+            print("Check you networking connection ❎")
             throw NetworkError.decodingError
         }
     }
