@@ -61,8 +61,17 @@ class WellcomeView: UIView {
     // MARK: - Properties
     weak var delegate: WellcomeViewDelegate?
     
-    // MARK: - Component
-    let continueButton = UIButton()
+//    // MARK: - Component
+    private lazy var titleLabel = UILabel.createCustomLabel(
+        text: "Willkommen beim FC Kufstein",
+        textColor: .label,
+        fontSize: 32,
+        fontWeight: .medium
+    )
+    
+    private lazy var containerView = UIView.createView(withColor: .systemGray6)
+    
+    private lazy var continueButton = UIButton()
     
     // MARK: - Init
     override init(frame: CGRect) {
@@ -79,12 +88,38 @@ class WellcomeView: UIView {
 // MARK: - SetupUI
 private extension WellcomeView {
     private func setupUI() {
+        
+        setupTitleLabel()
+        setupContainerView()
         setupExploreAppButton()
     }
     
+    private func setupTitleLabel() {
+        addSubview(titleLabel)
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.numberOfLines = 2
+        
+        NSLayoutConstraint.activate([
+            titleLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20),
+            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30)
+        ])
+    }
+    private func setupContainerView() {
+        addSubview(containerView)
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        
+        containerView.layer.cornerRadius = 20
+        
+        NSLayoutConstraint.activate([
+            containerView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 50),
+            containerView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            containerView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+        ])
+    }
+
     private func setupExploreAppButton() {
         addSubview(continueButton)
-        
         continueButton.translatesAutoresizingMaskIntoConstraints = false
         
         continueButton.configuration = .tinted()
@@ -96,6 +131,7 @@ private extension WellcomeView {
         continueButton.configuration?.cornerStyle = .capsule
         
         NSLayoutConstraint.activate([
+            continueButton.topAnchor.constraint(equalTo: containerView.bottomAnchor, constant: 50),
             continueButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 32),
             continueButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -32),
             continueButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -40),
@@ -106,6 +142,7 @@ private extension WellcomeView {
         
         continueButton.addTarget(self, action: #selector(didTapExploreButton), for: .touchUpInside)
     }
+
 }
 
 // MARK: - Action
